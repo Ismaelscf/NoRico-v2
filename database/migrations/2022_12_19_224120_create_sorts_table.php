@@ -17,10 +17,10 @@ return new class extends Migration
         Schema::create('sorts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('store_id')->constrained('stores', 'id');
-            $table->string('award')->nullable(false);
+            $table->string('award');
             $table->enum('type', ['geral', 'loja']);
-            $table->string('description')->nullable(false);
-            $table->string('image')->nullable(true);
+            $table->string('description');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

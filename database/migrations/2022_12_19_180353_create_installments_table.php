@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId('quota_id')->constrained('quotas', 'id');
             $table->foreignId('user_id')->constrained('users', 'id');
             $table->foreignId('seller_id')->constrained('users', 'id');
-            $table->float('price')->nullable(false);
-            $table->date('due_date')->nullable(false);
-            $table->date('payday')->nullable(true);
+            $table->float('price');
+            $table->date('due_date');
+            $table->date('payday')->nullable();
             $table->timestamps();
         });
     }

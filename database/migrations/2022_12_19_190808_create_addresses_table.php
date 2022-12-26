@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id')->nullable(true);
-            $table->foreignId('store_id')->constrained('stores', 'id')->nullable(true);
+            $table->foreignId('user_id')->constrained('users', 'id')->nullable();
+            $table->foreignId('store_id')->constrained('stores', 'id')->nullable();
             $table->enum('type', ['comercial', 'pessoal']);
-            $table->string('state', 30)->nullable(false)->default('MA');
-            $table->string('city', 100)->nullable(false)->default('Nova Olinda');
-            $table->string('district', 100)->nullable(false)->default('Centro');
-            $table->string('street')->nullable(false);
-            $table->string('zip_code')->nullable(true);
-            $table->string('number', 5)->nullable(true);
-            $table->string('complement')->nullable(true);
+            $table->string('state', 30)->default('MA');
+            $table->string('city', 100)->default('Nova Olinda');
+            $table->string('district', 100)->default('Centro');
+            $table->string('street');
+            $table->string('zip_code')->nullable()->default(null);
+            $table->string('number', 5)->nullable();
+            $table->string('complement')->nullable();
             $table->timestamps();
         });
     }

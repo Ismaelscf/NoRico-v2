@@ -21,9 +21,9 @@ return new class extends Migration
             $table->foreignId('store_id')->constrained('stores', 'id');
             $table->foreignId('employee_id')->constrained('store_employees', 'id');
             $table->foreignId('user_id')->constrained('users', 'id');
-            $table->float('total_sale')->nullable(false);
-            $table->float('discount')->nullable(true);
-            $table->date('sale_date')->nullable(false);
+            $table->float('total_sale');
+            $table->float('discount')->nullable()->default(null);
+            $table->date('sale_date');
             $table->timestamps();
         });
     }

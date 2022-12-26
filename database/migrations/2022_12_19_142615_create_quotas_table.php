@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('quotas', function (Blueprint $table) {
             $table->id();
-            $table->string('description')->nullable(false);
-            $table->float('total_price')->nullable(false);
-            $table->date('initial_date')->nullable(false);
-            $table->date('final_date')->nullable(true);
-            $table->float('customer_limit')->nullable(false);
+            $table->string('description');
+            $table->float('total_price');
+            $table->date('initial_date');
+            $table->date('final_date')->nullable();
+            $table->float('customer_limit');
             $table->enum('status', ['ativa', 'inativa']);
             $table->timestamps();
         });
