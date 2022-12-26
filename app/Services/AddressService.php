@@ -17,4 +17,8 @@ class AddressService
     {
         $this->addressRepository = $addressRepository;
     }
+
+    public function create($dados, $id){
+        return $this->addressRepository->create($dados, $id);
+    }
 }

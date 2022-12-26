@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('cnpj', 14)->unique();
+            $table->string('cnpj', 15)->unique();
             $table->string('email')->unique();
             $table->string('phone', 12);
             $table->string('logo')->nullable();

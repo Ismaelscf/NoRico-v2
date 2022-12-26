@@ -22,7 +22,7 @@ class AddressRepository
         $address = new Address();
 
         if($dados->type == 'comercial'){
-            $address->user_id = $id;
+            $address->store_id = $id;
         }
         else{
             $address->user_id = $id;

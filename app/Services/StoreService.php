@@ -8,13 +8,83 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
+use App\Services\AddressService;
+use Illuminate\Http\Request;
 
 class StoreService
 {
     protected $storeRepository;
+    
+    protected $addressService;
 
-    public function __construct(StoreRepository $storeRepository)
+    public function __construct(StoreRepository $storeRepository, AddressService $addressService)
     {
         $this->storeRepository = $storeRepository;
+        $this->addressService = $addressService;
+    }
+
+    public function getAll(){
+        return $this->storeRepository->getAll();
+    }
+
+    public function create(object $request){
+
+        // dd($request, 'Service');
+
+        try {
+            $store['name'] = $request->name;
+            $store['cnpj'] = $request->cnpj;
+            $store['email'] = $request->email;
+            $store['phone'] = $request->phone;
+            $store['full_discount'] = $request->full_discount;
+            $store['percentage_discount'] = $request->percentage_discount;
+            $store['discount'] = false;
+            $store['sort'] = false;
+            $store['active'] = true;
+
+            $address['street'] = $request->street;
+            $address['number'] = $request->number;
+            $address['complement'] = $request->complement;
+            $address['district'] = $request->district;
+            $address['city'] = $request->city;
+            $address['state'] = $request->state;
+            $address['type'] = 'comercial';
+
+            $address = (object) $address;
+
+            if($request->discount){
+                $store['discount'] = true;
+            }
+
+            if($request->sort){
+                $store['sort'] = true;
+            }
+
+            // if($request->hashFile('image') && $request->file('image')->isValid()){
+
+            //     $requestImage = $request->image;
+
+            //     $extensio = $requestImage->extension();
+
+            //     $imageName = md5($requestImage->image->getClientOriginalName() . strtotime('now') . $extensio);
+
+            //     $requestImage->move(public_path('img/stores'), $imageName);
+
+            //     $store['logo'] = $imageName;
+
+            // }
+
+            // $store = (object) $store;
+
+            $this->storeRepository->create($store);
+
+            $storeCreated = $this->storeRepository->searchStore('cnpj', $store['cnpj']);
+
+            $this->addressService->create($address, $storeCreated[0]->id); //Metodo de cadastrar endereço
+
+            // $this->addressService->create($storeCreated->id, $address);
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
     }
 }

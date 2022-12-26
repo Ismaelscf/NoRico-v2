@@ -15,8 +15,18 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id')->nullable();
-            $table->foreignId('store_id')->constrained('stores', 'id')->nullable();
+            
+            // $table->integer('user_id')->nullable()->default(null);
+            // $table->integer('store_id')->nullable()->default(null);
+
+            // $table->unsignedBigInteger('user_id')->nullable()->default(0);
+            // $table->foreign('user_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('store_id')->nullable()->default(0);
+            // $table->foreign('store_id')->references('id')->on('stores');
+            
+            $table->foreignId('user_id')->nullable()->constrained('users', 'id')->default(0);
+            $table->foreignId('store_id')->nullable()->constrained('stores', 'id')->default(0);
+            
             $table->enum('type', ['comercial', 'pessoal']);
             $table->string('state', 30)->default('MA');
             $table->string('city', 100)->default('Nova Olinda');
