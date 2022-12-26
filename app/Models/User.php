@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Loan;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -16,23 +15,22 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var string[]
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'email',
         'password',
-        'function',
+        'cpf',
+        'phone',
+        'photo',
+        'active',
     ];
-
-    public function region(){
-        return $this->hasOne('App\Models\Region');
-    }
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -42,23 +40,25 @@ class User extends Authenticatable
     /**
      * The attributes that should be cast.
      *
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function loanToday($id){
-        $day = date("Y-m-d");
-        $value = Loan::whereDate('created_at', $day)->where('status', '!=','cancelled')->where('user_id', $id)->sum('price');
-        // dd($day, $value);
-        return $value;
+    public function installments(){
+        return $this->hasMany(Installment::class, 'user_id', 'id');
     }
 
-    public function loanInstallmentsToday($id){
-        $day = date("Y-m-d");
-        $value = LoanInstallment::whereDate('updated_at', $day)->where('user_id', $id)->sum('amount_paid');
-        // dd($day, $value);
-        return $value;
+    public function installments_seller(){
+        return $this->hasMany(Installment::class, 'seller_id', 'id');
+    }
+
+    public function address(){
+        return $this->hasMany(Address::class, 'user_id', 'id');
+    }
+
+    public function sales(){
+        return $this->hasMany(Sale::class, 'user_id', 'id');
     }
 }

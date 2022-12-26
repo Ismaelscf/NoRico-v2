@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,12 +13,23 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
+Auth::routes();
 
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('/home', function() {
+//     return view('home');
+// })->name('home')->middleware('auth');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/homeComplete', [App\Http\Controllers\HomeController::class, 'index'])->name('homeComplete');
 
+Route::get('/admin/newUser', [App\Http\Controllers\UserController::class, 'index'])->name('newUser')->middleware('auth');
+Route::post('/admin/newUser', [App\Http\Controllers\UserController::class, 'create'])->name('SaveNewUser')->middleware('auth');
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
+// Route::prefix('store')->name('store')->group(function () {
+//     Route::get([App\Http\Controllers\StoreController::class, 'index'])->name('.index');
+// });
