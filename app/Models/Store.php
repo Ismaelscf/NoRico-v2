@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Address;
+use App\Models\StoreEmployee;
+use App\Models\Sale;
+use App\Models\Sort;
 
 class Store extends Model
 {

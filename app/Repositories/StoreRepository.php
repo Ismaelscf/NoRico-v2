@@ -15,9 +15,9 @@ class StoreRepository
     }
 
     public function getAll(){
-        // return $this->store::All();
-        $lojas = $this->store::All();
-        dd($lojas[0]);
+        return $this->store::All();
+        // $lojas = $this->store::All();
+        // dd($lojas[0]->addresses);
     }
 
     public function create(array $storeCreate){
