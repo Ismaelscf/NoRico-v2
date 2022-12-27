@@ -12,7 +12,57 @@
 
     <div class="card-body">
 
-        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+        <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Desconto em R$</th>
+                    <th>Desconto em %</th>
+                    <th>Oferece ao Cliente</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($stores as $store)
+                    <tr class="even">
+                        <td>
+                            @if($store->active)
+                                <i class="fas fa-circle" style="color: green"></i>
+                            @else
+                                <i class="fas fa-circle" style="color: red"></i>
+                            @endif
+                            {{ $store->name }}
+                        </td>
+                        <td>{{ $store->email }}</td>
+                        <td>{{ $store->phone }}</td>
+                        <td>R$ {{ number_format($store->full_discount,2,",",".") }}</td>
+                        <td>{{ number_format($store->percentage_discount,2,",",".") }}%</td>
+                        <td>
+                            {{ $store->discount ? '- Desconto' : '' }}<br>
+                            {{ $store->sort ? '- Sorteio' : ''}}
+                        </td>
+                        <td>
+                            Detalhes - Excluir
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Desconto em R$</th>
+                    <th>Desconto em %</th>
+                    <th>Oferece ao Cliente</th>
+                    <th>Ações</th>
+                </tr>
+            </tfoot>
+        </table>
+
+        {{-- <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
 
             <div class="row">
 
@@ -119,6 +169,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
