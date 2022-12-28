@@ -10,7 +10,7 @@
     </div>
 
     <div class="card-body">
-        <form action="{{ route('store.cadastrar'); }}" enctype="multipart/form-data" method="post">
+        <form action="{{ route('store.create'); }}" enctype="multipart/form-data" method="post">
         @csrf <!-- {{ csrf_field() }} -->
         <div class="row">
             <div class="col-sm-12 col-md-3">

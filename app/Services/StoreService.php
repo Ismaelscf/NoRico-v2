@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 use App\Services\AddressService;
 use Illuminate\Http\Request;
+use App\Models\Store;
 
 class StoreService
 {
@@ -27,7 +28,7 @@ class StoreService
         return $this->storeRepository->getAll();
     }
 
-    public function create(object $request){
+    public function create(Request $request){
 
         // dd($request, 'Service');
 
@@ -60,19 +61,19 @@ class StoreService
                 $store['sort'] = true;
             }
 
-            // if($request->hashFile('image') && $request->file('image')->isValid()){
+            if($request->hasFile('image') && $request->file('image')->isValid()){
 
-            //     $requestImage = $request->image;
+                $requestImage = $request->image;
 
-            //     $extensio = $requestImage->extension();
+                $extensio = $requestImage->extension();
 
-            //     $imageName = md5($requestImage->image->getClientOriginalName() . strtotime('now') . $extensio);
+                $imageName = md5($requestImage->image->getClientOriginalName() . strtotime('now') . $extensio);
 
-            //     $requestImage->move(public_path('img/stores'), $imageName);
+                $requestImage->move(public_path('img/stores'), $imageName);
 
-            //     $store['logo'] = $imageName;
+                $store['logo'] = $imageName;
 
-            // }
+            }
 
             // $store = (object) $store;
 
@@ -86,5 +87,33 @@ class StoreService
         } catch (Exception $e) {
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
+    }
+
+    public function searchStore($request){
+
+        $field = $request->fiel;
+        $value = $request->value;
+
+        return $this->storeRepository->searchStore($field, $value);
+    }
+
+    public function inactive($id){
+
+        // dd($id, 'Service');
+
+        $search = $this->storeRepository->searchStore('id', $id);
+
+        if($search[0]->id == $id){
+
+            // $store = new Store;
+            $store = $search[0];
+            $store->active = !$search[0]->active;
+
+            return $this->storeRepository->inactive($store);
+        } else {
+            $error = 'Loja não encontrada';
+            return $error;
+        }
+
     }
 }

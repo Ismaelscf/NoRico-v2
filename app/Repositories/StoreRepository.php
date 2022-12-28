@@ -18,7 +18,7 @@ class StoreRepository
         return $this->store::All();
     }
 
-    public function create(array $storeCreate){
+    public function create($storeCreate){
         // dd($storeCreate, 'Repository');
 
         $this->store::create($storeCreate);
@@ -27,5 +27,9 @@ class StoreRepository
 
     public function searchStore($field, $value){
         return $this->store->where($field, '=', $value)->get();
+    }
+
+    public function inactive(Store $store){
+        return $store->save();
     }
 }

@@ -15,6 +15,7 @@
         <table id="dataTable" class="table table-bordered table-striped dataTable dtr-inline">
             <thead>
                 <tr>
+                    <th>Status</th>
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
@@ -26,13 +27,18 @@
             </thead>
             <tbody>
                 @foreach ($stores as $store)
+                {{-- {{ dd($store); }} --}}
                     <tr class="even">
                         <td>
                             @if($store->active)
                                 <i class="fas fa-circle" style="color: green"></i>
+                                <span style="display: none">{{ $store->active }}</span>
                             @else
                                 <i class="fas fa-circle" style="color: red"></i>
+                                <span style="display: none">{{ $store->active }}</span>
                             @endif
+                        </td>
+                        <td>
                             {{ $store->name }}
                         </td>
                         <td>{{ $store->email }}</td>
@@ -44,13 +50,22 @@
                             {{ $store->sort ? '- Sorteio' : ''}}
                         </td>
                         <td>
-                            Detalhes - Excluir
+                            <a href="#" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
+
+                            @if($store->active)
+                                <a href="{{ route('store.inactive') }}/{{ $store->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                            @else
+                                <a href="{{ route('store.inactive') }}/{{ $store->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
+                            @endif
+                        
+                            
                         </td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
+                    <th>Status</th>
                     <th>Nome</th>
                     <th>E-mail</th>
                     <th>Telefone</th>
