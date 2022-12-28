@@ -25,6 +25,10 @@ class StoreRepository
 
     }
 
+    public function edit(Store $store){
+        return $store->save();
+    }
+
     public function searchStore($field, $value){
         return $this->store->where($field, '=', $value)->get();
     }

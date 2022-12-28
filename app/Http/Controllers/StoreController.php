@@ -33,14 +33,19 @@ class StoreController extends Controller
         return $this->index();
     }
 
-    public function editForm(Request $request){
+    public function editForm($id){
 
-        $store = $this->storeService->searchStore($request);
+        $store = $this->storeService->searchStore('id', $id);
 
         return view('store.edit', ['store' => $store]);
     }
 
-    public function edit(Request $request){}
+    public function edit(Request $request){
+
+        $store = $this->storeService->edit($request);
+
+        return redirect('/store');
+    }
 
     public function inactive($id){
 

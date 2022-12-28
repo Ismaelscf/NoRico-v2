@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Address;
 use App\Repositories\AddressRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,58 @@ class AddressService
     }
 
     public function create($dados, $id){
-        return $this->addressRepository->create($dados, $id);
+        $dados = json_decode (json_encode ($dados), FALSE);
+
+
+        $address = new Address();
+
+        if($dados->type == 'comercial'){
+            $address->store_id = $id;
+        }
+        else{
+            $address->user_id = $id;
+        }
+        
+        $address->type = $dados->type;
+        $address->state = $dados->state;
+        $address->city = $dados->city;
+        $address->district = $dados->district;
+        $address->street = $dados->street;
+        $address->number = $dados->number;
+        $address->complement = $dados->complement;
+
+        return $this->addressRepository->create($address);
+    }
+
+    public function search($field, $value){
+
+        try {
+           
+            $address = $this->addressRepository->search($field, $value);
+
+            $address = $address[0];
+
+            return $address;
+
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function edit($address, $store_id){
+        
+        $addressEdit = $this->search('store_id', $store_id);
+        
+        $addressEdit->street = $address->street;
+        $addressEdit->number = $address->number;
+        $addressEdit->complement = $address->complement;
+        $addressEdit->district = $address->district;
+        $addressEdit->city = $address->city;
+        $addressEdit->state = $address->state;
+        $addressEdit->type = $address->type;
+
+        $address = $this->addressRepository->edit($addressEdit);
+
+        return $address;
     }
 }

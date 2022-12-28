@@ -89,31 +89,86 @@ class StoreService
         }
     }
 
-    public function searchStore($request){
+    public function searchStore($field, $value){
 
-        $field = $request->fiel;
-        $value = $request->value;
+        try {
+           
+            $store = $this->storeRepository->searchStore($field, $value);
 
-        return $this->storeRepository->searchStore($field, $value);
+            $store = $store[0];
+
+            return $store;
+
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function edit($request){
+        try {
+            $store = $this->storeRepository->searchStore('id', $request->id);
+
+            $store = $store[0];
+
+            $store->name = $request->name;
+            $store->cnpj = $request->cnpj;
+            $store->email = $request->email;
+            $store->phone = $request->phone;
+            $store->full_discount = $request->full_discount;
+            $store->percentage_discount = $request->percentage_discount;
+            $store->discount = false;
+            $store->sort = false;
+            $store->active = $request->active;
+
+            $address['street'] = $request->street;
+            $address['number'] = $request->number;
+            $address['complement'] = $request->complement;
+            $address['district'] = $request->district;
+            $address['city'] = $request->city;
+            $address['state'] = $request->state;
+            $address['type'] = 'comercial';
+
+            $address = (object) $address;
+
+            if($request->discount){
+                $store['discount'] = true;
+            }
+
+            if($request->sort){
+                $store['sort'] = true;
+            }
+
+            // dd($store);
+            $this->storeRepository->edit($store);
+
+            
+            $this->addressService->edit($address, $store->id);
+
+            return $store;
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
     }
 
     public function inactive($id){
 
-        // dd($id, 'Service');
+        try {
 
-        $search = $this->storeRepository->searchStore('id', $id);
+            $search = $this->storeRepository->searchStore('id', $id);
 
-        if($search[0]->id == $id){
+            if($search[0]->id == $id){
 
-            // $store = new Store;
-            $store = $search[0];
-            $store->active = !$search[0]->active;
+                $store = $search[0];
+                $store->active = !$search[0]->active;
 
-            return $this->storeRepository->inactive($store);
-        } else {
-            $error = 'Loja não encontrada';
-            return $error;
+                return $this->storeRepository->inactive($store);
+            } else {
+                $error = 'Loja não encontrada';
+                return $error;
+            }
+
+        }  catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
-
     }
 }

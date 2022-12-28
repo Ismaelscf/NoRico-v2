@@ -34,7 +34,7 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label for="phone">Telefone</label>
-                            <input id="phone" name="phone" type="phone" class="form-control" placeholder="(98) 9 9999-9999" required>
+                            <input id="phone" name="phone" type="number" class="form-control" placeholder="(98) 9 9999-9999" required>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">

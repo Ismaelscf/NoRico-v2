@@ -35,5 +35,8 @@ Route::prefix('/store')->name('store')->group(function () {
     Route::get('/', [App\Http\Controllers\StoreController::class, 'index'])->name('.index');
     Route::post('/', [App\Http\Controllers\StoreController::class, 'create'])->name('.create');
 
+    Route::get('/editar/{id?}', [App\Http\Controllers\StoreController::class, 'editForm'])->name('.edit');
+    Route::post('/editar', [App\Http\Controllers\StoreController::class, 'edit'])->name('edit');
+
     Route::get('/inactive/{id?}', [App\Http\Controllers\StoreController::class, 'inactive'])->name('.inactive');
 });
