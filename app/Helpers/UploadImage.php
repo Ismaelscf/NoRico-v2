@@ -17,13 +17,19 @@ class UploadImage {
 
         $extensio = $requestImage->extension();
 
-        $imageName = md5($requestImage->getClientOriginalName() . strtotime('now') . $extensio);
+        if($extensio == 'jpg' || $extensio == 'jpeg' || $extensio == 'png'){
 
-        $requestImage->move(public_path('img/'.$type), $imageName);
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now') . $extensio);
+    
+            $requestImage->move(public_path('img/'.$type), $imageName);
+    
+            $imagePath = 'img/'.$type.'/'.$imageName;
+    
+            return $imagePath;
+        }
 
-        $imagePath = 'img/'.$type.'/'.$imageName;
+        return 'Formato do arquivo é inválido';
 
-        return $imagePath;
     }
 
 }
