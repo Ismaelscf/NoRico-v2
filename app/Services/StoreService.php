@@ -11,6 +11,7 @@ use InvalidArgumentException;
 use App\Services\AddressService;
 use Illuminate\Http\Request;
 use App\Models\Store;
+use App\Helpers\UploadImage;
 
 class StoreService
 {
@@ -63,15 +64,8 @@ class StoreService
 
             if($request->hasFile('image') && $request->file('image')->isValid()){
 
-                $requestImage = $request->image;
-
-                $extensio = $requestImage->extension();
-
-                $imageName = md5($requestImage->image->getClientOriginalName() . strtotime('now') . $extensio);
-
-                $requestImage->move(public_path('img/stores'), $imageName);
-
-                $store['logo'] = $imageName;
+                $upload = new UploadImage;
+                $store['logo'] = $upload->upload($request->image, 'store');
 
             }
 
@@ -136,6 +130,13 @@ class StoreService
 
             if($request->sort){
                 $store['sort'] = true;
+            }
+
+            if($request->hasFile('image') && $request->file('image')->isValid()){
+
+                $upload = new UploadImage;
+                $store['logo'] = $upload->upload($request->image, 'store');
+
             }
 
             // dd($store);

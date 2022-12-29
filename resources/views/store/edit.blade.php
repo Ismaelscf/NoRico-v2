@@ -32,6 +32,7 @@
                             <div class="col-sm-12 col-md-3">
                                 <label for="image">Logo</label>
                                 <input type="file" name="image" id="image" class="form-control-file">
+                                <img src="{{ asset($store->logo) }}" alt="">
                             </div>
                             <div class="col-sm-12 col-md-9">
                                 <div class="row">
