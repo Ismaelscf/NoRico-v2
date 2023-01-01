@@ -2,6 +2,7 @@
 
 @push('script-fisrt')
     <script src="{{ asset('js/datatable.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 @endpush
 
 @section('content')

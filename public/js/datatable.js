@@ -8,7 +8,8 @@ $(function () {
       "info": true,
       "autoWidth": false,
       "responsive": true,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+    //   "dom": 'lfrBtip',
+      "buttons": ["copy", "csv", "excel", "pdf", "print", /*"colvis"*/],
       "language": 
       {
         "emptyTable": "Nenhum registro encontrado",
@@ -256,7 +257,7 @@ $(function () {
       }
 
       
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#dataTable .col-md-6:eq(0)');
     
 
     $('#example').DataTable({
@@ -268,7 +269,8 @@ $(function () {
       "info": true,
       "autoWidth": false,
       "responsive": true,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+    //   "dom": 'Bfrtip',
+      "buttons": ["copy", "csv", "excel", "pdf", "print", /*"colvis"*/],
       "language": 
       {
         "emptyTable": "Nenhum registro encontrado",

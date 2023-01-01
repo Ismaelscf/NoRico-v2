@@ -32,7 +32,7 @@
                             <div class="col-sm-12 col-md-3">
                                 <label for="image">Logo</label>
                                 <input type="file" name="image" id="image" class="form-control-file">
-                                <img src="{{ asset($store->logo) }}" alt="">
+                                <img class="img-circle" width="200" src="{{ asset($store->logo) }}" alt="Logo Loja">
                             </div>
                             <div class="col-sm-12 col-md-9">
                                 <div class="row">
