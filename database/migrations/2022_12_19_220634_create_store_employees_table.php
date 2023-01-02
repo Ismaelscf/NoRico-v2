@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('store_id')->constrained('stores', 'id');
             $table->foreignId('user_id')->constrained('users', 'id');
-            $table->enum('function', ['vendedor', 'lojista', 'gerente']);
+            $table->enum('function', ['lojista', 'gerente']);
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

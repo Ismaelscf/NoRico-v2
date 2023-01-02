@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('active');
             $table->boolean('discount')->nullable()->default(false);
             $table->boolean('sort')->nullable()->default(false);
+            $table->boolean('coupon')->nullable()->default(false);
             $table->timestamps();
         });
     }

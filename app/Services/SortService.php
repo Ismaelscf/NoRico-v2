@@ -17,4 +17,13 @@ class SortService
     {
         $this->sortRepository = $sortRepository;
     }
+
+    public function getAll($store_id = null){
+
+        if($store_id){
+           return $this->sortRepository->getAll($store_id);
+        } else {
+           return $this->sortRepository->getAll();
+        }
+    }
 }
