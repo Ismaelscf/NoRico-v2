@@ -12,4 +12,9 @@ class ActorRepository
     {
         $this->actor = $actor;
     }
+
+    public function create($actor){   
+        return $this->actor::create($actor); 
+    }
+
 }

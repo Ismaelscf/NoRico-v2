@@ -57,8 +57,12 @@ class User extends Authenticatable
         return $this->hasMany(Installment::class, 'seller_id', 'id');
     }
 
+    public function actors(){
+        return $this->hasOne(Actor::class, 'user_id', 'id');
+    }
+
     public function address(){
-        return $this->hasMany(Address::class, 'user_id', 'id');
+        return $this->hasOne(Address::class, 'user_id', 'id');
     }
 
     public function sales(){

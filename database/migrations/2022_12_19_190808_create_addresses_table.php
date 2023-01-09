@@ -28,11 +28,11 @@ return new class extends Migration
             $table->foreignId('store_id')->nullable()->constrained('stores', 'id')->default(0);
             
             $table->enum('type', ['comercial', 'pessoal']);
-            $table->string('state', 30)->default('MA');
-            $table->string('city', 100)->default('Nova Olinda');
-            $table->string('district', 100)->default('Centro');
-            $table->string('street');
-            $table->string('zip_code')->nullable()->default(null);
+            $table->string('state', 30)->nullable();;
+            $table->string('city', 100)->nullable();;
+            $table->string('district', 255)->nullable();;
+            $table->string('street')->nullable();;
+            $table->string('zip_code')->nullable();
             $table->string('number', 5)->nullable();
             $table->string('complement')->nullable();
             $table->timestamps();
