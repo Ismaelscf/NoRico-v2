@@ -19,16 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
 
-// Route::get('/home', function() {
-//     return view('home');
-// })->name('home')->middleware('auth');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/homeComplete', [App\Http\Controllers\HomeController::class, 'index'])->name('homeComplete');
-
-Route::get('/admin/newUser', [App\Http\Controllers\UserController::class, 'index'])->name('newUser')->middleware('auth');
-Route::post('/admin/newUser', [App\Http\Controllers\UserController::class, 'create'])->name('SaveNewUser')->middleware('auth');
+Route::prefix('/user')->name('user')->group(function () {
+    Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('.home')->middleware('auth');
+    Route::get('/newUser', [App\Http\Controllers\UserController::class, 'index'])->name('.newUser')->middleware('auth');
+    Route::post('/newUser', [App\Http\Controllers\UserController::class, 'create'])->name('.save')->middleware('auth');
+    Route::get('/status/{id?}', [App\Http\Controllers\UserController::class, 'mudarStatus'])->name('.status')->middleware('auth');
+    Route::get('/edit/{id?}', [App\Http\Controllers\UserController::class, 'edit'])->name('.edit')->middleware('auth');
+});
 
 // Stores
 Route::prefix('/store')->name('store')->group(function () {

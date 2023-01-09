@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use App\Helpers\UploadImage;
 use Exception;
 
 
@@ -16,25 +17,62 @@ class UserController extends Controller
     
     public function index()
     {   
-        return view('user.index');
+        $msg = null;
+        return $this->home($msg);
+        
     }
 
     public function create(Request $request)
     {
-        $dados = $request->all();
         try {
-            $msg = $this->userService->create($dados);
-            // dd('1');
+            $msg = $this->userService->create($request);
 
         } catch (Exception $exception) {
-            // dd('contro');
-            return view('user.index', [
-                'msg' =>$exception->getMessage()
-            ]);
+            $msg = $exception->getMessage();
+            return $this->home($msg);
         }
 
-        return view('user.index', compact('msg'));
-        // return redirect()->route('newUser');
+        return $this->home($msg);
     }
 
+    public function edit($id){
+        try {
+            $user = $this->userService->buscarUser($id);
+
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $this->home($msg);
+        }
+
+        return view('user.edit', compact('user'));
+    }
+
+    public function mudarStatus($id){
+        try {
+            $msg = $this->userService->status($id);
+
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $this->home($msg);
+        }
+
+        return $this->index();
+    }
+
+    public function status($id){
+        try {
+            $this->userService->status($id);
+
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $this->home($msg);
+        }
+
+        return $this->index();
+    }
+
+    public function home($msg){
+        $users = $this->userService->buscarTodos();
+        return view('user.index', compact('users', 'msg'));
+    }
 }

@@ -13,8 +13,8 @@ class AddressRepository
         $this->address = $address;
     }
 
-    public function create(Address $address){
-        return $address->save();
+    public function create($address){   
+        return $this->address::create($address); 
     }
 
     public function edit(Address $address){

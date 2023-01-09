@@ -23,7 +23,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('home') }}" class="nav-link">
+    <a href="{{ route('user.home') }}" class="nav-link">
         <i class="nav-icon fas fa-users"></i>
         <p>Clientes</p>
     </a>
