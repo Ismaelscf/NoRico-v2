@@ -27,6 +27,7 @@ Route::prefix('/user')->name('user')->group(function () {
     Route::post('/newUser', [App\Http\Controllers\UserController::class, 'create'])->name('.save')->middleware('auth');
     Route::get('/status/{id?}', [App\Http\Controllers\UserController::class, 'mudarStatus'])->name('.status')->middleware('auth');
     Route::get('/edit/{id?}', [App\Http\Controllers\UserController::class, 'edit'])->name('.edit')->middleware('auth');
+    Route::post('/edit', [App\Http\Controllers\UserController::class, 'editUser'])->name('.editUser')->middleware('auth');
 });
 
 // Stores

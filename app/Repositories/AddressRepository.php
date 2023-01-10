@@ -13,8 +13,9 @@ class AddressRepository
         $this->address = $address;
     }
 
-    public function create($address){   
-        return $this->address::create($address); 
+    public function create($address){  
+        // dd($address); 
+        $this->address::create($address); 
     }
 
     public function edit(Address $address){
@@ -23,5 +24,9 @@ class AddressRepository
 
     public function search($field, $value){
         return $this->address->where($field, '=', $value)->get();
+    }
+
+    public function buscarPorIdUser($id){
+        return $this->address->where('user_id', $id)->first();
     }
 }
