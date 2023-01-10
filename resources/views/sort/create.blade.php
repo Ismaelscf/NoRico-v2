@@ -38,11 +38,9 @@
                         <div class="form-group">
                             <label for="store_id">Loja</label>
                             <select name="store_id" id="store_id" class="form-control select2">
-                                {{-- @foreach ( as )
-                                    
-                                @endforeach --}}
-                                <option value="geral" selected>Geral</option>
-                                <option value="loja">Loja</option>
+                                @foreach ($stores as $store)
+                                    <option value="{{ $store->id }}" selected>{{ $store->name }}</option>    
+                                @endforeach
                             </select>
                         </div>
                     </div>

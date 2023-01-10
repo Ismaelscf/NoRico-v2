@@ -18,6 +18,18 @@
 @section('content')
     <section class="content">
         <div class="row">
+
+            @if($result == 'Error')
+                <div class="alert alert-danger" role="alert">
+                    Erro, A data final não pode anteceder a data inicial. Sorteio Não cadastrado
+                </div>
+            @else
+                <div class="alert alert-success" role="alert">
+                    {{ $result }}
+                </div>
+            @endif
+            
+
             <div class="col-md-12 col-sm-12">
                 @include('sort.create')
             </div>

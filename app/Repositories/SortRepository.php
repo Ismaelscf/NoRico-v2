@@ -21,4 +21,8 @@ class SortRepository
             return $this->sort::All();
         }
     }
+
+    public function create($sortCreate){
+        return $this->sort::create($sortCreate);
+    }
 }
