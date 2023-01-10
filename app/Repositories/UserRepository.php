@@ -18,6 +18,10 @@ class UserRepository
         return $this->user::create($user); 
     }
 
+    public function edit($user){   
+        return $user->save(); 
+    }
+
     public function buscarIdPorCPF($cpf){
         $user = User::where('cpf', $cpf)->first();
 

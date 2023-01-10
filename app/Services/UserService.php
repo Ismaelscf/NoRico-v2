@@ -52,6 +52,8 @@ class UserService
             $address['number'] = $dados->number;
             $address['complement'] = $dados->complement;
 
+            // dd($address);
+
             $this->addressRepository->create($address);
 
             $actor['user_id'] = $user;
@@ -93,6 +95,57 @@ class UserService
             $msg = $exception->getMessage();
             return $msg;
         }
+    }
+
+    public function editUser($dados){
+        try {
+            $user = $this->userRepository->search($dados->id);
+            $user->name = $dados->name;
+            $user->cpf = $dados->cpf;
+            $user->password = Hash::make($dados->password);
+            $user->email = $dados->email;
+            $user->phone = $dados->phone;
+
+            if($dados->hasFile('image') && $dados->file('image')->isValid()){
+                $upload = new UploadImage;
+                $user->photo = $upload->upload($dados->image, 'users');
+            }     
+
+            $this->userRepository->edit($user);
+
+            // dd($user);
+
+            $address = $this->addressRepository->buscarPorIdUser($user->id);
+
+            // $address->type = 'pessoal';
+            // $address->user_id  = $user->;
+            $address->state = $dados->state;
+            $address->city = $dados->city;
+            $address->district = $dados->district;
+            $address->street = $dados->street;
+            $address->number = $dados->number;
+            $address->complement = $dados->complement;
+
+            $this->addressRepository->edit($address);
+
+            dd($address, $user);
+
+            $actor['user_id'] = $user;
+            $actor['function'] = $dados->function;
+
+            $this->actorRepository->create($actor);
+
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+
+        $msg = 'Usuario Atualizado';
+        return $msg;
+
+        
+        // dd($user, $user->id);
+        return $users;
     }
 
     public function buscarTodos(){

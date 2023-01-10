@@ -563,8 +563,9 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="/user/newUser" enctype="multipart/form-data" method="POST">
+                        <form action="/user/edit" enctype="multipart/form-data" method="POST">
                         @csrf
+                        <input type="hidden" class="form-control" id="id" name="id" value="{{$user->id}}" >
                         <div class="form-group">
                             <label for="name">Nome</label>
                             <input type="text" class="form-control" value="{{ $user->name }}" id="name" name="name" placeholder="Nome Completo" required>
