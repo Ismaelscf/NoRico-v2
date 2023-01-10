@@ -20,25 +20,23 @@ class AddressService
     }
 
     public function create($dados, $id){
-        $dados = json_decode (json_encode ($dados), FALSE);
 
-
-        $address = new Address();
+        $address = [];
 
         if($dados->type == 'comercial'){
-            $address->store_id = $id;
+            $address['store_id'] = $id;
         }
         else{
-            $address->user_id = $id;
+            $address['user_id'] = $id;
         }
         
-        $address->type = $dados->type;
-        $address->state = $dados->state;
-        $address->city = $dados->city;
-        $address->district = $dados->district;
-        $address->street = $dados->street;
-        $address->number = $dados->number;
-        $address->complement = $dados->complement;
+        $address['type'] = $dados->type;
+        $address['state'] = $dados->state;
+        $address['city'] = $dados->city;
+        $address['district'] = $dados->district;
+        $address['street'] = $dados->street;
+        $address['number'] = $dados->number;
+        $address['complement'] = $dados->complement;
 
         return $this->addressRepository->create($address);
     }

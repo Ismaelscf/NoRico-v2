@@ -12,17 +12,20 @@ use App\Services\AddressService;
 use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Helpers\UploadImage;
+use App\Repositories\AddressRepository;
 
 class StoreService
 {
     protected $storeRepository;
     
     protected $addressService;
+    protected $addressRepository;
 
-    public function __construct(StoreRepository $storeRepository, AddressService $addressService)
+    public function __construct(StoreRepository $storeRepository, AddressService $addressService, AddressRepository $addressRepository)
     {
         $this->storeRepository = $storeRepository;
         $this->addressService = $addressService;
+        $this->addressRepository = $addressRepository;
     }
 
     public function getAll(){
@@ -52,8 +55,6 @@ class StoreService
             $address['state'] = $request->state;
             $address['type'] = 'comercial';
 
-            $address = (object) $address;
-
             if($request->discount){
                 $store['discount'] = true;
             }
@@ -69,13 +70,13 @@ class StoreService
 
             }
 
-            // $store = (object) $store;
-
             $this->storeRepository->create($store);
 
             $storeCreated = $this->storeRepository->searchStore('cnpj', $store['cnpj']);
 
-            $this->addressService->create($address, $storeCreated[0]->id); //Metodo de cadastrar endereço
+            $address['store_id'] = $storeCreated->id;
+
+            $this->addressRepository->create($address); //Metodo de cadastrar endereço
 
             // $this->addressService->create($storeCreated->id, $address);
         } catch (Exception $e) {
