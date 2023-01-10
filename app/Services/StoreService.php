@@ -74,7 +74,7 @@ class StoreService
 
             $storeCreated = $this->storeRepository->searchStore('cnpj', $store['cnpj']);
 
-            $address['store_id'] = $storeCreated->id;
+            $address['store_id'] = $storeCreated[0]->id;
 
             $this->addressRepository->create($address); //Metodo de cadastrar endereço
 

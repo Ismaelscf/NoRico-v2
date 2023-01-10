@@ -1,5 +1,5 @@
 {{-- {{ dd($store->adresses); }} --}}
-<?php $address = $store->adresses[0];?>
+<?php $address = $store->adresses;?>
 @extends('layouts.app')
 
 @push('script-fisrt')

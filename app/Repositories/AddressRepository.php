@@ -15,7 +15,7 @@ class AddressRepository
 
     public function create($address){  
         // dd($address); 
-        $this->address::create($address); 
+        return $this->address::create($address); 
     }
 
     public function edit(Address $address){

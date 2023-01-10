@@ -21,7 +21,7 @@ class StoreRepository
     public function create($storeCreate){
         // dd($storeCreate, 'Repository');
 
-        $this->store::create($storeCreate);
+        return $this->store::create($storeCreate);
 
     }
 
