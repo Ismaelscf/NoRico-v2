@@ -36,8 +36,22 @@ class UserController extends Controller
     }
 
     public function edit($id){
+
         try {
             $user = $this->userService->buscarUser($id);
+
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $this->home($msg);
+        }
+
+        return view('user.edit', compact('user'));
+    }
+
+    public function editUser(Request $request){
+        // dd($request->all());
+        try {
+            $user = $this->userService->editUser($request);
 
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
