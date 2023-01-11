@@ -117,8 +117,6 @@ class UserService
 
             $address = $this->addressRepository->buscarPorIdUser($user->id);
 
-            // $address->type = 'pessoal';
-            // $address->user_id  = $user->;
             $address->state = $dados->state;
             $address->city = $dados->city;
             $address->district = $dados->district;
@@ -128,12 +126,12 @@ class UserService
 
             $this->addressRepository->edit($address);
 
-            dd($address, $user);
+            $actor = $this->actorRepository->buscarPorIdUser($user->id);
 
-            $actor['user_id'] = $user;
-            $actor['function'] = $dados->function;
+            $actor->user_id = $user->id;
+            $actor->function = $dados->function;
 
-            $this->actorRepository->create($actor);
+            $this->actorRepository->edit($actor);
 
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
@@ -143,9 +141,7 @@ class UserService
         $msg = 'Usuario Atualizado';
         return $msg;
 
-        
-        // dd($user, $user->id);
-        return $users;
+
     }
 
     public function buscarTodos(){

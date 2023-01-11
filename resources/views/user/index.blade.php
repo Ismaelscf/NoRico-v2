@@ -626,7 +626,7 @@
                         </div>
 
                         <div class="row form-group" div class="col-sm-12">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <label for="district">Bairro</label>
                                 <input type="text" class="form-control" id="district" name="district" placeholder="Bairro" required>
                             </div>

@@ -51,14 +51,14 @@ class UserController extends Controller
     public function editUser(Request $request){
         // dd($request->all());
         try {
-            $user = $this->userService->editUser($request);
+            $msg = $this->userService->editUser($request);
 
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
             return $this->home($msg);
         }
 
-        return view('user.edit', compact('user'));
+        return $this->home($msg);
     }
 
     public function mudarStatus($id){
