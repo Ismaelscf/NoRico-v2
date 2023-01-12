@@ -16,6 +16,7 @@
                 <tr>
                     <th>Status</th>
                     <th>Descrição</th>
+                    <th>Loja</th>
                     <th>Tipo</th>
                     <th>Data Inicial</th>
                     <th>Data Final</th>
@@ -36,9 +37,8 @@
                                 <span style="display: none">{{ $sort->active }}</span>
                             @endif
                         </td>
-                        <td>
-                            {{ $sort->description }}
-                        </td>
+                        <td>{{ $sort->description }}</td>
+                        <td>{{ $sort->store ? $sort->store->name : 'Todas as Lojas' }}</td>
                         <td>{{ $sort->type }}</td>
                         <td>{{ $sort->initial_date }}</td>
                         <td>{{ $sort->final_date }}</td>
@@ -62,6 +62,7 @@
                 <tr>
                     <th>Status</th>
                     <th>Descrição</th>
+                    <th>Loja</th>
                     <th>Tipo</th>
                     <th>Data Inicial</th>
                     <th>Data Final</th>

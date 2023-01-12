@@ -38,8 +38,9 @@
                         <div class="form-group">
                             <label for="store_id">Loja</label>
                             <select name="store_id" id="store_id" class="form-control select2">
+                                <option value="" selected>Todas</option>
                                 @foreach ($stores as $store)
-                                    <option value="{{ $store->id }}" selected>{{ $store->name }}</option>    
+                                    <option value="{{ $store->id }}">{{ $store->name }}</option>    
                                 @endforeach
                             </select>
                         </div>
@@ -47,7 +48,7 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label for="initial_date">Data de Inicio</label>
-                            <input type="date" name="initial_date" id="initial_date" class="form-control">
+                            <input type="date" value="<?php echo date('Y-m-d') ?>" name="initial_date" id="initial_date" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">

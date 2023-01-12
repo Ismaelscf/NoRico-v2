@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Helpers\UploadImage;
+use App\Models\Sort;
 use App\Repositories\SortRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +40,8 @@ class SortService
             $sort->draw_date = $draw_date->format('d/m/Y');
         }
 
+        // dd($sorts[2]->store->name);
+
         return $sorts;
     }
 
@@ -52,7 +55,17 @@ class SortService
                 return "Error";
             } else {
 
-                $sort['description'] = $request->description;
+                $sort_id = Sort::latest()->first();
+                if($sort_id){
+                    $id = $sort_id->id+1;
+                } else {
+                    $id = 1;
+                }
+
+
+                $sorter = $request->store_id ? $request->store_id : 'G';
+
+                $sort['description'] = "SORT".$sorter.$id." - ".$request->description;
                 $sort['type'] = $request->type;
                 $sort['store_id'] = $request->store_id;
                 $sort['initial_date'] = $request->initial_date;
