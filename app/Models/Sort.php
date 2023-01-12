@@ -18,6 +18,11 @@ class Sort extends Model
         'type',
         'description',
         'image',
+        'initial_date',
+        'final_date',
+        'draw_date',
+        'limit',
+        'active'
     ];
 
     public function store(){

@@ -19,11 +19,11 @@
     <section class="content">
         <div class="row">
 
-            @if($result == 'Error')
+            @if(isset($result) && $result == 'Error')
                 <div class="alert alert-danger" role="alert">
                     Erro, A data final não pode anteceder a data inicial. Sorteio Não cadastrado
                 </div>
-            @else
+            @elseif(isset($result) && $result != null)
                 <div class="alert alert-success" role="alert">
                     {{ $result }}
                 </div>
@@ -34,9 +34,9 @@
                 @include('sort.create')
             </div>
     
-            {{-- <div class="col-md-12 col-sm-12">
-                @include('sort.storeList')
-            </div> --}}
+            <div class="col-md-12 col-sm-12">
+                @include('sort.sortList')
+            </div>
         </div>
     </section>
 @endsection
