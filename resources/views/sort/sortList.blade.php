@@ -20,6 +20,7 @@
                     <th>Data Inicial</th>
                     <th>Data Final</th>
                     <th>Data do Sorteio</th>
+                    <th>A partir de R$</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -42,6 +43,7 @@
                         <td>{{ $sort->initial_date }}</td>
                         <td>{{ $sort->final_date }}</td>
                         <td>{{ $sort->draw_date }}</td>
+                        <td>R$ {{ number_format($sort->limit,2,",",".") }}</td>
                         <td>
                             <a href="{{ route('sort.edit') }}/{{ $sort->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
 
@@ -64,6 +66,7 @@
                     <th>Data Inicial</th>
                     <th>Data Final</th>
                     <th>Data do Sorteio</th>
+                    <th>A partir de R$</th>
                     <th>Ações</th>
                 </tr>
             </tfoot>

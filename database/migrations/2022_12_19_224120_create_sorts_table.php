@@ -24,6 +24,7 @@ return new class extends Migration
             $table->date('initial_date')->default(date('Y-m-d'));
             $table->date('final_date')->default(date('Y-m-d'));
             $table->date('draw_date')->default(date('Y-m-d'));
+            $table->float('limit');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

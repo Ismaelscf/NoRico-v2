@@ -64,8 +64,8 @@
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label for="limite">Limite</label>
-                            <input type="number" name="limite" id="limite" class="form-control">
+                            <label for="limit">Limite</label>
+                            <input type="number" name="limit" id="limit" class="form-control">
                         </div>
                     </div>
                 </div>

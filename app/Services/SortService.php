@@ -58,7 +58,7 @@ class SortService
                 $sort['initial_date'] = $request->initial_date;
                 $sort['final_date'] = $request->final_date;
                 $sort['draw_date'] = $request->draw_date;
-                $sort['limite'] = $request->limite;
+                $sort['limit'] = $request->limit;
 
                 if($request->hasFile('image') && $request->file('image')->isValid()){
 
