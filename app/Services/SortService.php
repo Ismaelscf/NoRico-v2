@@ -124,4 +124,26 @@ class SortService
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function inactive($id){
+
+        try {
+
+            $search = $this->sortRepository->searchSort('id', $id);
+
+            if($search[0]->id == $id){
+
+                $sort = $search[0];
+                $sort->active = !$search[0]->active;
+
+                return $this->sortRepository->inactive($sort);
+            } else {
+                $error = 'Loja não encontrada';
+                return $error;
+            }
+
+        }  catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
+    }
 }

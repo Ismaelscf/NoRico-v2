@@ -46,4 +46,12 @@ class SortController extends Controller
         
         return $this->index($result);
     }
+
+    public function inactive($id){
+
+        // dd($id, 'Controller');
+        $this->sortService->inactive($id);
+
+        return redirect('/sort');
+    }
 }

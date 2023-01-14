@@ -33,4 +33,8 @@ class SortRepository
     public function edit(Sort $sort){
         return $sort->save();
     }
+
+    public function inactive(Sort $sort){
+        return $sort->save();
+    }
 }
