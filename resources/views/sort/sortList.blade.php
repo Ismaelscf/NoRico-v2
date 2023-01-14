@@ -15,6 +15,7 @@
             <thead>
                 <tr>
                     <th>Status</th>
+                    <th>Código</th>
                     <th>Descrição</th>
                     <th>Loja</th>
                     <th>Tipo</th>
@@ -37,6 +38,7 @@
                                 <span style="display: none">{{ $sort->active }}</span>
                             @endif
                         </td>
+                        <td>{{ $sort->id }}</td>
                         <td>{{ $sort->description }}</td>
                         <td>{{ $sort->store ? $sort->store->name : 'Todas as Lojas' }}</td>
                         <td>{{ $sort->type }}</td>
@@ -61,6 +63,7 @@
             <tfoot>
                 <tr>
                     <th>Status</th>
+                    <th>Código</th>
                     <th>Descrição</th>
                     <th>Loja</th>
                     <th>Tipo</th>
