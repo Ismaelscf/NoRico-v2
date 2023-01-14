@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignId('store_id')->nullable()->constrained('stores', 'id')->default(null);
             $table->string('award')->nullable()->default(null);
             $table->enum('type', ['geral', 'loja']);
-            $table->string('description')->unique();
+            $table->string('description');
             $table->string('image')->nullable();
             $table->date('initial_date')->default(date('Y-m-d'));
             $table->date('final_date')->default(date('Y-m-d'));
