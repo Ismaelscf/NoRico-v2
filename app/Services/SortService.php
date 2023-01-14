@@ -55,28 +55,19 @@ class SortService
                 return "Error";
             } else {
 
-                $sort_id = Sort::latest()->first();
-                if($sort_id){
-                    $id = $sort_id->id+1;
-                } else {
-                    $id = 1;
-                }
-
-
-                $sorter = $request->store_id ? $request->store_id : 'G';
-
-                $sort['description'] = "SORT".$sorter.$id." - ".$request->description;
+                $sort['description'] = $request->description;
                 $sort['type'] = $request->type;
                 $sort['store_id'] = $request->store_id;
                 $sort['initial_date'] = $request->initial_date;
                 $sort['final_date'] = $request->final_date;
                 $sort['draw_date'] = $request->draw_date;
                 $sort['limit'] = $request->limit;
+                $sort['active'] = true;
 
                 if($request->hasFile('image') && $request->file('image')->isValid()){
 
                     $upload = new UploadImage;
-                    $store['image'] = $upload->upload($request->image, 'sort');
+                    $sort['image'] = $upload->upload($request->image, 'sort');
 
                 }
 
@@ -85,6 +76,50 @@ class SortService
                 return "Sorteio cadastrado com sucesso";
             }
 
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function searchSort($field, $value){
+
+        try {
+           
+            $sort = $this->sortRepository->searchSort($field, $value);
+
+            $sort = $sort[0];
+
+            return $sort;
+
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function edit(Request $request){
+        try {
+            $sort = $this->sortRepository->searchSort('id', $request->id);
+
+            $sort = $sort[0];
+
+            $sort->description = $request->description;
+            $sort->type = $request->type;
+            $sort->store_id = $request->store_id;
+            $sort->initial_date = $request->initial_date;
+            $sort->final_date = $request->final_date;
+            $sort->draw_date = $request->draw_date;
+            $sort->limit = $request->limit;
+
+            if($request->hasFile('image') && $request->file('image')->isValid()){
+
+                $upload = new UploadImage;
+                $sort['image'] = $upload->upload($request->image, 'sort');
+
+            }
+
+            $this->sortRepository->edit($sort);
+
+            return "Alterações Salvas com sucesso";
         } catch (Exception $e) {
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }

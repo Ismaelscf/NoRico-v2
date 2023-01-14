@@ -1,4 +1,3 @@
-{{-- {{ dd($store->adresses); }} --}}
 <?php $address = $store->adresses;?>
 @extends('layouts.app')
 
@@ -32,7 +31,9 @@
                             <div class="col-sm-12 col-md-3">
                                 <label for="image">Logo</label>
                                 <input type="file" name="image" id="image" class="form-control-file">
-                                <img class="img-circle" width="200" src="{{ asset($store->logo) }}" alt="Logo Loja">
+                                @if (isset($store->logo))
+                                    <img class="img-circle" width="200" src="{{ asset($store->logo) }}" alt="Logo Loja">
+                                @endif
                             </div>
                             <div class="col-sm-12 col-md-9">
                                 <div class="row">

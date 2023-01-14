@@ -25,4 +25,12 @@ class SortRepository
     public function create($sortCreate){
         return $this->sort::create($sortCreate);
     }
+
+    public function searchSort($field, $value){
+        return $this->sort->where($field, '=', $value)->get();
+    }
+
+    public function edit(Sort $sort){
+        return $sort->save();
+    }
 }

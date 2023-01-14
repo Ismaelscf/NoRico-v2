@@ -33,4 +33,17 @@ class SortController extends Controller
         
         return $this->index($result);
     }
+
+    public function editForm($id){
+        $sort = $this->sortService->searchSort('id', $id);
+        $stores = $this->storeService->getAll();
+
+        return view('sort.edit', ['sort' => $sort, 'stores' => $stores]);
+    }
+    
+    public function edit(Request $request){
+        $result = $this->sortService->edit($request);
+        
+        return $this->index($result);
+    }
 }

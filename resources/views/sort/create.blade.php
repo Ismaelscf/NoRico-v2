@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label for="limit">Limite</label>
+                            <label for="limit">Valor Mínimo em compras</label>
                             <input type="number" name="limit" id="limit" class="form-control">
                         </div>
                     </div>
