@@ -36,7 +36,7 @@ Route::prefix('/store')->name('store')->group(function () {
     Route::post('/', [App\Http\Controllers\StoreController::class, 'create'])->name('.create');
 
     Route::get('/edit/{id?}', [App\Http\Controllers\StoreController::class, 'editForm'])->name('.edit');
-    Route::post('/edit', [App\Http\Controllers\StoreController::class, 'edit'])->name('edit');
+    Route::post('/edit', [App\Http\Controllers\StoreController::class, 'edit'])->name('.edit');
 
     Route::get('/inactive/{id?}', [App\Http\Controllers\StoreController::class, 'inactive'])->name('.inactive');
 });
@@ -45,9 +45,13 @@ Route::prefix('/store')->name('store')->group(function () {
 Route::prefix('/sort')->name('sort')->group(function () {
     Route::get('/', [App\Http\Controllers\SortController::class, 'index'])->name('.index');
     Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create');
+    Route::get('/edit/{id?}', [App\Http\Controllers\SortController::class, 'editForm'])->name('.edit');
+    Route::post('/edit', [App\Http\Controllers\SortController::class, 'edit'])->name('.edit');
+
+    Route::get('/inactive/{id?}', [App\Http\Controllers\SortController::class, 'inactive'])->name('.inactive');
 });
 
 //Cotas
 Route::prefix('/quotas')->name('quotas')->group(function () {
-    Route::get('/', [App\Http\Controllers\QuotaController::class, 'index'])->name('.index')->middleware('auth');
+    Route::get('/', [App\Http\Controllers\QuotaController::class, 'index'])->name('.index')->middleware('auth'); 
 });

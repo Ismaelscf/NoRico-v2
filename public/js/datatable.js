@@ -257,7 +257,7 @@ $(function () {
       }
 
       
-    }).buttons().container().appendTo('#dataTable .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#dataTable_wrapper .col-md-6:eq(0)');
     
 
     $('#example').DataTable({

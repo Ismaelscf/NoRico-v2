@@ -38,28 +38,35 @@
                         <div class="form-group">
                             <label for="store_id">Loja</label>
                             <select name="store_id" id="store_id" class="form-control select2">
+                                <option value="" selected>Todas</option>
                                 @foreach ($stores as $store)
-                                    <option value="{{ $store->id }}" selected>{{ $store->name }}</option>    
+                                    <option value="{{ $store->id }}">{{ $store->name }}</option>    
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label for="initial_date">Data de Inicio</label>
-                            <input type="date" name="initial_date" id="initial_date" class="form-control">
+                            <input type="date" value="<?php echo date('Y-m-d') ?>" name="initial_date" id="initial_date" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label for="final_date">Data de Final</label>
                             <input type="date" name="final_date" id="final_date" class="form-control">
                         </div>
                     </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="draw_date">Data de Sorteio</label>
+                            <input type="date" name="draw_date" id="draw_date" class="form-control">
+                        </div>
+                    </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label for="limite">Limite</label>
-                            <input type="number" name="limite" id="limite" class="form-control">
+                            <label for="limit">Valor Mínimo em compras</label>
+                            <input type="number" name="limit" id="limit" class="form-control">
                         </div>
                     </div>
                 </div>
