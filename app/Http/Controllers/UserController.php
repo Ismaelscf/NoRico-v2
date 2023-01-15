@@ -49,7 +49,6 @@ class UserController extends Controller
     }
 
     public function editUser(Request $request){
-        // dd($request->all());
         try {
             $msg = $this->userService->editUser($request);
 

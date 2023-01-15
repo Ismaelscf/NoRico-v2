@@ -29,9 +29,9 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('home') }}" class="nav-link">
+    <a href="{{ route('quotas.index') }}" class="nav-link">
         <i class="nav-icon fas fa-barcode"></i>
-        <p>Cotas</p>
+        <p>Planos</p>
     </a>
 </li>
 <li class="nav-item">

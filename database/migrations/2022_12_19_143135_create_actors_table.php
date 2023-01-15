@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('actors', function (Blueprint $table) {
             $table->id();
-            // $table->unsignedBigInteger('user_id');
-            // $table->foreign('region_id')->references('id')->on('regions');
             $table->foreignId('user_id')->constrained('users', 'id');
             $table->enum('function', ['vendedor', 'cliente', 'lojista', 'gerente', 'admin']);
             $table->boolean('active')->default(true);

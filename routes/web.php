@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
-
+//Users
 Route::prefix('/user')->name('user')->group(function () {
     Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('.home')->middleware('auth');
     Route::get('/newUser', [App\Http\Controllers\UserController::class, 'index'])->name('.newUser')->middleware('auth');
@@ -45,4 +45,9 @@ Route::prefix('/store')->name('store')->group(function () {
 Route::prefix('/sort')->name('sort')->group(function () {
     Route::get('/', [App\Http\Controllers\SortController::class, 'index'])->name('.index');
     Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create');
+});
+
+//Cotas
+Route::prefix('/quotas')->name('quotas')->group(function () {
+    Route::get('/', [App\Http\Controllers\QuotaController::class, 'index'])->name('.index')->middleware('auth');
 });
