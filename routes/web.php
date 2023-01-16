@@ -33,25 +33,29 @@ Route::prefix('/user')->name('user')->group(function () {
 // Stores
 Route::prefix('/store')->name('store')->group(function () {
     Route::get('/', [App\Http\Controllers\StoreController::class, 'index'])->name('.index');
-    Route::post('/', [App\Http\Controllers\StoreController::class, 'create'])->name('.create');
+    // Route::post('/', [App\Http\Controllers\StoreController::class, 'create'])->name('.create');
 
-    Route::get('/edit/{id?}', [App\Http\Controllers\StoreController::class, 'editForm'])->name('.edit');
-    Route::post('/edit', [App\Http\Controllers\StoreController::class, 'edit'])->name('.edit');
+    // Route::get('/edit/{id?}', [App\Http\Controllers\StoreController::class, 'editForm'])->name('.edit');
+    // Route::post('/edit', [App\Http\Controllers\StoreController::class, 'edit'])->name('.edit');
 
-    Route::get('/inactive/{id?}', [App\Http\Controllers\StoreController::class, 'inactive'])->name('.inactive');
+    // Route::get('/inactive/{id?}', [App\Http\Controllers\StoreController::class, 'inactive'])->name('.inactive');
 });
 
 //Sort
 Route::prefix('/sort')->name('sort')->group(function () {
     Route::get('/', [App\Http\Controllers\SortController::class, 'index'])->name('.index');
-    Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create');
-    Route::get('/edit/{id?}', [App\Http\Controllers\SortController::class, 'editForm'])->name('.edit');
-    Route::post('/edit', [App\Http\Controllers\SortController::class, 'edit'])->name('.edit');
-
-    Route::get('/inactive/{id?}', [App\Http\Controllers\SortController::class, 'inactive'])->name('.inactive');
+    // Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create');
+    // Route::get('/edit/{id?}', [App\Http\Controllers\SortController::class, 'editForm'])->name('.edit');
+    // Route::post('/edit', [App\Http\Controllers\SortController::class, 'edit'])->name('.edit');
+    // Route::get('/inactive/{id?}', [App\Http\Controllers\SortController::class, 'inactive'])->name('.inactive');
 });
 
 //Cotas
 Route::prefix('/quotas')->name('quotas')->group(function () {
-    Route::get('/', [App\Http\Controllers\QuotaController::class, 'index'])->name('.index')->middleware('auth'); 
+    Route::get('/', [App\Http\Controllers\QuotaController::class, 'index'])->name('.index')->middleware('auth');
+    Route::post('/', [App\Http\Controllers\QuotaController::class, 'create'])->name('.create')->middleware('auth');
+    Route::get('/edit/{id?}', [App\Http\Controllers\QuotaController::class, 'edit'])->name('.edit')->middleware('auth');
+    Route::post('/edit', [App\Http\Controllers\QuotaController::class, 'editQuota'])->name('.editQuota')->middleware('auth');
+    Route::get('/status/{id?}', [App\Http\Controllers\QuotaController::class, 'mudarStatus'])->name('.status')->middleware('auth');
+
 });

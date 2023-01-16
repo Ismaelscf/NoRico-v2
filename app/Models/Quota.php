@@ -11,6 +11,7 @@ class Quota extends Model
     use HasFactory;
 
     protected $fillable = [
+        'description',
         'total_price',
         'initial_date',
         'final_date',

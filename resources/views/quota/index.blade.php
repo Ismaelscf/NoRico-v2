@@ -43,7 +43,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="" enctype="multipart/form-data" method="POST">
+                        <form action="/quotas" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="description">Plano</label>
@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="customer_limit">Limite do Plano</label>
+                                <label for="customer_limit">Limite do Plano por Cliente</label>
                                 <input type="text" class="form-control" id="customer_limit" name="customer_limit" placeholder="Limite do Plano" required>
                             </div>
                         </div>
@@ -112,19 +112,33 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($quotas as $quota)
                                 <tr>
-                                    <td>XXXXX</td>
-                                    <td>Plano</td>
-                                    <td>Valor Total</td>
-                                    <td>Limite do Plano</td>
-                                    <td>Data Inicial</td>
-                                    <td>Data Final</td>
-                                    <td><i class="fas fa-circle" style="color: red"></i></td>
+                                    <td>{{ $quota->id }}</td>
+                                    <td>{{ $quota->description }}</td>
+                                    <td>{{ $quota->total_price }}</td>
+                                    <td>{{ $quota->customer_limit }}</td>
+                                    <td>{{ $quota->initial_date }}</td>
+                                    <td>{{ $quota->final_date }}</td>
                                     <td>
-                                        <a href="" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
-                                        <a href="" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                                    @if($quota->active)
+                                        <i class="fas fa-circle" style="color: green"></i>
+                                        <span style="display: none">{{ $quota->active }}</span>
+                                    @else
+                                        <i class="fas fa-circle" style="color: red"></i>
+                                        <span style="display: none">{{ $quota->active }}</span>
+                                    @endif
+                                    </td>
+                                    <td>
+                                        <a href="/quotas/edit/{{$quota->id}}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
+                                        @if($quota->active)
+                                            <a href="{{ route('quotas.status') }}/{{ $quota->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                                        @else
+                                            <a href="{{ route('quotas.status') }}/{{ $quota->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
+                                        @endif
                                     </td>
                                 </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
