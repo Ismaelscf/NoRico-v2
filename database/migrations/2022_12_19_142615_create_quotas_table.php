@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('initial_date');
             $table->date('final_date')->nullable();
             $table->float('customer_limit');
-            $table->enum('status', ['ativa', 'inativa']);
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

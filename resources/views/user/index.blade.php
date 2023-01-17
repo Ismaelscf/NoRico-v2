@@ -532,7 +532,7 @@
             <div class="col-md-12">
                 <div class="card" style="position: relative; left: 0px; top: 0px;">
                     <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
-                        <h3 class="card-title">Cadastrar Usuário</h3>
+                        <h3 class="card-title">Cadastrar Usuário 2</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse" title="Collapse">
