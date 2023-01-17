@@ -55,7 +55,7 @@
                                 <a href="{{ route('sort.inactive') }}/{{ $sort->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
                             @endif
                         
-                            <a href="{{ route('sort.edit') }}/{{ $sort->id }}" class="btn btn-success btn-sm"><i class="fa  fa-gift"></i> Sortear</a>
+                            <a href="{{ route('sort.rewardPage') }}/{{ $sort->id }}" class="btn btn-success btn-sm"><i class="fa  fa-gift"></i> Sortear</a>
                         </td>
                     </tr>
                 @endforeach

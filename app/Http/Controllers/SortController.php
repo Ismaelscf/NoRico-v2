@@ -54,4 +54,12 @@ class SortController extends Controller
 
         return redirect('/sort');
     }
+
+    public function rewardPage($id){
+
+        $sort = $this->sortService->searchSort('id', $id);
+
+
+        return view('sort.rewardPage', ['sort' => $sort]);
+    }
 }
