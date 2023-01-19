@@ -16,6 +16,8 @@ use InvalidArgumentException;
 class UserService
 {
     protected $userRepository;
+    protected $addressRepository;
+    protected $actorRepository;
 
     public function __construct(UserRepository $userRepository, AddressRepository $addressRepository, ActorRepository $actorRepository)
     {
@@ -95,6 +97,11 @@ class UserService
             $msg = $exception->getMessage();
             return $msg;
         }
+    }
+
+    public function  buscarIdPorCPF($cpf){
+        $user = $this->userRepository->buscarIdPorCPF($cpf);
+        return $user;
     }
 
     public function editUser($dados){

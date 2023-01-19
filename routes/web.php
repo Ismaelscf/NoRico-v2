@@ -32,25 +32,25 @@ Route::prefix('/user')->name('user')->group(function () {
 
 // Stores
 Route::prefix('/store')->name('store')->group(function () {
-    Route::get('/', [App\Http\Controllers\StoreController::class, 'index'])->name('.index');
-    Route::post('/', [App\Http\Controllers\StoreController::class, 'create'])->name('.create');
+    Route::get('/', [App\Http\Controllers\StoreController::class, 'index'])->name('.index')->middleware('auth');
+    Route::post('/', [App\Http\Controllers\StoreController::class, 'create'])->name('.create')->middleware('auth');
 
-    Route::get('/edit/{id?}', [App\Http\Controllers\StoreController::class, 'editForm'])->name('.edit');
-    Route::post('/edit', [App\Http\Controllers\StoreController::class, 'edit'])->name('.editPost');
+    Route::get('/edit/{id?}', [App\Http\Controllers\StoreController::class, 'editForm'])->name('.edit')->middleware('auth');
+    Route::post('/edit', [App\Http\Controllers\StoreController::class, 'edit'])->name('.editPost')->middleware('auth');
 
-    Route::get('/inactive/{id?}', [App\Http\Controllers\StoreController::class, 'inactive'])->name('.inactive');
+    Route::get('/inactive/{id?}', [App\Http\Controllers\StoreController::class, 'inactive'])->name('.inactive')->middleware('auth');
 });
 
 //Sort
 Route::prefix('/sort')->name('sort')->group(function () {
-    Route::get('/', [App\Http\Controllers\SortController::class, 'index'])->name('.index');
-    Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create');
-    Route::get('/edit/{id?}', [App\Http\Controllers\SortController::class, 'editForm'])->name('.edit');
-    Route::post('/edit', [App\Http\Controllers\SortController::class, 'edit'])->name('.editPost');
+    Route::get('/', [App\Http\Controllers\SortController::class, 'index'])->name('.index')->middleware('auth');
+    Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create')->middleware('auth');
+    Route::get('/edit/{id?}', [App\Http\Controllers\SortController::class, 'editForm'])->name('.edit')->middleware('auth');
+    Route::post('/edit', [App\Http\Controllers\SortController::class, 'edit'])->name('.editPost')->middleware('auth');
 
-    Route::get('/inactive/{id?}', [App\Http\Controllers\SortController::class, 'inactive'])->name('.inactive');
+    Route::get('/inactive/{id?}', [App\Http\Controllers\SortController::class, 'inactive'])->name('.inactive')->middleware('auth');
 
-    Route::get('/reward/{id?}', [App\Http\Controllers\SortController::class, 'rewardPage'])->name('.rewardPage');
+    Route::get('/reward/{id?}', [App\Http\Controllers\SortController::class, 'rewardPage'])->name('.rewardPage')->middleware('auth');
 });
 
 //Cotas
@@ -65,5 +65,6 @@ Route::prefix('/quotas')->name('quotas')->group(function () {
 
 //Funcionários de Lojas
 Route::prefix('/employees')->name('employees')->group(function() {
-    Route::get('/{id?}', [App\Http\Controllers\StoreEmployeeController::class, 'index'])->name('.index');
+    Route::get('/{id?}', [App\Http\Controllers\StoreEmployeeController::class, 'index'])->name('.index')->middleware('auth');
+    Route::post('/', [App\Http\Controllers\StoreEmployeeController::class, 'create'])->name('.create')->middleware('auth');
 });
