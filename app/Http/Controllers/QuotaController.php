@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class QuotaController extends Controller
 {
+    protected $quotaService;
+
     public function __construct(QuotaService $quotaService)
     {
         $this->quotaService = $quotaService;
@@ -65,6 +67,20 @@ class QuotaController extends Controller
         // dd($request->all());
         try {
             $msg = $this->quotaService->create($request);
+
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $this->home($msg);
+        }
+
+        return $this->home($msg);
+    }
+
+    public function hiring($id)
+    {
+        dd($id);
+        try {
+            $user = $this->quotaService->hiring($id);
 
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
