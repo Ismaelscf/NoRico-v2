@@ -16,6 +16,8 @@ use InvalidArgumentException;
 class UserService
 {
     protected $userRepository;
+    protected $addressRepository;
+    protected $actorRepository;
 
     public function __construct(UserRepository $userRepository, AddressRepository $addressRepository, ActorRepository $actorRepository)
     {
