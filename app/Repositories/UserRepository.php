@@ -14,7 +14,7 @@ class UserRepository
         $this->user = $user;
     }
 
-    public function create($user){   
+    public function create($user){  
         return $this->user::create($user); 
     }
 

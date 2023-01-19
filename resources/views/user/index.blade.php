@@ -530,13 +530,13 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card" style="position: relative; left: 0px; top: 0px;">
+                <div class="card collapsed-card" style="position: relative; left: 0px; top: 0px;">
                     <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
-                        <h3 class="card-title">Cadastrar Usuário 2</h3>
+                        <h3 class="card-title">Cadastrar Usuário</h3>
 
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse" title="Collapse">
-                                <i class="fas fa-minus"></i>
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
 
@@ -707,6 +707,14 @@
                                         @else
                                             <a href="{{ route('user.status') }}/{{ $user->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
                                         @endif
+
+                                        @if(!$user)
+                                            <a href="" class="btn btn-success btn-sm">Ver Planos</a>
+                                        @else
+                                            <a href="" class="btn btn-secondary btn-sm">Contratar Plano</a>
+                                        @endif
+
+
                                     </td>
                                 </tr>
                                 @endforeach

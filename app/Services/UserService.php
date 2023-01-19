@@ -29,7 +29,7 @@ class UserService
     public function create($dados){
 
         try {
-            // dd($dados->all());
+            
             $user['name'] = $dados->name;
             $user['cpf'] = $dados->cpf;
             $user['password'] = Hash::make($dados->password);
@@ -40,9 +40,9 @@ class UserService
                 $upload = new UploadImage;
                 $user['photo'] = $upload->upload($dados->image, 'users');
             }     
-
+            // dd($user);
             $this->userRepository->create($user);
-
+            // dd($dados['cpf']);
             $user = $this->userRepository->buscarIdPorCPF($dados['cpf']);
 
             $address['type'] = 'pessoal';
