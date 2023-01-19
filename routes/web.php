@@ -44,10 +44,13 @@ Route::prefix('/store')->name('store')->group(function () {
 //Sort
 Route::prefix('/sort')->name('sort')->group(function () {
     Route::get('/', [App\Http\Controllers\SortController::class, 'index'])->name('.index');
-    // Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create');
-    // Route::get('/edit/{id?}', [App\Http\Controllers\SortController::class, 'editForm'])->name('.edit');
-    // Route::post('/edit', [App\Http\Controllers\SortController::class, 'edit'])->name('.edit');
-    // Route::get('/inactive/{id?}', [App\Http\Controllers\SortController::class, 'inactive'])->name('.inactive');
+    Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create');
+    Route::get('/edit/{id?}', [App\Http\Controllers\SortController::class, 'editForm'])->name('.edit');
+    Route::post('/edit', [App\Http\Controllers\SortController::class, 'edit'])->name('.editPost');
+
+    Route::get('/inactive/{id?}', [App\Http\Controllers\SortController::class, 'inactive'])->name('.inactive');
+
+    Route::get('/reward/{id?}', [App\Http\Controllers\SortController::class, 'rewardPage'])->name('.rewardPage');
 });
 
 //Cotas

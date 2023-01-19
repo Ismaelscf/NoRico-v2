@@ -42,7 +42,7 @@
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('sort.edit'); }}" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('sort.editPost'); }}" enctype="multipart/form-data" method="post">
                     @csrf <!-- {{ csrf_field() }} -->
                     <input type="hidden" name="id" id="id" value="{{ $sort->id }}">
                     <input type="hidden" name="active" id="active" value="{{ $sort->active }}">
