@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Installment;
 use App\Models\Address;
 use App\Models\Sale;
+use App\Models\StoreEmployee;
 
 class User extends Authenticatable
 {
@@ -67,5 +68,9 @@ class User extends Authenticatable
 
     public function sales(){
         return $this->hasMany(Sale::class, 'user_id', 'id');
+    }
+
+    public function employee(){
+        return $this->hasOne(StoreEmployee::class, 'user_id', 'id');
     }
 }

@@ -25,29 +25,29 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $user)
+                @foreach($users as $employee)
                 <tr>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->actors->function}}</td>
-                    <td>{{$user->cpf}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->phone}}</td>
+                    <td>{{$employee->user->name}}</td>
+                    <td>{{$employee->user->actors->function}}</td>
+                    <td>{{$employee->user->cpf}}</td>
+                    <td>{{$employee->user->email}}</td>
+                    <td>{{$employee->user->phone}}</td>
                     <td>
-                    @if($user->active)
+                    @if($employee->user->active)
                         <i class="fas fa-circle" style="color: green"></i>
-                        <span style="display: none">{{ $user->active }}</span>
+                        <span style="display: none">{{ $employee->user->active }}</span>
                     @else
                         <i class="fas fa-circle" style="color: red"></i>
-                        <span style="display: none">{{ $user->active }}</span>
+                        <span style="display: none">{{ $employee->user->active }}</span>
                     @endif
                     </td>
                     <td>
-                        <a href="{{ route('user.edit') }}/{{ $user->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
+                        <a href="{{ route('user.edit') }}/{{ $employee->user->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
 
-                        @if($user->active)
-                            <a href="{{ route('user.status') }}/{{ $user->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                        @if($employee->user->active)
+                            <a href="{{ route('user.status') }}/{{ $employee->user->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
                         @else
-                            <a href="{{ route('user.status') }}/{{ $user->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
+                            <a href="{{ route('user.status') }}/{{ $employee->user->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
                         @endif
                     </td>
                 </tr>
