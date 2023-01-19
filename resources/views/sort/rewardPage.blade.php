@@ -61,7 +61,12 @@
                                     De {{ date('d/m/Y' , strtotime( $sort->initial_date)) }} à {{ date('d/m/Y' , strtotime( $sort->final_date)) }}
                                 </div>
                                 <div class="col-12 col-sm-12">
-                                    Tipo de sorteio: {{ $sort->type }} - Loja: {{ $sort->store->name }}
+                                    Tipo de sorteio: {{ $sort->type }} - 
+                                    @if($sort->store_id)
+                                    Loja: {{ $sort->store->name }}
+                                    @else
+                                    Lojas: Todas
+                                    @endif
                                 </div>
                                 <div class="col-12 col-sm-12">
                                     Valor minimo em compras: R${{ number_format($sort->limit, 2, ',', '.') }}

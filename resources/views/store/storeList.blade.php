@@ -52,6 +52,8 @@
                         <td>
                             <a href="{{ route('store.edit') }}/{{ $store->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
 
+                            <a href="{{ route('employees.index') }}/{{ $store->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-users"></i> Funcionários</a>
+
                             @if($store->active)
                                 <a href="{{ route('store.inactive') }}/{{ $store->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
                             @else

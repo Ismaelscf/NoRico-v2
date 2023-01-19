@@ -23,7 +23,7 @@
                     </div>
                 
                     <div class="card-body">
-                        <form action="{{ route('store.edit'); }}" enctype="multipart/form-data" method="post">
+                        <form action="{{ route('store.editPost'); }}" enctype="multipart/form-data" method="post">
                         @csrf <!-- {{ csrf_field() }} -->
                         <input type="hidden" name="id" id="id" value="{{ $store->id }}">
                         <input type="hidden" name="active" id="active" value="{{ $store->active }}">

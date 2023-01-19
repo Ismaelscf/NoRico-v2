@@ -47,15 +47,19 @@
                         <td>{{ $sort->draw_date }}</td>
                         <td>R$ {{ number_format($sort->limit,2,",",".") }}</td>
                         <td>
-                            <a href="{{ route('sort.edit') }}/{{ $sort->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
+                            @if($sort->award == null)
+                                <a href="{{ route('sort.edit') }}/{{ $sort->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
 
-                            @if($sort->active)
-                                <a href="{{ route('sort.inactive') }}/{{ $sort->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                                @if($sort->active)
+                                    <a href="{{ route('sort.inactive') }}/{{ $sort->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                                @else
+                                    <a href="{{ route('sort.inactive') }}/{{ $sort->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
+                                @endif
+                            
+                                <a href="{{ route('sort.rewardPage') }}/{{ $sort->id }}" class="btn btn-success btn-sm"><i class="fa  fa-gift"></i> Sortear</a>
                             @else
-                                <a href="{{ route('sort.inactive') }}/{{ $sort->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
+                                <a href="{{ route('sort.rewardPage') }}/{{ $sort->id }}" class="btn btn-success btn-sm"><i class="fa  fa-gift"></i> Ver Vencedor</a>
                             @endif
-                        
-                            <a href="{{ route('sort.rewardPage') }}/{{ $sort->id }}" class="btn btn-success btn-sm"><i class="fa  fa-gift"></i> Sortear</a>
                         </td>
                     </tr>
                 @endforeach
