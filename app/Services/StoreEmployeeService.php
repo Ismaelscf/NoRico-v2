@@ -55,6 +55,23 @@ class StoreEmployeeService
         }
     }
 
+    public function edit(Request $request){
+
+        // dd($request->all());
+
+        $user = $this->userService->editUser($request);
+
+        $employee = $this->storeEmployeeRepository->searchEmployee('id', $request->employee_id);
+
+        $employee = $employee[0];
+
+        $employee->function = $request->function;
+
+        $this->storeEmployeeRepository->edit($employee);
+
+        return $user;
+    }
+
     public function inactive($id){
 
         try {

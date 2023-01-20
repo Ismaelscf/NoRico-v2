@@ -42,7 +42,7 @@
                     @endif
                     </td>
                     <td>
-                        <a href="{{ route('employees.edit') }}/{{ $employee->user->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
+                        <a href="{{ route('employees.edit') }}/{{ $employee->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
 
                         @if($employee->active)
                             <a href="{{ route('employees.inactive') }}/{{ $employee->id }}/{{ $store_id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
