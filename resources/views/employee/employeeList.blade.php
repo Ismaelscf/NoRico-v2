@@ -28,26 +28,26 @@
                 @foreach($users as $employee)
                 <tr>
                     <td>{{$employee->user->name}}</td>
-                    <td>{{$employee->user->actors->function}}</td>
+                    <td>{{$employee->function}}</td>
                     <td>{{$employee->user->cpf}}</td>
                     <td>{{$employee->user->email}}</td>
                     <td>{{$employee->user->phone}}</td>
                     <td>
                     @if($employee->user->active)
                         <i class="fas fa-circle" style="color: green"></i>
-                        <span style="display: none">{{ $employee->user->active }}</span>
+                        <span style="display: none">{{ $employee->active }}</span>
                     @else
                         <i class="fas fa-circle" style="color: red"></i>
-                        <span style="display: none">{{ $employee->user->active }}</span>
+                        <span style="display: none">{{ $employee->active }}</span>
                     @endif
                     </td>
                     <td>
-                        <a href="{{ route('user.edit') }}/{{ $employee->user->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
+                        <a href="{{ route('employees.edit') }}/{{ $employee->user->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
 
-                        @if($employee->user->active)
-                            <a href="{{ route('user.status') }}/{{ $employee->user->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                        @if($employee->active)
+                            <a href="{{ route('employees.inactive') }}/{{ $employee->id }}/{{ $store_id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
                         @else
-                            <a href="{{ route('user.status') }}/{{ $employee->user->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
+                            <a href="{{ route('employees.inactive') }}/{{ $employee->id }}/{{ $store_id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
                         @endif
                     </td>
                 </tr>

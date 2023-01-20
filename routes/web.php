@@ -67,4 +67,9 @@ Route::prefix('/quotas')->name('quotas')->group(function () {
 Route::prefix('/employees')->name('employees')->group(function() {
     Route::get('/{id?}', [App\Http\Controllers\StoreEmployeeController::class, 'index'])->name('.index')->middleware('auth');
     Route::post('/', [App\Http\Controllers\StoreEmployeeController::class, 'create'])->name('.create')->middleware('auth');
+
+    Route::get('/edit/{id?}', [App\Http\Controllers\StoreEmployeeController::class, 'editForm'])->name('.edit')->middleware('auth');
+    Route::post('/edit', [App\Http\Controllers\StoreEmployeeController::class, 'edit'])->name('.editPost')->middleware('auth');
+
+    Route::get('/inactive/{employee_id?}/{store_id?}', [App\Http\Controllers\StoreEmployeeController::class, 'inactive'])->name('.inactive')->middleware('auth');
 });

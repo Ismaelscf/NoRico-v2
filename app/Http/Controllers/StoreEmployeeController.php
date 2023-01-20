@@ -31,4 +31,12 @@ class StoreEmployeeController extends Controller
 
         return $this->index($request->store_id, $result);
     }
+
+    public function inactive($employee_id, $store_id){
+
+        // dd($id, 'Controller');
+        $this->storeEmployeeService->inactive($employee_id);
+
+        return redirect("/employees/$store_id");
+    }
 }
