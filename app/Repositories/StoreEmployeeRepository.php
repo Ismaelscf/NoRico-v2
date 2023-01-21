@@ -24,4 +24,16 @@ class StoreEmployeeRepository
     public function create($employeeCreate){
         return $this->storeEmployee::create($employeeCreate);
     }
+
+    public function searchEmployee($field, $value){
+        return $this->storeEmployee->where($field, '=', $value)->get();
+    }
+
+    public function edit(StoreEmployee $storeEmployee){
+        return $storeEmployee->save();
+    }
+
+    public function inactive(StoreEmployee $storeEmployee){
+        return $storeEmployee->save();
+    }
 }
