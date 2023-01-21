@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Installment;
+use App\Repositories\InstallmentRepository;
 use App\Repositories\QuotaRepository;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -11,11 +14,12 @@ use InvalidArgumentException;
 
 class QuotaService
 {
-    protected $quotaRepository;
+    protected $quotaRepository, $installmentRepository;
 
-    public function __construct(QuotaRepository $quotaRepository)
+    public function __construct(QuotaRepository $quotaRepository, InstallmentRepository $installmentRepository)
     {
         $this->quotaRepository = $quotaRepository;
+        $this->installmentRepository = $installmentRepository;
     }
 
     public function create($dados)
@@ -85,6 +89,40 @@ class QuotaService
             $quota->active = !$quota->active;
 
             return $this->quotaRepository->status($quota);
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+    }
+
+    public function installments($dados){
+        try {
+            $quota = $this->quotaRepository->search($dados->quota);
+            $data_atual = Carbon::now()->createMidnightDate();
+            $dt_final_cota = Carbon::createMidnightDate($quota->final_date);
+            $dif = $data_atual->floatDiffInMonths($dt_final_cota);
+
+            if(is_int($dif)){
+                $parcelas = intval($dif)+1;
+            }
+            else {
+                $parcelas = intval($dif)+2;
+            }
+
+            $dt_ini = Carbon::create(date('Y'), date('m'), 01, 0);
+
+            for ($i = 0; $i < $parcelas; $i++) {
+                $installment['quota_id'] = $quota->id;
+                $installment['user_id'] = $dados->user;
+                $installment['seller_id'] = $dados->seller;
+                $installment['price'] = $quota->total_price/$parcelas;
+                $installment['due_date'] = $dt_ini->addMonths($i)->toDateString();
+                $dt_ini->subMonths($i)->toDateString();
+                $this->installmentRepository->create($installment);
+            }
+            $msg = 'Plano Contratado';
+            return $msg;
 
         }  catch (Exception $exception) {
             $msg = $exception->getMessage();

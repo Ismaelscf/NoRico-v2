@@ -711,7 +711,7 @@
                                         @if(!$user)
                                             <a href="" class="btn btn-success btn-sm">Ver Planos</a>
                                         @else
-                                            <a href="" class="btn btn-secondary btn-sm">Contratar Plano</a>
+                                            <a href="{{ route('quotas.hiring') }}/{{ $user->id }}" class="btn btn-secondary btn-sm">Contratar Plano</a>
                                         @endif
 
 

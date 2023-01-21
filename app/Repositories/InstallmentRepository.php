@@ -6,10 +6,20 @@ use App\Models\Installment;
 
 class InstallmentRepository
 {
-    protected $installmente;
+    protected $installment;
 
-    public function __construct(Installment $installmente)
+    public function __construct(Installment $installment)
     {
-        $this->installmente = $installmente;
+        $this->installment = $installment;
+    }
+
+    public function create($installment){  
+        return $this->installment::create($installment); 
+    }
+
+    public function search($id, $user){
+        // dd($id, $user);  
+        $installment = Installment::where('quota_id', $id)->where('user_id', $user)->get();
+        return $installment; 
     }
 }
