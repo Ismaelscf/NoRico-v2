@@ -4,42 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\SaleService;
+use App\Services\StoreEmployeeService;
+use App\Services\StoreService;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Auth;
 
 class SaleController extends Controller
 {
 
     protected $saleService;
     protected $userService;
+    protected $employeeService;
+    protected $storeService;
 
-    public function __construct(SaleService $saleService, UserService  $userService)
+    public function __construct(SaleService $saleService, UserService  $userService, StoreEmployeeService $employeeService, StoreService $storeService)
     {
         $this->saleService = $saleService;
         $this->userService = $userService;
+        $this->employeeService = $employeeService;
+        $this->storeService = $storeService;
     }
 
-    public function index($store_id = null, $result = null, $user = null){
+    public function index($user = null){
 
-        $sales = $this->saleService->getAll($store_id);
+        $salesman = Auth::user();
+        $permition = $salesman->actors->function;
 
-        return view('sale.index', ['sales' => $sales, 'result' => $result, 'user' => $user]);
+        if($permition == 'admin'){
+            $sales = $this->saleService->getAll();
+
+            return view('sale.index', ['sales' => $sales, 'permition' => $permition]);
+
+        }
+        else if($permition != 'cliente' && $salesman->employee == true){
+
+            $sales = $this->saleService->getAll($salesman->employee->store->id);
+        }
+
+        return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'store' => $salesman->employee->store, 'employee' => $salesman->employee->id, 'user' => $user]);
     }
 
     public function searchUser(Request $request){
 
         $user = $this->userService->buscarPorCPF($request->cpf);
 
-        if($user==null){
-            $result = 'Cliente não encontrado';
-            return $this->index(null, $result, null);
+        if($user == null){
+            return 'Cliente não encontrado';
         }
 
-        return $this->index(null, null, $user);
+        return $this->index($user);
     }
 
     public function create(Request $request){
 
-        dd($request->all());
-        // $result = $this->saleService->create($request);
+        $result = $this->saleService->create($request);
+
+        return $this->index();
     }
 }

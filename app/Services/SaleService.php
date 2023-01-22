@@ -24,6 +24,18 @@ class SaleService
     }
 
     public function create(Request $request){
-        dd($request);
+        // dd($request->all());
+
+        $discount = ($request->price * $request->discount) / 100;
+
+        $sales['user_id'] = $request->user_id;
+        $sales['store_id'] = $request->store_id;
+        $sales['employee_id'] = $request->employee_id;
+        $sales['total_sale'] = $request->price;
+        $sales['discount'] = $discount;
+        $sales['sale_date'] = date('Y-m-d');
+
+        return $this->saleRepository->create($sales);
+
     }
 }

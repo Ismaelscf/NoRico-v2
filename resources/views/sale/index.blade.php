@@ -5,7 +5,6 @@
     <script src="{{ asset('js/script.js') }}"></script>
     
     <script>
-        console.log('teste');
         $(document).ready(function() {
             $('.select2').select2({
                 // width: 'resolve',
@@ -30,9 +29,11 @@
             @endif
             
 
-            {{-- <div class="col-md-12 col-sm-12">
-                @include('sale.create')
-            </div> --}}
+            <div class="col-md-12 col-sm-12">
+                @if($permition != 'admin')
+                    @include('sale.create')
+                @endif
+            </div>
     
             <div class="col-md-12 col-sm-12">
                 @include('sale.saleList')
