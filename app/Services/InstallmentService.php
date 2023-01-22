@@ -28,4 +28,30 @@ class InstallmentService
             return $msg;
         }
     }
+
+    public function buscarTodos()
+    {
+        try {
+            $quotas = $this->installmentRepository->buscarTodos();
+        return $quotas;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+        
+    }
+
+    public function BuscarCotasContratadas($id)
+    {
+        try {
+            $quotas = $this->installmentRepository->BuscarCotasContratadas($id);
+        return $quotas;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+        
+    }
 }

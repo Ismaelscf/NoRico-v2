@@ -18,8 +18,17 @@ class InstallmentRepository
     }
 
     public function search($id, $user){
-        // dd($id, $user);  
         $installment = Installment::where('quota_id', $id)->where('user_id', $user)->get();
         return $installment; 
+    }
+
+    public function buscarTodos(){
+        $installments = Installment::all();
+        return $installments;
+    }
+
+    public function BuscarCotasContratadas($id){
+        $quotas = Installment::select('quota_id')->where('user_id', $id)->distinct()->get();
+        return $quotas;
     }
 }

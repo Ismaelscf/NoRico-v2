@@ -18,7 +18,8 @@ class UserRepository
         return $this->user::create($user); 
     }
 
-    public function edit($user){   
+    public function edit($user){ 
+        // dd($user);  
         return $user->save(); 
     }
 
@@ -26,6 +27,12 @@ class UserRepository
         $user = User::where('cpf', $cpf)->first();
 
         return $user->id;
+    }
+
+    public function buscarPorCPF($cpf){
+        $user = User::where('cpf', $cpf)->first();
+
+        return $user;
     }
 
     public function search($id){
