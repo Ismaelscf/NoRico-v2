@@ -73,3 +73,10 @@ Route::prefix('/employees')->name('employees')->group(function() {
 
     Route::get('/inactive/{employee_id?}/{store_id?}', [App\Http\Controllers\StoreEmployeeController::class, 'inactive'])->name('.inactive')->middleware('auth');
 });
+
+//Vendas
+Route::prefix('/sales')->name('sales')->group(function(){
+    Route::get('/{id?}', [App\Http\Controllers\SaleController::class, 'index'])->name('.index')->middleware('auth');
+    Route::post('/', [App\Http\Controllers\SaleController::class, 'create'])->name('.create')->middleware('auth');
+    Route::post('/searchUser', [App\Http\Controllers\SaleController::class, 'searchUser'])->name('.searchUser')->middleware('auth');
+});

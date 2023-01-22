@@ -17,4 +17,8 @@ class SaleService
     {
         $this->saleRepository = $saleRepository;
     }
+
+    public function getAll($store_id = null){      
+        return $this->saleRepository->getAll($store_id);
+    }
 }
