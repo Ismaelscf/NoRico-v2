@@ -20,4 +20,8 @@ class SaleRepository
             return $this->sale::All();
         }
     }
+
+    public function create($salesCreate){
+        return $this->sale::create($salesCreate);
+    }
 }
