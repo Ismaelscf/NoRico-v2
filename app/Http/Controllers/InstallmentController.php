@@ -57,8 +57,6 @@ class InstallmentController extends Controller
     public function pay($id){ 
         try {
             $installment = $this->installmentService->pay($id);
-            
-
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
             return $this->home($msg);

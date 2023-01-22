@@ -106,15 +106,16 @@ class QuotaController extends Controller
             
             $quota = $this->quotaService->installments($request);
             $user = $this->userService->buscarUser($request->user);
-            $quotas = $this->quotaService->buscarQuota($request->quota);
+            $quota = $this->quotaService->buscarQuota($request->quota);
             $installments = $this->installmentService->buscarparcelas($request->quota, $user->id);
 
-            dd($quota, $user, $quotas, $installments);
+            // dd($quota, $user, $quotas, $installments);
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
             return $this->home($msg);
         }
 
-        return view('quota.pay_installments', compact('user', 'quotas', 'installments'));
+        return view('installment.detail', compact('user','quota', 'installments'));
+        // return view('quota.pay_installments', compact('user', 'quotas', 'installments'));
     }
 }
