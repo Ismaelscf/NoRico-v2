@@ -47,7 +47,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('sort.index') }}" class="nav-link">
+    <a href="{{ route('sales.index') }}" class="nav-link">
         <i class="nav-icon fas fa-credit-card"></i>
         <p>Vendas</p>
     </a>

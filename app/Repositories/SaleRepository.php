@@ -12,4 +12,12 @@ class SaleRepository
     {
         $this->sale = $sale;
     }
+    
+    public function getAll($store_id = null){
+        if($store_id){
+            return $this->sale->where('store_id', '=', $store_id)->get();
+        } else {
+            return $this->sale::All();
+        }
+    }
 }
