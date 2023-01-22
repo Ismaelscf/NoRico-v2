@@ -101,43 +101,76 @@
                             <thead>
 
                                 <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Plano</th>
-                                <th scope="col">Valor Total</th> 
-                                <th scope="col">Limite do Plano</th>
-                                <th scope="col">Data Inicial</th>
-                                <th scope="col">Data Final</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Opções</th>            
+                                <th scope="col">Valor</th>
+                                <th scope="col">Data Referência</th>
+                                <th scope="col">Status</th> 
+                                <th scope="col">Opções</th>
+           
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($installment as $quota)
-                                <tr>
-                                    <td>{{ $quota->id }}</td>
-                                    <td>{{ $quota->description }}</td>
-                                    <td>{{ $quota->total_price }}</td>
-                                    <td>{{ $quota->customer_limit }}</td>
-                                    <td>{{ $quota->initial_date }}</td>
-                                    <td>{{ $quota->final_date }}</td>
-                                    <td>
-                                    @if($quota->active)
-                                        <i class="fas fa-circle" style="color: green"></i>
-                                        <span style="display: none">{{ $quota->active }}</span>
-                                    @else
-                                        <i class="fas fa-circle" style="color: red"></i>
-                                        <span style="display: none">{{ $quota->active }}</span>
-                                    @endif
-                                    </td>
-                                    <td>
-                                        <a href="/quotas/edit/{{$quota->id}}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
-                                        @if($quota->active)
-                                            <a href="{{ route('quotas.status') }}/{{ $quota->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
-                                        @else
-                                            <a href="{{ route('quotas.status') }}/{{ $quota->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
-                                        @endif
-                                    </td>
-                                </tr>
+                                @foreach($installments as $installment)
+                                    <tr>
+                                        <td>R$ {{number_format($installment->price,2,",",".") }}</td>
+                                        <td>R$ {{$installment->due_date}}</td>
+                                        <td>
+                                            @if($installment->payday)
+                                            <span class="badge badge-success">Pago</span>
+                                            @else
+                                            <span class="badge badge-info">Em aberto</span>
+                                            @endif
+                                        <td>
+                                            <div>
+                                                <button class="btn btn-light btn-sm" type="button" data-toggle="collapse" data-target="#collapse-{{$installment->id}}" aria-expanded="false" aria-controls="collapseExample">
+                                                    Detalhes
+                                                </button>
+                                            </div>
+                                            
+                                        </td>
+  
+                                    </tr>
+
+
+                                    <tr>
+                                        <td colspan="4">
+                                        
+                                            <div class="collapse" id="collapse-{{$installment->id}}">
+                                                <div class="card card-body">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="valor">Vendedor:  </label>
+                                                                <input type="text" class="form-control" size="12" id="valor-{{$installment->id}}" name="value" value="{{$installment->seller->name}}" readonly>
+                                                            </div>
+                                                            @if($installment->payday)
+                                                            <div class="form-group col-md-4">
+                                                                <label for="date">Data:  </label>
+                                                                <input type="text" class="form-control" id="date-{{$installment->id}}" name="date"  value="{{ $installment->updated_at->format('d-m-Y H:i:s') }}" readonly>
+                                                            </div>
+                                                            @endif
+
+                                                            @if(!$installment->payday)
+                                                            <div class="col-sm-2 align-self-center">
+                                                            <a href="/installment/pay/{{$installment->id}}">
+                                                                <button class="btn btn-primary btn-sm">Atualizar</button>
+                                                            </a>
+                                                            </div>
+                                                            @endif
+
+                                                        </div>
+
+
+                                                    
+                                                    
+
+
+
+                                                </div>
+                                            </div>
+                                         
+                                        </td>
+                                    </tr>
+
+                                
                                 @endforeach
 
                             </tbody>

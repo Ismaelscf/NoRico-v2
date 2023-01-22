@@ -22,6 +22,11 @@ class InstallmentRepository
         return $installment; 
     }
 
+    public function searchInstallment($id){
+        $installment = Installment::find($id);
+        return $installment; 
+    }
+
     public function buscarTodos(){
         $installments = Installment::all();
         return $installments;
@@ -30,5 +35,10 @@ class InstallmentRepository
     public function BuscarCotasContratadas($id){
         $quotas = Installment::select('quota_id')->where('user_id', $id)->distinct()->get();
         return $quotas;
+    }
+
+    public function edit($installment){ 
+        $installment->save();
+        return $installment; 
     }
 }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Repositories\InstallmentRepository;
 use Exception;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -53,5 +54,18 @@ class InstallmentService
             return $msg;
         }
         
+    }
+
+    public function pay($id){
+        try {
+            $installment = $this->installmentRepository->searchInstallment($id);
+            $installment->payday = Carbon::now()->toDateTimeString();
+            $this->installmentRepository->edit($installment);
+            return $installment;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
     }
 }

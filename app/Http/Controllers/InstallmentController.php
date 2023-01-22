@@ -33,11 +33,11 @@ class InstallmentController extends Controller
         return view('installment.index', compact('quotas', 'msg'));
     }
 
-    public function detail(Request $request){
+    public function detail($user_id, $quota_id){
         try {
-            $user = $this->userService->buscarUser($request->user);
-            $quota = $this->quotaService->buscarQuota($request->quota);
-            $installments = $this->installmentService->buscarParcelas($request->quota, $request->user);
+            $user = $this->userService->buscarUser($user_id);
+            $quota = $this->quotaService->buscarQuota($quota_id);
+            $installments = $this->installmentService->buscarParcelas($quota_id, $user_id);
 
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
@@ -45,5 +45,25 @@ class InstallmentController extends Controller
         }
 
         return view('installment.detail', compact('user','quota', 'installments'));
+    }
+
+    public function buscarDadosParcelas(Request $request){
+        $user_id = $request->user;
+        $quota_id = $request->quota;
+
+        return $this->detail($user_id, $quota_id);
+    }
+
+    public function pay($id){ 
+        try {
+            $installment = $this->installmentService->pay($id);
+            
+
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $this->home($msg);
+        }
+
+        return $this->detail($installment->user_id, $installment->quota_id);
     }
 }

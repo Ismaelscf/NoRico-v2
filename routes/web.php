@@ -68,7 +68,8 @@ Route::prefix('/quotas')->name('quotas')->group(function () {
 //Parcelas
 Route::prefix('/installment')->name('installment')->group(function () {
     Route::get('/', [App\Http\Controllers\InstallmentController::class, 'index'])->name('.index')->middleware('auth');
-    Route::post('/', [App\Http\Controllers\InstallmentController::class, 'detail'])->name('.detail')->middleware('auth');
+    Route::post('/', [App\Http\Controllers\InstallmentController::class, 'buscarDadosParcelas'])->name('.buscarDadosParcelas')->middleware('auth');
+    Route::get('/pay/{id?}', [App\Http\Controllers\InstallmentController::class, 'pay'])->name('.pay')->middleware('auth');
 });
 
 //Funcionários de Lojas
