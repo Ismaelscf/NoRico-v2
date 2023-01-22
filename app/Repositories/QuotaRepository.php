@@ -34,4 +34,5 @@ class QuotaRepository
     public function status($quota){
         return $quota->save();
     }
+
 }

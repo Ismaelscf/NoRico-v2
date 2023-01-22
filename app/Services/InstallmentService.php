@@ -17,4 +17,41 @@ class InstallmentService
     {
         $this->installmentRepository = $installmentRepository;
     }
+
+    public function buscarParcelas($id, $user){
+        try {
+            $installment = $this->installmentRepository->search($id, $user);
+            return $installment;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+    }
+
+    public function buscarTodos()
+    {
+        try {
+            $quotas = $this->installmentRepository->buscarTodos();
+        return $quotas;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+        
+    }
+
+    public function BuscarCotasContratadas($id)
+    {
+        try {
+            $quotas = $this->installmentRepository->BuscarCotasContratadas($id);
+        return $quotas;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+        
+    }
 }

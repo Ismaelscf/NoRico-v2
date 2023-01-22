@@ -1,17 +1,25 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Installment;
 use App\Services\QuotaService;
+use App\Services\UserService;
+use App\Services\InstallmentService;
 
 use Illuminate\Http\Request;
 
 class QuotaController extends Controller
 {
     protected $quotaService;
+    protected $userService;
+    protected $installmentService;
 
-    public function __construct(QuotaService $quotaService)
+    public function __construct(QuotaService $quotaService, UserService $userService, InstallmentService $installmentService)
     {
         $this->quotaService = $quotaService;
+        $this->userService = $userService;
+        $this->installmentService = $installmentService;
     }
 
     public function index(){
@@ -78,15 +86,35 @@ class QuotaController extends Controller
 
     public function hiring($id)
     {
-        dd($id);
         try {
-            $user = $this->quotaService->hiring($id);
-
+            $user = $this->userService->buscarUser($id);
+            $quotas = $this->quotaService->buscarTodos();
+            if(count($quotas) == 0){
+                return redirect()->route('quotas.index');
+            }
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
             return $this->home($msg);
         }
 
-        return $this->home($msg);
+        return view('quota.hiring', compact('user', 'quotas'));
+    }
+
+    public function installments(Request $request)
+    {
+        try {
+            
+            $quota = $this->quotaService->installments($request);
+            $user = $this->userService->buscarUser($request->user);
+            $quotas = $this->quotaService->buscarQuota($request->quota);
+            $installments = $this->installmentService->buscarparcelas($request->quota, $user->id);
+
+            dd($quota, $user, $quotas, $installments);
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $this->home($msg);
+        }
+
+        return view('quota.pay_installments', compact('user', 'quotas', 'installments'));
     }
 }

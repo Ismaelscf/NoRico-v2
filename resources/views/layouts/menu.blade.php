@@ -35,6 +35,12 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('installment.index') }}" class="nav-link">
+        <i class="nav-icon fas fa-barcode"></i>
+        <p>Acompanhar</p>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('sort.index') }}" class="nav-link">
         <i class="nav-icon fas fa-gift"></i>
         <p>Sorteios</p>

@@ -60,7 +60,15 @@ Route::prefix('/quotas')->name('quotas')->group(function () {
     Route::get('/edit/{id?}', [App\Http\Controllers\QuotaController::class, 'edit'])->name('.edit')->middleware('auth');
     Route::post('/edit', [App\Http\Controllers\QuotaController::class, 'editQuota'])->name('.editQuota')->middleware('auth');
     Route::get('/status/{id?}', [App\Http\Controllers\QuotaController::class, 'mudarStatus'])->name('.status')->middleware('auth');
+    Route::get('/hiring/{id?}', [App\Http\Controllers\QuotaController::class, 'hiring'])->name('.hiring')->middleware('auth');
+    Route::post('/hiring', [App\Http\Controllers\QuotaController::class, 'installments'])->name('.installments')->middleware('auth');
 
+});
+
+//Parcelas
+Route::prefix('/installment')->name('installment')->group(function () {
+    Route::get('/', [App\Http\Controllers\InstallmentController::class, 'index'])->name('.index')->middleware('auth');
+    Route::post('/', [App\Http\Controllers\InstallmentController::class, 'detail'])->name('.detail')->middleware('auth');
 });
 
 //Funcionários de Lojas

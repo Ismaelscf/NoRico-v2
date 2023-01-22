@@ -99,11 +99,15 @@ class UserService
         }
     }
 
-    public function  buscarIdPorCPF($cpf){
+    public function buscarIdPorCPF($cpf){
         $user = $this->userRepository->buscarIdPorCPF($cpf);
         return $user;
     }
 
+    public function buscarPorCPF($cpf){
+        $user = $this->userRepository->buscarPorCPF($cpf);
+        return $user;
+    }
     public function editUser($dados){
         try {
             $user = $this->userRepository->search($dados->id);
@@ -116,7 +120,9 @@ class UserService
             if($dados->hasFile('image') && $dados->file('image')->isValid()){
                 $upload = new UploadImage;
                 $user->photo = $upload->upload($dados->image, 'users');
-            }     
+            }
+            
+            // dd($user);
 
             $this->userRepository->edit($user);
 
