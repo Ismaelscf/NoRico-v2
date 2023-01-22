@@ -33,9 +33,9 @@
                         <td>R$ {{ number_format(($sale->total_sale - $sale->discount),2,",",".") }}</td>
                         <td>{{ $sale->user->name }}</td>
                         <td>{{ $sale->employee->user->name }}</td>
-                        <td>{{ $sort->store->name }}</td>
+                        <td>{{ $sale->store->name }}</td>
                         <td>
-                            <a href="{{ route('sort.edit') }}/{{ $sort->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
+                            {{-- <a href="{{ route('sort.edit') }}/{{ $sort->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a> --}}
                         </td>
                     </tr>
                 @endforeach

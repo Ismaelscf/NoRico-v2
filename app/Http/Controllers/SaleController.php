@@ -36,4 +36,10 @@ class SaleController extends Controller
 
         return $this->index(null, null, $user);
     }
+
+    public function create(Request $request){
+
+        dd($request->all());
+        // $result = $this->saleService->create($request);
+    }
 }

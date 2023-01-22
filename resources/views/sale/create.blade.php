@@ -19,6 +19,8 @@
                 <div class="col-sm-12 col-md-12">
                     <label for="user_id">Cliente:</label>
                     <input type="hidden" id="user_id" name="user_id" value="{{ $user->id }}">
+                    <input type="hidden" id="store_id" name="store_id" value="{{ $user->id }}">
+                    <input type="hidden" id="employee_id" name="employee_id" value="{{ $user->id }}">
                     <input class="form-control" type="text" id="userName" name="userName" value="{{ $user->name }}" disabled>
                 </div>
                 <div class="col-sm-12 col-md-12">

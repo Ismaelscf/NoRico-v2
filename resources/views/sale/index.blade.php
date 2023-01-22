@@ -30,9 +30,9 @@
             @endif
             
 
-            <div class="col-md-12 col-sm-12">
+            {{-- <div class="col-md-12 col-sm-12">
                 @include('sale.create')
-            </div>
+            </div> --}}
     
             <div class="col-md-12 col-sm-12">
                 @include('sale.saleList')

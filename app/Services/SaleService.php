@@ -21,4 +21,8 @@ class SaleService
     public function getAll($store_id = null){      
         return $this->saleRepository->getAll($store_id);
     }
+
+    public function create(Request $request){
+        dd($request);
+    }
 }
