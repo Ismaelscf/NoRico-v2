@@ -597,9 +597,14 @@
 
                         <div class="row form-group" div class="col-sm-12">
                             
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-12 col-md-3">
                             <label for="image">Foto</label>
                             <input type="file" name="image" id="image" class="form-control-file">
+                        </div>
+
+                        <div class="col-sm-12 col-md-3">
+                            <label for="payday">Dia de vencimento</label>
+                            <input type="number" value="{{ $user->payday }}" name="payday" id="payday" class="form-control">
                         </div>
 
                             <div class="col-sm-6">

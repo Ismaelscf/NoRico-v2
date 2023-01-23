@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name', 200);
             $table->string('cpf', 11)->unique();
             $table->string('password');
+            $table->integer('payday')->nullable()->default(true);
             $table->string('email')->unique();
             $table->string('phone', 11);
             $table->string('photo')->nullable()->default(null);

@@ -103,9 +103,8 @@ class QuotaController extends Controller
     public function installments(Request $request)
     {
         try {
-            
-            $quota = $this->quotaService->installments($request);
             $user = $this->userService->buscarUser($request->user);
+            $quota = $this->quotaService->installments($request, $user);
             $quota = $this->quotaService->buscarQuota($request->quota);
             $installments = $this->installmentService->buscarparcelas($request->quota, $user->id);
 

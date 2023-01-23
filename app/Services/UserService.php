@@ -33,6 +33,7 @@ class UserService
             $user['name'] = $dados->name;
             $user['cpf'] = $dados->cpf;
             $user['password'] = Hash::make($dados->password);
+            $user['payday'] = $dados->payday;
             $user['email'] = $dados->email;
             $user['phone'] = $dados->phone;
 
@@ -114,6 +115,7 @@ class UserService
             $user->name = $dados->name;
             $user->cpf = $dados->cpf;
             $user->password = Hash::make($dados->password);
+            $user->payday = $dados->payday;
             $user->email = $dados->email;
             $user->phone = $dados->phone;
 

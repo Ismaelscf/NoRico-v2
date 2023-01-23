@@ -96,7 +96,8 @@ class QuotaService
         }
     }
 
-    public function installments($dados){
+    public function installments($dados, $user){
+
         try {
             $quota = $this->quotaRepository->search($dados->quota);
             $data_atual = Carbon::now()->createMidnightDate();
@@ -110,7 +111,7 @@ class QuotaService
                 $parcelas = intval($dif)+2;
             }
 
-            $dt_ini = Carbon::create(date('Y'), date('m'), 01, 0);
+            $dt_ini = Carbon::create(date('Y'), date('m'), $user->payday, 0);
 
             for ($i = 0; $i < $parcelas; $i++) {
                 $installment['quota_id'] = $quota->id;

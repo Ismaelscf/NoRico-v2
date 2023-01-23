@@ -53,7 +53,7 @@
                                 <div class="col-sm-8">
                                     <div class="card-body">
                                         <h5 class="card-title">{{$user->name}}</h5>
-                                        <p class="card-text"><b>CPF:</b> {{$user->cpf}}<br><b>Email:</b> {{$user->email}}<br><b>Telefone:</b> {{$user->phone}}<br><b>Estado:</b> {{$user->address->state}}<br><b>Cidade:</b> {{$user->address->city}}<br><b>Estado:</b> {{$user->address->district}}<br><b>Rua:</b> {{$user->address->street}}<br><b>Número:</b> {{$user->address->number}}<br><b>Complemento:</b> {{$user->address->complement}}</p>
+                                        <p class="card-text"><b>CPF:</b> {{$user->cpf}}<br><b>Email:</b> {{$user->email}}<br><b>Telefone:</b> {{$user->phone}}<br><b>Dia de vencimento:</b> {{$user->payday}}<br><b>Estado:</b> {{$user->address->state}}<br><b>Cidade:</b> {{$user->address->city}}<br><b>Estado:</b> {{$user->address->district}}<br><b>Rua:</b> {{$user->address->street}}<br><b>Número:</b> {{$user->address->number}}<br><b>Complemento:</b> {{$user->address->complement}}</p>
 
                                     </div>
                                 </div>

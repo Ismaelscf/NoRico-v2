@@ -48,7 +48,7 @@
                             <label>Planos</label>
                             <select class="form-control" id="quota" name="quota">
                                 @foreach($quotas as $quota)
-                                <option value="{{$quota->quota->id}}">Plano: {{$quota->quota->description}}, valor do Plano: {{$quota->quota->total_price}}, Desconto: {{$quota->quota->customer_limit}}, Inicio: {{$quota->quota->initial_date}}, Fim: {{$quota->quota->final_date}}.</option>
+                                <option value="{{$quota->quota->id}}">Plano: {{$quota->quota->description}}, Valor do Plano: {{$quota->quota->total_price}}, Desconto: {{$quota->quota->customer_limit}}, Inicio: {{$quota->quota->initial_date}}, Fim: {{$quota->quota->final_date}}.</option>
                                 @endforeach
                             </select>
                         </div>
