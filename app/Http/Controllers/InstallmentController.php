@@ -28,6 +28,12 @@ class InstallmentController extends Controller
         return $this->home($msg);
     }
 
+    public function track_parcels($id){
+        $quotas = $this->installmentService->BuscarCotasContratadas($id);
+        $msg = null;
+        return view('installment.index', compact('quotas', 'msg', 'id'));
+    }
+
     public function home($msg){
         $quotas = $this->installmentService->BuscarCotasContratadas(Auth::user()->id);
         return view('installment.index', compact('quotas', 'msg'));

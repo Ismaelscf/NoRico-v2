@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @push('script-fisrt')
+    <script src="{{ asset('js/exampleTable.js') }}"></script>
 @endpush
 
 @section('content')

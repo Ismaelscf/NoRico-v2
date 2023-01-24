@@ -70,6 +70,7 @@ Route::prefix('/installment')->name('installment')->group(function () {
     Route::get('/', [App\Http\Controllers\InstallmentController::class, 'index'])->name('.index')->middleware('auth');
     Route::post('/', [App\Http\Controllers\InstallmentController::class, 'buscarDadosParcelas'])->name('.buscarDadosParcelas')->middleware('auth');
     Route::get('/pay/{id?}', [App\Http\Controllers\InstallmentController::class, 'pay'])->name('.pay')->middleware('auth');
+    Route::get('/track_parcels/{id?}', [App\Http\Controllers\InstallmentController::class, 'track_parcels'])->name('.track_parcels')->middleware('auth');
 });
 
 //Funcionários de Lojas

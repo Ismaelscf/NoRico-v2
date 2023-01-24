@@ -44,7 +44,7 @@
                         <form action="\installment" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="col-sm-12">
-                            <input type="hidden" class="form-control" id="user" name="user" value="{{Auth::user()->id}}" >
+                            <input type="hidden" class="form-control" id="user" name="user" value="@if(isset($id)) {{$id}} @else {{Auth::user()->id}} @endif" >
                             <label>Planos</label>
                             <select class="form-control" id="quota" name="quota">
                                 @foreach($quotas as $quota)
