@@ -25,6 +25,7 @@
                 </tr>
             </thead>
             <tbody>
+                @if(empty($sales))
                 @foreach ($sales as $sale)
                     <tr class="even">
                         <td>{{ $sale->sale_date }}</td>
@@ -39,6 +40,11 @@
                         </td>
                     </tr>
                 @endforeach
+                @else
+                    <tr>
+                        <td colspan="8">Sem dados no momento</td>
+                    </tr>
+                @endif
             </tbody>
             <tfoot>
                 <tr>

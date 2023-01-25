@@ -29,6 +29,8 @@ class SaleController extends Controller
 
         $salesman = Auth::user();
         $permition = $salesman->actors->function;
+        $sales = null;
+
 
         if($permition == 'admin'){
             $sales = $this->saleService->getAll();
@@ -39,6 +41,7 @@ class SaleController extends Controller
         else if($permition != 'cliente' && $salesman->employee == true){
 
             $sales = $this->saleService->getAll($salesman->employee->store->id);
+
         }
 
         return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'store' => $salesman->employee->store, 'employee' => $salesman->employee->id, 'user' => $user]);
