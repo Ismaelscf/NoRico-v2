@@ -22,15 +22,22 @@ class QuotaService
         $this->installmentRepository = $installmentRepository;
     }
 
+    public function removeMask($value){
+        $number = str_replace(".", "", $value);
+        $number = str_replace(",", ".", $number);
+
+        return $number;
+    }
+    
     public function create($dados)
     {
         // dd($dados->all());
         try {
             $quota['description'] = $dados->description;
-            $quota['total_price'] = $dados->total_price;
+            $quota['total_price'] = $this->removeMask($dados->total_price);
             $quota['initial_date'] = $dados->initial_date;
             $quota['final_date'] = $dados->final_date;
-            $quota['customer_limit'] = $dados->customer_limit;
+            $quota['customer_limit'] = $this->removeMask($dados->customer_limit);
 
             $this->quotaRepository->create($quota);
 
@@ -65,10 +72,10 @@ class QuotaService
         try {
             $quota = $this->quotaRepository->search($dados->id);
             $quota->description = $dados->description;
-            $quota->total_price = $dados->total_price;
+            $quota->total_price = $this->removeMask($dados->total_price);
             $quota->initial_date = $dados->initial_date;
             $quota->final_date = $dados->final_date;
-            $quota->customer_limit = $dados->customer_limit;
+            $quota->customer_limit = $this->removeMask($dados->customer_limit);
 
             $this->quotaRepository->edit($quota);
 

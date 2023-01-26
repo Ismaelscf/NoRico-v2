@@ -126,10 +126,10 @@
                                 <tr>
                                     <td>{{ $quota->id }}</td>
                                     <td>{{ $quota->description }}</td>
-                                    <td>{{ $quota->total_price }}</td>
-                                    <td>{{ $quota->customer_limit }}</td>
-                                    <td>{{ $quota->initial_date }}</td>
-                                    <td>{{ $quota->final_date }}</td>
+                                    <td>R$ {{ number_format($quota->total_price,2,",",".") }}</td>
+                                    <td>R$ {{ number_format($quota->customer_limit,2,",",".") }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($quota->initial_date)) }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($quota->final_date)) }}</td>
                                     <td>
                                     @if($quota->active)
                                         <i class="fas fa-circle" style="color: green"></i>

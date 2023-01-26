@@ -53,7 +53,7 @@
                                 <div class="col-sm-8">
                                     <div class="card-body">
                                         <h5 class="card-title">{{$user->name}}</h5>
-                                        <p class="card-text"><b>CPF:</b> {{$user->cpf}}<br><b>Email:</b> {{$user->email}}<br><b>Telefone:</b> {{$user->phone}}<br><b>Dia de vencimento:</b> {{$user->payday}}<br><b>Estado:</b> {{$user->address->state}}<br><b>Cidade:</b> {{$user->address->city}}<br><b>Estado:</b> {{$user->address->district}}<br><b>Rua:</b> {{$user->address->street}}<br><b>Número:</b> {{$user->address->number}}<br><b>Complemento:</b> {{$user->address->complement}}</p>
+                                        <p class="card-text"><b>CPF:</b> {{$user->formatar_cpf($user->cpf)}}<br><b>Email:</b> {{$user->email}}<br><b>Telefone:</b> {{$user->formatar_phone($user->phone)}}<br><b>Dia de vencimento:</b> {{$user->payday}}<br><b>Estado:</b> {{$user->address->state}}<br><b>Cidade:</b> {{$user->address->city}}<br><b>Estado:</b> {{$user->address->district}}<br><b>Rua:</b> {{$user->address->street}}<br><b>Número:</b> {{$user->address->number}}<br><b>Complemento:</b> {{$user->address->complement}}</p>
 
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                     <div class="card-body">
                                         <h3>Detalhes do Plano</h3>
                                         <h5 class="card-title">{{$quota->description}}</h5>
-                                        <p class="card-text"><b>Valor Total:</b> {{$quota->total_price}}<br><b>Data Inicial:</b> {{$quota->initial_date}}<br><b>Data Final:</b> {{$quota->final_date}}<br><b>Limite do Plano por Cliente:</b> {{$quota->customer_limit}}</p>
+                                        <p class="card-text"><b>Valor Total:</b> {{number_format($quota->total_price,2,",",".")}}<br><b>Data Inicial:</b> {{date('d/m/Y', strtotime($quota->initial_date))}}<br><b>Data Final:</b> {{date('d/m/Y', strtotime($quota->final_date))}}<br><b>Limite do Plano por Cliente:</b> {{number_format($quota->customer_limit,2,",",".")}}</p>
 
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@
             </div>
 
             <div class="col-sm-6">
-            <div class="card" style="position: relative; left: 0px; top: 0px;">
+                <div class="card" style="position: relative; left: 0px; top: 0px;">
                     <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
                         <h3 class="card-title">Parcelas</h3>
 
@@ -112,7 +112,7 @@
                                 @foreach($installments as $installment)
                                     <tr>
                                         <td>R$ {{number_format($installment->price,2,",",".") }}</td>
-                                        <td>R$ {{$installment->due_date}}</td>
+                                        <td>{{date('d/m/Y', strtotime($installment->due_date))}}</td>
                                         <td>
                                             @if($installment->payday)
                                             <span class="badge badge-success">Pago</span>
@@ -179,6 +179,7 @@
 
                     <div class="card-footer">
                     </div>
+                </div>
             </div>
         </div>
 

@@ -54,12 +54,12 @@
                     <div class="row form-group" div class="col-sm-12">
                         <div class="col-sm-6">
                             <label for="total_price">Valor Total</label>
-                            <input type="text" class="form-control" id="total_price" value="{{ $quota->total_price }}" name="total_price" placeholder="Valor Total do plano" required>
+                            <input type="text" class="form-control" id="total_price" value="{{ number_format($quota->total_price,2,",",".") }}" name="total_price" placeholder="Valor Total do plano" required>
                         </div>
 
                         <div class="col-sm-6">
                             <label for="customer_limit">Limite do Plano por Cliente</label>
-                            <input type="text" class="form-control" id="customer_limit" value="{{ $quota->customer_limit }}" name="customer_limit" placeholder="Limite do Plano" required>
+                            <input type="text" class="form-control" id="customer_limit" value="{{ number_format($quota->customer_limit,2,",",".") }}" name="customer_limit" placeholder="Limite do Plano" required>
                         </div>
                     </div>
 

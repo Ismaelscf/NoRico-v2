@@ -6,7 +6,7 @@
 @section('content')
     <section class="content justify-content-md-center">
         <div class="row justify-content-md-center">
-            <div class="col-md-6 justify-content-md-center">
+            <div class="col-md-8 justify-content-md-center">
                 <div class="card" style="position: relative; left: 0px; top: 0px;">
                     <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
                         <h3 class="card-title">Contratar Plano</h3>
@@ -49,7 +49,7 @@
                             <label>Planos</label>
                             <select class="form-control" id="quota" name="quota">
                                 @foreach($quotas as $quota)
-                                <option value="{{$quota->id}}">Plano: {{$quota->description}}, valor do Plano: {{$quota->total_price}}, Desconto: {{$quota->customer_limit}}, Inicio: {{$quota->initial_date}}, Fim: {{$quota->final_date}}.</option>
+                                <option value="{{$quota->id}}">Plano: {{$quota->description}}, Valor do Plano: R$ {{ number_format($quota->total_price,2,",",".") }}; Desconto: R$ {{ number_format($quota->customer_limit,2,",",".") }}; Inicio: {{ date('d/m/Y', strtotime($quota->initial_date)) }}, Fim: {{ date('d/m/Y', strtotime($quota->final_date)) }}.</option>
                                 @endforeach
                             </select>
                         </div>

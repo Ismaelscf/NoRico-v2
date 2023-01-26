@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
 @push('script-fisrt')
+    <script src="{{ asset('js/exampleTable.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 @endpush
 
 @section('content')
     <section class="content justify-content-md-center">
         <div class="row justify-content-md-center">
-            <div class="col-md-6 justify-content-md-center">
+            <div class="col-md-8 justify-content-md-center">
                 <div class="card" style="position: relative; left: 0px; top: 0px;">
                     <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
                         <h3 class="card-title">Selecionar Plano</h3>
@@ -48,14 +50,14 @@
                             <label>Planos</label>
                             <select class="form-control" id="quota" name="quota">
                                 @foreach($quotas as $quota)
-                                <option value="{{$quota->quota->id}}">Plano: {{$quota->quota->description}}, Valor do Plano: {{$quota->quota->total_price}}, Desconto: {{$quota->quota->customer_limit}}, Inicio: {{$quota->quota->initial_date}}, Fim: {{$quota->quota->final_date}}.</option>
+                                <option value="{{$quota->quota->id}}">Plano: {{$quota->quota->description}}, Valor do Plano: R$ {{ number_format($quota->quota->total_price,2,",",".") }}; Desconto: R$ {{ number_format($quota->quota->customer_limit,2,",",".") }}; Inicio: {{ date('d/m/Y', strtotime($quota->quota->initial_date)) }}, Fim: {{ date('d/m/Y', strtotime($quota->quota->final_date)) }}.</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-success">Cadastrar</button>
+                        <button type="submit" class="btn btn-success">Visualizar</button>
                     </div>
                     </form>
                 </div>

@@ -70,7 +70,7 @@
 
                             <div class="col-sm-6">
                                 <label for="phone">Telefone</label>
-                                <input type="text" class="form-control" onkeypress="$(this).mask('(00)0 0000-0000');" id="phone" name="phone" placeholder="Telefone" required>
+                                <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0000');" id="phone" name="phone" placeholder="Telefone" required>
                             </div>
                         </div>
 
@@ -171,9 +171,9 @@
                                 <tr>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->actors->function}}</td>
-                                    <td>{{$user->cpf}}</td>
+                                    <td>{{$user->formatar_cpf($user->cpf)}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->phone}}</td>
+                                    <td>{{$user->formatar_phone($user->phone)}}</td>
                                     <td>
                                     @if($user->active)
                                         <i class="fas fa-circle" style="color: green"></i>
