@@ -2,6 +2,15 @@
 
 @push('script-fisrt')
     <script src="{{ asset('js/exampleTable.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script>
+        function retirarFormatacao(campoTexto) {
+            campoTexto.value = campoTexto.value.replace(/(\.|\/|\-)/g,"");
+        }
+        function mascaraCpf(valor) {
+            return valor.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/g,"\$1.\$2.\$3\-\$4");
+        }
+    </script>
 @endpush
 
 @section('content')
@@ -54,12 +63,12 @@
                         <div class="row form-group" div class="col-sm-12">
                             <div class="col-sm-6">
                                 <label for="total_price">Valor Total</label>
-                                <input type="text" class="form-control" id="total_price" name="total_price" placeholder="Valor Total do plano" required>
+                                <input type="text" class="form-control" onkeypress="$(this).mask('###.##0,00', {reverse: true});"  id="total_price" name="total_price" placeholder="Valor Total do plano" required>
                             </div>
 
                             <div class="col-sm-6">
                                 <label for="customer_limit">Limite do Plano por Cliente</label>
-                                <input type="text" class="form-control" id="customer_limit" name="customer_limit" placeholder="Limite do Plano" required>
+                                <input type="text" class="form-control" onkeypress="$(this).mask('###.##0,00', {reverse: true});" id="customer_limit" name="customer_limit" placeholder="Limite do Plano" required>
                             </div>
                         </div>
 
