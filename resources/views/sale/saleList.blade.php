@@ -27,7 +27,7 @@
             <tbody>
                 @foreach ($sales as $sale)
                     <tr class="even">
-                        <td>{{ $sale->sale_date }}</td>
+                        <td>{{ date('d/m/Y', strtotime($sale->sale_date)) }}</td>
                         <td>R$ {{ number_format($sale->total_sale,2,",",".") }}</td>
                         <td>R$ {{ number_format($sale->discount,2,",",".") }}</td>
                         <td>R$ {{ number_format(($sale->total_sale - $sale->discount),2,",",".") }}</td>

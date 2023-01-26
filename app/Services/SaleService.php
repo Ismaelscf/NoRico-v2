@@ -46,14 +46,16 @@ class SaleService
             foreach($salesByUser as $saleUser){
                 $discountTotal += $saleUser->discount;
             }
-
-            $discountTotal += $discount;
-
+     
             $store = $this->storeService->searchStore('id', $request->store_id);
+            
+            $discountAvailable = $store->full_discount - $discountTotal;
 
             if($discountTotal >= $store->full_discount){
                 return "Este cliente já atingiu o limite de descontos oferecidos pelo estabelecimento";
-            } else {
+            } elseif($discount >= $discountAvailable){
+                $discount = $discountAvailable;
+            }
 
             $sales['user_id'] = $request->user_id;
             $sales['store_id'] = $request->store_id;
@@ -66,7 +68,6 @@ class SaleService
 
             return "Venda realizada com Sucesso";
 
-            }
         } catch (Exception $e) {
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
