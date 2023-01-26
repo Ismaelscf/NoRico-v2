@@ -18,12 +18,8 @@
     <section class="content">
         <div class="row">
 
-            @if(isset($result) && $result == 'Error')
-                <div class="alert alert-danger" role="alert">
-                    Erro, A data final não pode anteceder a data inicial. Sorteio Não cadastrado
-                </div>
-            @elseif(isset($result) && $result != null)
-                <div class="alert alert-success" role="alert">
+            @if(isset($result))
+                <div class="alert alert-warning" role="alert">
                     {{ $result }}
                 </div>
             @endif

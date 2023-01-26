@@ -25,7 +25,7 @@ class SaleController extends Controller
         $this->storeService = $storeService;
     }
 
-    public function index($user = null){
+    public function index($user = null, $result = null){
 
         $salesman = Auth::user();
         $permition = $salesman->actors->function;
@@ -33,7 +33,7 @@ class SaleController extends Controller
         if($permition == 'admin'){
             $sales = $this->saleService->getAll();
 
-            return view('sale.index', ['sales' => $sales, 'permition' => $permition]);
+            return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'result' => $result]);
 
         }
         else if($permition != 'cliente' && $salesman->employee == true){
@@ -41,7 +41,7 @@ class SaleController extends Controller
             $sales = $this->saleService->getAll($salesman->employee->store->id);
         }
 
-        return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'store' => $salesman->employee->store, 'employee' => $salesman->employee->id, 'user' => $user]);
+        return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'store' => $salesman->employee->store, 'employee' => $salesman->employee->id, 'user' => $user, 'result' => $result]);
     }
 
     public function searchUser(Request $request){
@@ -59,6 +59,6 @@ class SaleController extends Controller
 
         $result = $this->saleService->create($request);
 
-        return $this->index();
+        return $this->index(null, $result);
     }
 }
