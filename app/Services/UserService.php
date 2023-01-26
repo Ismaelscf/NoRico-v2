@@ -25,17 +25,32 @@ class UserService
         $this->addressRepository = $addressRepository;
         $this->actorRepository = $actorRepository;
     }
+    
+    public function formatar_cpf($cpf){
+        $cpf = preg_replace("/(\d{3})(\d{3})(\d{3})(\d{2})/", "\$1.\$2.\$3-\$4", $cpf);
+        return $cpf;
+    }
+
+    public function remover_caracteres($texto){
+        $texto = str_replace(".", "", $texto);
+        $texto = str_replace(",", "", $texto);
+        $texto = str_replace("-", "", $texto);
+        $texto = str_replace("/", "", $texto);
+        $texto = str_replace("(", "", $texto);
+        $texto = str_replace(")", "", $texto);
+        $texto = str_replace(" ", "", $texto);
+        return $texto;
+    }
 
     public function create($dados){
-
         try {
             
             $user['name'] = $dados->name;
-            $user['cpf'] = $dados->cpf;
+            $user['cpf'] = $this->remover_caracteres($dados->cpf);
             $user['password'] = Hash::make($dados->password);
             $user['payday'] = $dados->payday;
             $user['email'] = $dados->email;
-            $user['phone'] = $dados->phone;
+            $user['phone'] = $this->remover_caracteres($dados->phone);
 
             if($dados->hasFile('image') && $dados->file('image')->isValid()){
                 $upload = new UploadImage;
@@ -44,7 +59,7 @@ class UserService
             // dd($user);
             $this->userRepository->create($user);
             // dd($dados['cpf']);
-            $user = $this->userRepository->buscarIdPorCPF($dados['cpf']);
+            $user = $this->userRepository->buscarIdPorCPF($this->remover_caracteres($dados->cpf));
 
             $address['type'] = 'pessoal';
             $address['user_id']  = $user;
@@ -101,23 +116,24 @@ class UserService
     }
 
     public function buscarIdPorCPF($cpf){
-        $user = $this->userRepository->buscarIdPorCPF($cpf);
+        $user = $this->userRepository->buscarIdPorCPF($this->remover_caracteres($cpf));
         return $user;
     }
 
     public function buscarPorCPF($cpf){
-        $user = $this->userRepository->buscarPorCPF($cpf);
+        $user = $this->userRepository->buscarPorCPF($this->remover_caracteres($cpf));
         return $user;
     }
+
     public function editUser($dados){
         try {
             $user = $this->userRepository->search($dados->id);
             $user->name = $dados->name;
-            $user->cpf = $dados->cpf;
+            $user->cpf = $this->remover_caracteres($dados->cpf);
             $user->password = Hash::make($dados->password);
             $user->payday = $dados->payday;
             $user->email = $dados->email;
-            $user->phone = $dados->phone;
+            $user->phone = $this->remover_caracteres($dados->phone);
 
             if($dados->hasFile('image') && $dados->file('image')->isValid()){
                 $upload = new UploadImage;

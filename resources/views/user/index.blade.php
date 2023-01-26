@@ -2,7 +2,7 @@
 
 @push('script-fisrt')
     <script src="{{ asset('js/exampleTable.js') }}"></script>
-    <script src="{{ asset('js/masks.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 @endpush
 
 @section('content')
@@ -53,7 +53,7 @@
                         <div class="row form-group" div class="col-sm-12">
                             <div class="col-sm-6">
                                 <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" required>
+                                <input type="text" class="form-control" onkeypress="$(this).mask('000.000.000-00');" id="cpf" name="cpf" placeholder="CPF" required>
                             </div>
 
                             <div class="col-sm-6">
@@ -70,7 +70,7 @@
 
                             <div class="col-sm-6">
                                 <label for="phone">Telefone</label>
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" required>
+                                <input type="text" class="form-control" onkeypress="$(this).mask('(00)0 0000-0000');" id="phone" name="phone" placeholder="Telefone" required>
                             </div>
                         </div>
 
