@@ -25,7 +25,9 @@
             @endif
             
             <div class="col-md-12 col-sm-12">
-                @include('sale.search')
+                @if($permition != 'admin')
+                    @include('sale.search')
+                @endif
             </div>
 
             <div class="col-md-12 col-sm-12">
