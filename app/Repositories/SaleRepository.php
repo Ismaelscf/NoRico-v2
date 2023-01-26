@@ -21,6 +21,10 @@ class SaleRepository
         }
     }
 
+    public function getAllSalesUser($store_id, $user_id, $initial_date, $final_date){
+        return $this->sale->where('user_id', '=', $user_id)->where('sale_date', '>=', $initial_date)->where('sale_date', '<=', $final_date)->where('store_id', '=', $store_id)->get();
+    }
+
     public function create($salesCreate){
         return $this->sale::create($salesCreate);
     }

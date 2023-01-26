@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <label for="price">Valor da Compra:</label>
-                    <input type="number" name="price" id="price" class="form-control" placeholder="Apenas numeros">
+                    <input type="number" step="0.001" name="price" id="price" class="form-control" placeholder="Apenas numeros">
                 </div>
             </div>
     </div>
