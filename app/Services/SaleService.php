@@ -38,6 +38,7 @@ class SaleService
             $final_date = date('Y-m-d');
             $salesByUser = $this->saleRepository->getAllSalesUser($request->store_id, $request->user_id, $initial_date, $final_date);
             $discount = ($request->price * $request->discount) / 100;
+            $result = null;
 
             $discountTotal = 0;
 
@@ -50,7 +51,8 @@ class SaleService
             $discountAvailable = $store->full_discount - $discountTotal;
 
             if($discountTotal >= $store->full_discount){
-                return "Este cliente já atingiu o limite de descontos oferecidos pelo estabelecimento";
+                $result = "Este cliente já atingiu o limite de descontos oferecidos pelo estabelecimento";
+                $discount = 0;
             } elseif($discount >= $discountAvailable){
                 $discount = $discountAvailable;
             }
@@ -65,7 +67,7 @@ class SaleService
 
             $salesConfirm = (object) $sales;
 
-            return $salesConfirm;
+            return ['salesConfirm' => $salesConfirm, 'result' => $result];
 
         } catch (Exception $e) {
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
