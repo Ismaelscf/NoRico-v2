@@ -31,17 +31,28 @@ class SaleController extends Controller
         $permition = $salesman->actors->function;
         $sales = null;
 
-
         if($permition == 'admin'){
             $sales = $this->saleService->getAll();
 
             return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'result' => $result]);
 
         }
-        else if($permition != 'cliente' && $salesman->employee == true){
+        else if($permition != 'cliente' && $salesman->employee == true && $salesman->active == 1){
+            
+            if(!isset($salesman->employee->store->id)){
+
+                $result = "Seu cadastro ainda não foi vinculado a uma loja, verifique com o administrador do sistema!";
+
+                return redirect('/')->with('result', 'Você ainda não foi cadastrado a uma loja, verifique com o administrador do sistema!');
+            }
 
             $sales = $this->saleService->getAll($salesman->employee->store->id);
 
+        } else if ($permition != 'cliente' && $salesman->employee == false || $salesman->active != 1){
+
+            $result = "Seu cadastro ainda não foi vinculado a uma loja ou você pode estar inativo, verifique com o administrador do sistema!";
+
+            return redirect('/')->with('result', 'Você ainda não foi cadastrado a uma loja ou pode estar inativo, verifique com o administrador do sistema!');
         }
 
         return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'store' => $salesman->employee->store, 'employee' => $salesman->employee->id, 'user' => $user, 'result' => $result]);
