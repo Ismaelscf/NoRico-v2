@@ -168,43 +168,45 @@
                             </thead>
                             <tbody>
                                 @foreach($users as $user)
-                                <tr>
-                                    <td>{{$user->name}}</td>
-                                    <td>{{$user->actors->function}}</td>
-                                    <td>{{$user->formatar_cpf($user->cpf)}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->formatar_phone($user->phone)}}</td>
-                                    <td>
-                                    @if($user->active)
-                                        <i class="fas fa-circle" style="color: green"></i>
-                                        <span style="display: none">{{ $user->active }}</span>
-                                    @else
-                                        <i class="fas fa-circle" style="color: red"></i>
-                                        <span style="display: none">{{ $user->active }}</span>
-                                    @endif
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('user.edit') }}/{{ $user->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
-
+                                @if($user->actors->function == 'cliente' || $user->actors->function == 'gerente' || $user->actors->function == 'vendedor')
+                                    <tr>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->actors->function}}</td>
+                                        <td>{{$user->formatar_cpf($user->cpf)}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->formatar_phone($user->phone)}}</td>
+                                        <td>
                                         @if($user->active)
-                                            <a href="{{ route('user.status') }}/{{ $user->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                                            <i class="fas fa-circle" style="color: green"></i>
+                                            <span style="display: none">{{ $user->active }}</span>
                                         @else
-                                            <a href="{{ route('user.status') }}/{{ $user->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
+                                            <i class="fas fa-circle" style="color: red"></i>
+                                            <span style="display: none">{{ $user->active }}</span>
                                         @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('user.edit') }}/{{ $user->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
 
-                                        @if(count($user->installments))
-                                        <a href="{{ route('quotas.hiring') }}/{{ $user->id }}" class="btn btn-secondary btn-sm">Contratar Plano</a>
-                                        <a href="{{ route('installment.track_parcels') }}/{{ $user->id }}" class="btn btn-success btn-sm">Ver Parcelas</a>
+                                            @if($user->active)
+                                                <a href="{{ route('user.status') }}/{{ $user->id }}" class="btn btn-danger btn-sm"><i class="fa fa-ban"></i> Desativar</a>
+                                            @else
+                                                <a href="{{ route('user.status') }}/{{ $user->id }}" class="btn btn-warning btn-sm"><i class="fa fa-asterisk"></i> Reativar</a>
+                                            @endif
+
+                                            @if(count($user->installments))
+                                            <a href="{{ route('quotas.hiring') }}/{{ $user->id }}" class="btn btn-secondary btn-sm">Contratar Plano</a>
+                                            <a href="{{ route('installment.track_parcels') }}/{{ $user->id }}" class="btn btn-success btn-sm">Ver Parcelas</a>
+                                                
+                                            @else
+                                            <a href="{{ route('quotas.hiring') }}/{{ $user->id }}" class="btn btn-secondary btn-sm">Contratar Plano</a>
                                             
-                                        @else
-                                        <a href="{{ route('quotas.hiring') }}/{{ $user->id }}" class="btn btn-secondary btn-sm">Contratar Plano</a>
-                                        
-                                            
-                                        @endif
+                                                
+                                            @endif
 
 
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+                                @endif
                                 @endforeach
 
                             </tbody>

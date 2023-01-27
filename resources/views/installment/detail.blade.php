@@ -151,7 +151,9 @@
                                                             @if(!$installment->payday)
                                                             <div class="col-sm-2 align-self-center">
                                                             <a href="/installment/pay/{{$installment->id}}">
+                                                            @if( Auth::user()->actors->function == "admin" || Auth::user()->actors->function == "vendedor" )
                                                                 <button class="btn btn-primary btn-sm">Atualizar</button>
+                                                            @endif
                                                             </a>
                                                             </div>
                                                             @endif
