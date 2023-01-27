@@ -25,14 +25,18 @@
             @endif
             
             <div class="col-md-12 col-sm-12">
-                @if($permition != 'admin')
+                @if($permition != 'admin' && $permition != 'cliente')
                     @include('sale.search')
                 @endif
             </div>
 
             <div class="col-md-12 col-sm-12">
-                @if($permition != 'admin')
-                    @include('sale.create')
+                @if($permition != 'admin' && $permition != 'cliente')
+                    @if(!isset($saleConfirm))
+                        @include('sale.create')
+                    @else
+                        @include('sale.confirmSale')
+                    @endif
                 @endif
             </div>
     

@@ -14,7 +14,7 @@
        
         
             
-            <form action="{{ route('sales.create'); }}" enctype="multipart/form-data" method="post">
+            <form action="{{ route('sales.confirm'); }}" enctype="multipart/form-data" method="post">
             @csrf <!-- {{ csrf_field() }} -->
             <div class="row">
                 <div class="col-sm-12 col-md-12">
@@ -23,7 +23,8 @@
                     <input type="hidden" id="store_id" name="store_id" value="{{ $store->id }}">
                     <input type="hidden" id="employee_id" name="employee_id" value="{{ $employee }}">
                     <input type="hidden" name="discount" id="discount" value="{{ $store->percentage_discount }}">
-                    <input class="form-control" type="text" id="userName" name="userName" value="{{ $user->name }}" disabled>
+                    <input type="hidden" name="userName" id="userName" value="{{ $user->name }}">
+                    {{ $user->name }}
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <label for="price">Valor da Compra:</label>

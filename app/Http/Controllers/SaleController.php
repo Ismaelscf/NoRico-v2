@@ -25,7 +25,7 @@ class SaleController extends Controller
         $this->storeService = $storeService;
     }
 
-    public function index($user = null, $result = null){
+    public function index($user = null, $result = null, $saleConfirm = null){
 
         $salesman = Auth::user();
         $permition = $salesman->actors->function;
@@ -55,7 +55,7 @@ class SaleController extends Controller
             return redirect('/')->with('result', 'Você ainda não foi cadastrado a uma loja ou pode estar inativo, verifique com o administrador do sistema!');
         }
 
-        return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'store' => $salesman->employee->store, 'employee' => $salesman->employee->id, 'user' => $user, 'result' => $result]);
+        return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'store' => $salesman->employee->store, 'employee' => $salesman->employee->id, 'user' => $user, 'result' => $result, 'saleConfirm' => $saleConfirm]);
     }
 
     public function searchUser(Request $request){
@@ -68,6 +68,13 @@ class SaleController extends Controller
         }
 
         return $this->index($user);
+    }
+
+    public function confirm(Request $request){
+
+        $saleConfirm = $this->saleService->saleConfirm($request);
+
+        return $this->index(null, null, $saleConfirm);
     }
 
     public function create(Request $request){

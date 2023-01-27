@@ -32,9 +32,7 @@ class SaleService
 
     public function calcTotalDiscount(){}
 
-    public function create(Request $request){
-        // dd($request->all());
-
+    public function saleConfirm(Request $request){
         try{
             $initial_date = date('Y-m-01');
             $final_date = date('Y-m-d');
@@ -58,15 +56,37 @@ class SaleService
             }
 
             $sales['user_id'] = $request->user_id;
+            $sales['userName'] = $request->userName;
             $sales['store_id'] = $request->store_id;
             $sales['employee_id'] = $request->employee_id;
             $sales['total_sale'] = $request->price;
             $sales['discount'] = $discount;
             $sales['sale_date'] = date('Y-m-d');
 
+            $salesConfirm = (object) $sales;
+
+            return $salesConfirm;
+
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
+    }
+
+    public function create(Request $request){
+        // dd($request->all());
+
+        try{
+            
+            $sales['user_id'] = $request->user_id;
+            $sales['store_id'] = $request->store_id;
+            $sales['employee_id'] = $request->employee_id;
+            $sales['total_sale'] = $request->total_sale;
+            $sales['discount'] = $request->discount;
+            $sales['sale_date'] = date('Y-m-d');
+
             $this->saleRepository->create($sales);
 
-            return "Venda realizada com Sucesso";
+            return "Venda finalizada com Sucesso";
 
         } catch (Exception $e) {
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
