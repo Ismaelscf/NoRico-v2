@@ -64,6 +64,7 @@ class SaleService
             $sales['total_sale'] = $request->price;
             $sales['discount'] = $discount;
             $sales['sale_date'] = date('Y-m-d');
+            $sales['description'] = $request->description;
 
             $salesConfirm = (object) $sales;
 
@@ -85,6 +86,7 @@ class SaleService
             $sales['total_sale'] = $request->total_sale;
             $sales['discount'] = $request->discount;
             $sales['sale_date'] = date('Y-m-d');
+            $sales['description'] = $request->description;
 
             $this->saleRepository->create($sales);
 

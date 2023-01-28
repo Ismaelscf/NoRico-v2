@@ -19,6 +19,7 @@ class Sale extends Model
         'total_sale',
         'discount',
         'sale_date',
+        'description',
     ];
 
     public function store(){

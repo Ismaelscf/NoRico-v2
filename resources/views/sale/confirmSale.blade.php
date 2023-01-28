@@ -25,9 +25,13 @@
                     <input type="hidden" id="sale_date" name="sale_date" value="{{ $saleConfirm->sale_date }}">
                     <input type="hidden" id="total_sale" name="total_sale" value="{{ $saleConfirm->total_sale }}">
                     <input type="hidden" id="discount" name="discount" value="{{ $saleConfirm->discount }}">
-                    <input type="hidden" id="sale_date" name="sale_date" value="{{ $saleConfirm->sale_date }}">
+                    <input type="hidden" id="description" name="description" value="{{ $saleConfirm->description }}">
 
                     {{ $saleConfirm->userName }}
+                </div>
+                <div class="col-sm-12 col-md-12">
+                    <label for="price">Compra:</label>
+                    {{ $saleConfirm->description }}
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <label for="price">Total da Compra sem desconto:</label>

@@ -27,8 +27,12 @@
                     {{ $user->name }}
                 </div>
                 <div class="col-sm-12 col-md-12">
+                    <label for="description">Descrição:</label>
+                    <input type="text" name="description" id="description" class="form-control" placeholder="Breve descrição da compra" required>
+                </div>
+                <div class="col-sm-12 col-md-12">
                     <label for="price">Valor da Compra:</label>
-                    <input type="number" step="0.001" name="price" id="price" class="form-control" placeholder="Apenas numeros">
+                    <input type="number" step="0.001" name="price" id="price" class="form-control" placeholder="Apenas numeros" required>
                 </div>
             </div>
     </div>
