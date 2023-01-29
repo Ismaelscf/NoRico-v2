@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use App\Models\Store;
 use App\Helpers\UploadImage;
 use App\Repositories\AddressRepository;
+use App\Services\ActorService;
+use App\Repositories\StoreEmployeeRepository;
 
 class StoreService
 {
@@ -20,12 +22,16 @@ class StoreService
     
     protected $addressService;
     protected $addressRepository;
+    protected $actorService;
+    protected $storeEmployeeRepository;
 
-    public function __construct(StoreRepository $storeRepository, AddressService $addressService, AddressRepository $addressRepository)
+    public function __construct(StoreRepository $storeRepository, AddressService $addressService, AddressRepository $addressRepository, ActorService $actorService, StoreEmployeeRepository $storeEmployeeRepository)
     {
         $this->storeRepository = $storeRepository;
         $this->addressService = $addressService;
         $this->addressRepository = $addressRepository;
+        $this->actorService = $actorService;
+        $this->storeEmployeeRepository = $storeEmployeeRepository;
     }
 
     public function removeMask($value){
@@ -51,8 +57,6 @@ class StoreService
     }
 
     public function create(Request $request){
-
-        // dd($request, 'Service');
 
         try {
             $store['name'] = $request->name;
@@ -95,6 +99,15 @@ class StoreService
             $address['store_id'] = $storeCreated[0]->id;
 
             $this->addressRepository->create($address); //Metodo de cadastrar endereço
+
+            $manager = json_decode ($request->manager);
+
+            $storeEmployee['store_id'] = $storeCreated[0]->id;
+            $storeEmployee['user_id'] = $manager->user_id;
+            $storeEmployee['function'] = $manager->function;
+            $storeEmployee['active'] = 1;   
+
+            $this->storeEmployeeRepository->create($storeEmployee);
 
             // $this->addressService->create($storeCreated->id, $address);
         } catch (Exception $e) {
@@ -190,5 +203,10 @@ class StoreService
         }  catch (Exception $e) {
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
+    }
+
+    public function getAllManager(){
+        $manager = $this->actorService->getAllManager();
+        return $manager;
     }
 }

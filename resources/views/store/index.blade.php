@@ -4,6 +4,14 @@
     <script src="{{ asset('js/datatable.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                // width: 'resolve',
+                theme: 'bootstrap4',
+            });
+        });
+    </script>
 @endpush
 
 @section('content')

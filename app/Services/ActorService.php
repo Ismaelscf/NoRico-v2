@@ -17,4 +17,9 @@ class ActorService
     {
         $this->actorRepository = $actorRepository;
     }
+
+    public function getAllManager(){
+        $manager = $this->actorRepository->getAllManager();
+        return $manager;
+    }
 }

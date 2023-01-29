@@ -29,9 +29,9 @@
                         <div class="form-group">
                             <label for="manager">Gerente</label>
                             <select name="manager" id="manager" class="form-control select2">
-                                {{-- @foreach ($managers as $manager)
-                                    <option value="{{ $manager->id }}">{{ $store->name }}</option>    
-                                @endforeach --}}
+                                @foreach ($managers as $manager)
+                                    <option value="{{ $manager }}">{{ $manager->user->name }}</option>    
+                                @endforeach
                             </select>
                         </div>
                     </div>

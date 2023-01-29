@@ -6,7 +6,6 @@
     <script src="{{ asset('js/script.js') }}"></script>
     
     <script>
-        console.log('teste');
         $(document).ready(function() {
             $('.select2').select2({
                 // width: 'resolve',

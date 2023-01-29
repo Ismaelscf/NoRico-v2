@@ -20,8 +20,9 @@ class StoreController extends Controller
 
     public function index(){
         $stores = $this->storeService->getAll();
+        $managers = $this->storeService->getAllManager();
 
-        return view('store.index', ['stores' => $stores]);
+        return view('store.index', ['stores' => $stores, 'managers' => $managers]);
     }
 
     public function create(Request $request){

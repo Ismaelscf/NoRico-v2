@@ -26,4 +26,9 @@ class ActorRepository
         return $actor->save();
     }
 
+    public function getAllManager(){
+        $manager = Actor::where('function', 'gerente')->where('active', '=', 1)->get();
+        return $manager;
+    }
+
 }
