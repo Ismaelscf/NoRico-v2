@@ -22,6 +22,24 @@ class SaleService
         $this->storeService = $storeService;
     }
 
+    public function removeMask($value){
+        $number = str_replace(".", "", $value);
+        $number = str_replace(",", ".", $number);
+
+        return $number;
+    }
+
+    public function remover_caracteres($texto){
+        $texto = str_replace(".", "", $texto);
+        $texto = str_replace(",", "", $texto);
+        $texto = str_replace("-", "", $texto);
+        $texto = str_replace("/", "", $texto);
+        $texto = str_replace("(", "", $texto);
+        $texto = str_replace(")", "", $texto);
+        $texto = str_replace(" ", "", $texto);
+        return $texto;
+    }
+
     public function getAll($store_id = null){      
         return $this->saleRepository->getAll($store_id);
     }
@@ -33,11 +51,12 @@ class SaleService
     public function calcTotalDiscount(){}
 
     public function saleConfirm(Request $request){
+
         try{
             $initial_date = date('Y-m-01');
             $final_date = date('Y-m-d');
             $salesByUser = $this->saleRepository->getAllSalesUser($request->store_id, $request->user_id, $initial_date, $final_date);
-            $discount = ($request->price * $request->discount) / 100;
+            $discount = ($this->removeMask($request->price) * $request->discount) / 100;
             $result = null;
 
             $discountTotal = 0;
@@ -61,7 +80,7 @@ class SaleService
             $sales['userName'] = $request->userName;
             $sales['store_id'] = $request->store_id;
             $sales['employee_id'] = $request->employee_id;
-            $sales['total_sale'] = $request->price;
+            $sales['total_sale'] = $this->removeMask($request->price);
             $sales['discount'] = $discount;
             $sales['sale_date'] = date('Y-m-d');
             $sales['description'] = $request->description;

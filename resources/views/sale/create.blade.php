@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-sm-12 col-md-12">
                     <label for="price">Valor da Compra:</label>
-                    <input type="number" step="0.001" name="price" id="price" class="form-control" placeholder="Apenas numeros" required>
+                    <input type="text" name="price" id="price" class="form-control" onkeypress="$(this).mask('###.##0,00', {reverse: true});" placeholder="Apenas numeros" required>
                 </div>
             </div>
     </div>

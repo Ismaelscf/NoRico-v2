@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-sm-12 col-md-12">
                     <label for="cpf">CPF:</label>
-                    <input type="number" name="cpf" id="cpf" class="form-control" placeholder="Apenas numeros">
+                    <input type="text" onkeypress="$(this).mask('000.000.000-00');" name="cpf" id="cpf" class="form-control" placeholder="Apenas numeros">
                 </div>
             </div>
 
