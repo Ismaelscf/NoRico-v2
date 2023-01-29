@@ -168,4 +168,7 @@ class SortService
         
         return $sort;
     }
+    public function getAllSortActive(){
+        return $this->sortRepository->getAllSortActive();
+    }
 }

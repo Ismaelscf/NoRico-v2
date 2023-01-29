@@ -9,17 +9,20 @@ use App\Models\User;
 use App\Models\Region;
 use App\Models\LoanInstallment;
 use Illuminate\Support\Facades\Auth;
+use App\Services\HomeService;
 
 class HomeController extends Controller
 {
+    protected $homeService;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(HomeService $homeService)
     {
         $this->middleware('auth');
+        $this->homeService = $homeService;
     }
 
     /**
@@ -30,6 +33,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $dados = $this->homeService->home();
+        return view('home', ['dados' => $dados]);
     }
 }

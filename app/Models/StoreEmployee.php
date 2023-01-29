@@ -30,4 +30,12 @@ class StoreEmployee extends Model
     public function sales(){
         return $this->hasMany(Sale::class, 'employee_id', 'id');
     }
+
+    public function formatar_cpf($cpf){
+        return preg_replace("/(\d{3})(\d{3})(\d{3})(\d{2})/", "\$1.\$2.\$3-\$4", $cpf);
+    }
+
+    public function formatar_phone($phone){
+        return preg_replace("/(\d{2})(\d{5})(\d{4})/", "(\$1) \$2-\$3", $phone);
+    }
 }

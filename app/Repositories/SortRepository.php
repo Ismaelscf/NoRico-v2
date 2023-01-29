@@ -42,4 +42,8 @@ class SortRepository
         $sort = Sort::find($id);
         return $sort;
     }
+
+    public function getAllSortActive(){
+        return $this->sort->where('award', '=', 'null')->where('active', 1)->get();
+    }
 }
