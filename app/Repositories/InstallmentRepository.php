@@ -37,6 +37,12 @@ class InstallmentRepository
         return $quotas;
     }
 
+    public function BuscarUserQuotas($id){
+        $quotas = Installment::where('user_quotas_id', $id)->get();
+        // dd($quotas);
+        return $quotas;
+    }
+
     public function edit($installment){ 
         $installment->save();
         return $installment; 

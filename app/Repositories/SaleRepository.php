@@ -28,4 +28,20 @@ class SaleRepository
     public function create($salesCreate){
         return $this->sale::create($salesCreate);
     }
+
+    public function buscarConcorrentes($sort){
+
+        $users = Sale::selectRaw('sum(total_sale) as sum, user_id')->whereBetween('sale_date', [$sort->initial_date, $sort->final_date])->groupBy('user_id')->get();
+        $users = $users->where('sum', '>=', $sort->limit)->pluck('user_id');
+        // dd($sort, $users, $teste);
+        return $users;
+    }
+
+    public function buscarConcorrentesLoja($sort){
+
+        $users = Sale::selectRaw('sum(total_sale) as sum, user_id')->whereBetween('sale_date', [$sort->initial_date, $sort->final_date])->where('store_id', $sort->store_id)->groupBy('user_id')->get();
+        $users = $users->where('sum', '>=', $sort->limit)->pluck('user_id');
+        // dd($sort, $users, $teste);
+        return $users;
+    }
 }

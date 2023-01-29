@@ -56,10 +56,39 @@ class InstallmentService
         
     }
 
+    public function BuscarUserQuotas($id)
+    {
+        // dd($id);
+        try {
+            $quotas = $this->installmentRepository->BuscarUserQuotas($id);
+        return $quotas;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+        
+    }
+
     public function pay($id){
         try {
             $installment = $this->installmentRepository->searchInstallment($id);
             $installment->payday = Carbon::now()->toDateTimeString();
+            $installment->status = 'pago';
+            $this->installmentRepository->edit($installment);
+            return $installment;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+    }
+
+    public function delay($id){
+        try {
+            $installment = $this->installmentRepository->searchInstallment($id);
+            $installment->payday = Carbon::now()->toDateTimeString();
+            $installment->status = 'atraso';
             $this->installmentRepository->edit($installment);
             return $installment;
 

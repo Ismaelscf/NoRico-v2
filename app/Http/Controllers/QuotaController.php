@@ -6,7 +6,7 @@ use App\Models\Installment;
 use App\Services\QuotaService;
 use App\Services\UserService;
 use App\Services\InstallmentService;
-
+use App\Services\UserQuotaService;
 use Illuminate\Http\Request;
 
 class QuotaController extends Controller
@@ -14,12 +14,14 @@ class QuotaController extends Controller
     protected $quotaService;
     protected $userService;
     protected $installmentService;
+    protected $userQuotaService;
 
-    public function __construct(QuotaService $quotaService, UserService $userService, InstallmentService $installmentService)
+    public function __construct(QuotaService $quotaService, UserService $userService, InstallmentService $installmentService, UserQuotaService $userQuotaService)
     {
         $this->quotaService = $quotaService;
         $this->userService = $userService;
         $this->installmentService = $installmentService;
+        $this->userQuotaService = $userQuotaService;
     }
 
     public function index(){
@@ -102,13 +104,13 @@ class QuotaController extends Controller
 
     public function installments(Request $request)
     {
+        // dd($request->all());
         try {
             $user = $this->userService->buscarUser($request->user);
             $quota = $this->quotaService->installments($request, $user);
             $quota = $this->quotaService->buscarQuota($request->quota);
             $installments = $this->installmentService->buscarparcelas($request->quota, $user->id);
 
-            // dd($quota, $user, $quotas, $installments);
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
             return $this->home($msg);

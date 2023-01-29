@@ -47,9 +47,8 @@ Route::prefix('/sort')->name('sort')->group(function () {
     Route::post('/', [App\Http\Controllers\SortController::class, 'create'])->name('.create')->middleware('auth');
     Route::get('/edit/{id?}', [App\Http\Controllers\SortController::class, 'editForm'])->name('.edit')->middleware('auth');
     Route::post('/edit', [App\Http\Controllers\SortController::class, 'edit'])->name('.editPost')->middleware('auth');
-
+    Route::post('/winner', [App\Http\Controllers\SortController::class, 'winner'])->name('.winner')->middleware('auth');
     Route::get('/inactive/{id?}', [App\Http\Controllers\SortController::class, 'inactive'])->name('.inactive')->middleware('auth');
-
     Route::get('/reward/{id?}', [App\Http\Controllers\SortController::class, 'rewardPage'])->name('.rewardPage')->middleware('auth');
 });
 
@@ -70,7 +69,9 @@ Route::prefix('/installment')->name('installment')->group(function () {
     Route::get('/', [App\Http\Controllers\InstallmentController::class, 'index'])->name('.index')->middleware('auth');
     Route::post('/', [App\Http\Controllers\InstallmentController::class, 'buscarDadosParcelas'])->name('.buscarDadosParcelas')->middleware('auth');
     Route::get('/pay/{id?}', [App\Http\Controllers\InstallmentController::class, 'pay'])->name('.pay')->middleware('auth');
+    Route::get('/delay/{id?}', [App\Http\Controllers\InstallmentController::class, 'delay'])->name('.delay')->middleware('auth');
     Route::get('/track_parcels/{id?}', [App\Http\Controllers\InstallmentController::class, 'track_parcels'])->name('.track_parcels')->middleware('auth');
+    Route::post('/track_quotas', [App\Http\Controllers\InstallmentController::class, 'track_quotas'])->name('.track_quotas')->middleware('auth');
 });
 
 //Funcionários de Lojas

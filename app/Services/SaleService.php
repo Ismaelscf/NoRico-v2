@@ -10,16 +10,19 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 use App\Services\StoreService;
+use App\Services\UserService;
 
 class SaleService
 {
     protected $saleRepository;
     protected $storeService;
+    protected $userService;
 
-    public function __construct(SaleRepository $saleRepository, StoreService $storeService)
+    public function __construct(SaleRepository $saleRepository, StoreService $storeService, UserService $userService)
     {
         $this->saleRepository = $saleRepository;
         $this->storeService = $storeService;
+        $this->userService = $userService;
     }
 
     public function removeMask($value){
@@ -115,5 +118,19 @@ class SaleService
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
 
+    }
+
+    public function buscarConcorrentes($sort)
+    {
+        if($sort->store_id){
+            $users = $this->saleRepository->buscarConcorrentesLoja($sort);
+        }
+        else {
+            $users = $this->saleRepository->buscarConcorrentes($sort);
+        }
+
+        $user = $this->userService->buscarUserSort($users);
+
+        return $user;
     }
 }

@@ -115,6 +115,18 @@ class UserService
         }
     }
 
+    public function buscarUserSort($users){
+        try {
+            $user = $this->userRepository->searchUsers($users);
+            // dd($user);
+            return $user;
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+    }
+
     public function buscarIdPorCPF($cpf){
         $user = $this->userRepository->buscarIdPorCPF($this->remover_caracteres($cpf));
         return $user;

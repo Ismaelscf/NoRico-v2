@@ -18,6 +18,9 @@ return new class extends Migration
             $table->foreignId('quota_id')->constrained('quotas', 'id');
             $table->foreignId('user_id')->constrained('users', 'id');
             $table->foreignId('seller_id')->constrained('users', 'id');
+            $table->foreignId('user_quotas_id')->constrained('user_quotas', 'id');
+            $table->boolean('active')->default(true);
+            $table->enum('status', ['pago', 'aberto', 'atraso'])->default('aberto');
             $table->float('price');
             $table->date('due_date');
             $table->date('payday')->nullable();

@@ -37,4 +37,9 @@ class SortRepository
     public function inactive(Sort $sort){
         return $sort->save();
     }
+
+    public function search($id){
+        $sort = Sort::find($id);
+        return $sort;
+    }
 }

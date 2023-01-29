@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @push('script-fisrt')
+<script src="{{ asset('js/exampleTable.js') }}"></script>
 @endpush
 
 @section('content')
@@ -97,12 +98,14 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table table_base" id="example1" name="example1">
+                        <table class="table table_base dataTables_wrapper dt-bootstrap4" id="example1" name="example1">
+                        
                             <thead>
 
                                 <tr>
                                 <th scope="col">Valor</th>
                                 <th scope="col">Data Referência</th>
+                                <th scope="col">Cota</th>
                                 <th scope="col">Status</th> 
                                 <th scope="col">Opções</th>
            
@@ -113,11 +116,14 @@
                                     <tr>
                                         <td>R$ {{number_format($installment->price,2,",",".") }}</td>
                                         <td>{{date('d/m/Y', strtotime($installment->due_date))}}</td>
+                                        <td>{{$installment->user_quotas_id}}</td>
                                         <td>
-                                            @if($installment->payday)
+                                            @if($installment->status == 'aberto')
+                                            <span class="badge badge-info">Em aberto</span>
+                                            @elseif($installment->status == 'pago')
                                             <span class="badge badge-success">Pago</span>
                                             @else
-                                            <span class="badge badge-info">Em aberto</span>
+                                            <span class="badge badge-warning">Em atraso</span>
                                             @endif
                                         <td>
                                             <div>
@@ -141,18 +147,23 @@
                                                                 <label for="valor">Vendedor:  </label>
                                                                 <input type="text" class="form-control" size="12" id="valor-{{$installment->id}}" name="value" value="{{$installment->seller->name}}" readonly>
                                                             </div>
-                                                            @if($installment->payday)
+                                                            @if($installment->status == 'pago')
                                                             <div class="form-group col-md-4">
                                                                 <label for="date">Data:  </label>
                                                                 <input type="text" class="form-control" id="date-{{$installment->id}}" name="date"  value="{{ $installment->updated_at->format('d-m-Y H:i:s') }}" readonly>
                                                             </div>
                                                             @endif
 
-                                                            @if(!$installment->payday)
+                                                            @if($installment->status != 'pago')
                                                             <div class="col-sm-2 align-self-center">
                                                             <a href="/installment/pay/{{$installment->id}}">
                                                             @if( Auth::user()->actors->function == "admin" || Auth::user()->actors->function == "vendedor" )
-                                                                <button class="btn btn-primary btn-sm">Atualizar</button>
+                                                                <button class="btn btn-primary btn-sm">Pagar</button>
+                                                            @endif
+                                                            </a>
+                                                            <a href="/installment/delay/{{$installment->id}}">
+                                                            @if( Auth::user()->actors->function == "admin" || Auth::user()->actors->function == "vendedor" )
+                                                                <button class="btn btn-warning btn-sm">Atrasada</button>
                                                             @endif
                                                             </a>
                                                             </div>

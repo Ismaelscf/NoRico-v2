@@ -3,6 +3,8 @@
 @push('script-fisrt')
     <script src="{{ asset('js/datatable.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/exampleTable.js') }}"></script>
+
     
     <script>
         console.log('teste');
@@ -42,10 +44,10 @@
                 </div>
             
                 <div class="card-body">
-                    <form action="{{ route('sort.edit'); }}" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('sort.winner') }}" enctype="multipart/form-data" method="post">
                     @csrf <!-- {{ csrf_field() }} -->
                     <input type="hidden" name="id" id="id" value="{{ $sort->id }}">
-                    <input type="hidden" name="active" id="active" value="{{ $sort->active }}">
+                    <input type="hidden" name="users" id="users" value="{{ $ids }}">
                     <div class="row">
                         <div class="col-sm-12 col-md-3">
                             @if (isset($sort->image))
@@ -77,7 +79,7 @@
                                     @else
                                         <br>
                                         <h6>Vencedor(a)</h6>
-                                        <h3>{{ $sort->award }}</h3>
+                                        <h3>{{ $sort->users->name}}</h3>
                                     @endif
                                 </div>
                                 
@@ -92,6 +94,64 @@
                 </div>
                 </form>
             
+            </div>
+
+            <div class="col-md-12">
+                <div class="card" style="position: relative; left: 0px; top: 0px;">
+                    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+                        <h3 class="card-title">Todos os Usúarios Aptos</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool btn-sm" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body">
+                        <table class="table table_base dataTables_wrapper dt-bootstrap4" id="example1" name="example1">
+                            <thead>
+                                <tr>
+                                <th scope="col">Usuario</th>
+                                <th scope="col">Função</th>
+                                <th scope="col">Cpf</th> 
+                                <th scope="col">Email</th>
+                                <th scope="col">phone</th>
+                                <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($users as $user)
+                                
+                                    <tr>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->actors->function}}</td>
+                                        <td>{{$user->formatar_cpf($user->cpf)}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->formatar_phone($user->phone)}}</td>
+                                        <td>
+                                        @if($user->active)
+                                            <i class="fas fa-circle" style="color: green"></i>
+                                            <span style="display: none">{{ $user->active }}</span>
+                                        @else
+                                            <i class="fas fa-circle" style="color: red"></i>
+                                            <span style="display: none">{{ $user->active }}</span>
+                                        @endif
+                                        </td>
+                                        
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="card-footer">
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </section>

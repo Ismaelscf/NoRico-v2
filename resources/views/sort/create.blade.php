@@ -69,6 +69,7 @@
                             <input type="text" onkeypress="$(this).mask('###.##0,00', {reverse: true});" name="limit" id="limit" class="form-control">
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -40,6 +40,11 @@ class UserRepository
         return $user;
     }
 
+    public function searchUsers($users){
+        $user = User::find($users);
+        return $user;
+    }
+
     public function status($user){
         return $user->save();
     }

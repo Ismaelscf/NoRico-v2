@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Helpers\UploadImage;
 use App\Models\Sort;
 use App\Repositories\SortRepository;
+use App\Repositories\UserRepository;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -16,10 +17,12 @@ use DateTime;
 class SortService
 {
     protected $sortRepository;
+    protected $userRepository;
 
-    public function __construct(SortRepository $sortRepository)
+    public function __construct(SortRepository $sortRepository, UserRepository $userRepository)
     {
         $this->sortRepository = $sortRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function removeMask($value){
@@ -152,5 +155,17 @@ class SortService
         }  catch (Exception $e) {
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
+    }
+
+    public function winner($dados){
+        $sort = $this->sortRepository->search($dados->id);
+        $winner = json_decode($dados->users);
+        $winner = $winner[array_rand($winner)];
+        $winner = $this->userRepository->search($winner);
+
+        $sort->award = $winner->id;
+        $this->sortRepository->edit($sort);
+        
+        return $sort;
     }
 }
