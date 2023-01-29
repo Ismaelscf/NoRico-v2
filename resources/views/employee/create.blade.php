@@ -43,7 +43,7 @@
         <div class="row form-group" div class="col-sm-12">
             <div class="col-sm-6">
                 <label for="cpf">CPF</label>
-                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF" required>
+                <input type="text" onkeypress="$(this).mask('000.000.000-00');" class="form-control" id="cpf" name="cpf" placeholder="CPF" required>
             </div>
 
             <div class="col-sm-6">
@@ -60,7 +60,7 @@
 
             <div class="col-sm-6">
                 <label for="phone">Telefone</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="Telefone" required>
+                <input type="text" onkeypress="$(this).mask('(00) 00000-0000');" class="form-control" id="phone" name="phone" placeholder="Telefone" required>
             </div>
         </div>
 

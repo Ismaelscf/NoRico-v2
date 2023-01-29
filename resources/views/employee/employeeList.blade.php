@@ -29,9 +29,9 @@
                 <tr>
                     <td>{{$employee->user->name}}</td>
                     <td>{{$employee->function}}</td>
-                    <td>{{$employee->user->cpf}}</td>
+                    <td>{{$employee->formatar_cpf($employee->user->cpf)}}</td>
                     <td>{{$employee->user->email}}</td>
-                    <td>{{$employee->user->phone}}</td>
+                    <td>{{$employee->formatar_phone($employee->user->phone)}}</td>
                     <td>
                     @if($employee->user->active)
                         <i class="fas fa-circle" style="color: green"></i>

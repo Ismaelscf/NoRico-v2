@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @push('script-fisrt')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 @endpush
 
 @section('content')
@@ -55,7 +56,7 @@
                         <div class="row form-group" div class="col-sm-12">
                             <div class="col-sm-6">
                                 <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" value="{{ $employee->cpf }}"id="cpf" name="cpf" placeholder="CPF" required>
+                                <input type="text" onkeypress="$(this).mask('000.000.000-00');" class="form-control" value="{{ $employee->formatar_cpf($employee->cpf) }}"id="cpf" name="cpf" placeholder="CPF" required>
                             </div>
 
                             <div class="col-sm-6">
@@ -72,7 +73,7 @@
 
                             <div class="col-sm-6">
                                 <label for="phone">Telefone</label>
-                                <input type="text" class="form-control" value="{{ $employee->phone }}" id="phone" name="phone" placeholder="Telefone" required>
+                                <input type="text" onkeypress="$(this).mask('(00) 00000-0000');" class="form-control" value="{{ $employee->formatar_phone($employee->phone) }}" id="phone" name="phone" placeholder="Telefone" required>
                             </div>
                         </div>
 

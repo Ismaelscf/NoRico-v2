@@ -2,6 +2,7 @@
 
 @push('script-fisrt')
     <script src="{{ asset('js/datatable.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
     
     <script>

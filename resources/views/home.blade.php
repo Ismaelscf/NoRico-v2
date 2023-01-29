@@ -16,7 +16,17 @@
                 </div>
             @endif
 
-            <div class="col-md-12">
+            @switch(Auth::user()->actors->function)
+                @case('admin')
+                    @break
+                @case('vendedor')
+                    @break
+                @case('cliente')
+                    @break
+                @default
+            @endswitch
+
+            {{-- <div class="col-md-12">
                 <div class="card" style="position: relative; left: 0px; top: 0px;">
                     <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
                         <h3 class="card-title">Home</h3>
@@ -34,7 +44,7 @@
                     <div class="card-footer">
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 
