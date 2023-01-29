@@ -19,10 +19,20 @@
             </div>
             <div class="col-sm-12 col-md-9">
                 <div class="row">
-                    <div class="col-md-12 col-sm-12">
+                    <div class="col-md-6 col-sm-12">
                         <div class="form-group">
-                            <label for="name">Nome</label>
+                            <label for="name">Nome da Loja</label>
                             <input id="name" name="name" type="text" class="form-control" placeholder="Nome da Loja" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="manager">Gerente</label>
+                            <select name="manager" id="manager" class="form-control select2">
+                                {{-- @foreach ($managers as $manager)
+                                    <option value="{{ $manager->id }}">{{ $store->name }}</option>    
+                                @endforeach --}}
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
@@ -34,25 +44,25 @@
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                             <label for="phone">Telefone</label>
-                            <input id="phone" name="phone" type="number" class="form-control" placeholder="Apenas números" required>
+                            <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0000');" id="phone" name="phone" placeholder="Telefone" required>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
-                            <label for="cnpj">CNPJ</label>
-                            <input id="cnpj" name="cnpj" type="number" class="form-control" placeholder="Apenas números" required>
+                            <label for="cnpj">CPF ou CNPJ</label>
+                            <input id="cnpj" name="cnpj" type="text" onkeypress="countDocument(this)" class="form-control" placeholder="Apenas números" required>
                         </div>
                     </div>
                 </div>
         
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
-                        <label for="full_discount">Desconto em R$</label>
-                        <input type="number" name="full_discount" id="full_discount" class="form-control" placeholder="99.00">
+                        <label for="full_discount">Desconto mensal em R$</label>
+                        <input type="text" name="full_discount" id="full_discount" onkeypress="$(this).mask('###.##0,00', {reverse: true});" class="form-control" placeholder="99,00">
                     </div>
                     <div class="col-md-4 col-sm-12">
-                        <label for="percentage_discount">Desconto em %</label>
-                        <input type="number" name="percentage_discount" id="percentage_discount" class="form-control" placeholder="99.00">
+                        <label for="percentage_discount">Desconto mensal em %</label>
+                        <input type="text" name="percentage_discount" id="percentage_discount" class="form-control" onkeypress="$(this).mask('00,00', {reverse: true});" placeholder="99,00">
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <br>

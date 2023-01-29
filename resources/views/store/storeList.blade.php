@@ -42,7 +42,7 @@
                             {{ $store->name }}
                         </td>
                         <td>{{ $store->email }}</td>
-                        <td>{{ $store->phone }}</td>
+                        <td>{{ $store->formatar_phone($store->phone) }}</td>
                         <td>R$ {{ number_format($store->full_discount,2,",",".") }}</td>
                         <td>{{ number_format($store->percentage_discount,2,",",".") }}%</td>
                         <td>

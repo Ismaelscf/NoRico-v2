@@ -3,6 +3,8 @@
 
 @push('script-fisrt')
     <script src="{{ asset('js/datatable.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 @endpush
 
 @section('content')
@@ -37,10 +39,20 @@
                             </div>
                             <div class="col-sm-12 col-md-9">
                                 <div class="row">
-                                    <div class="col-md-12 col-sm-12">
+                                    <div class="col-md-6 col-sm-12">
                                         <div class="form-group">
                                             <label for="name">Nome</label>
                                             <input id="name" name="name" type="text" class="form-control" placeholder="Nome da Loja" required value="{{ $store->name }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="manager">Gerente</label>
+                                            <select name="manager" id="manager" class="form-control select2">
+                                                {{-- @foreach ($managers as $manager)
+                                                    <option value="{{ $manager->id }}">{{ $store->name }}</option>    
+                                                @endforeach --}}
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
@@ -52,25 +64,25 @@
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
                                             <label for="phone">Telefone</label>
-                                            <input id="phone" name="phone" type="number" class="form-control" placeholder="(98) 9 9999-9999" required value="{{ $store->phone }}">
+                                            <input id="phone" name="phone" type="text" class="form-control"  onkeypress="$(this).mask('(00) 00000-0000');" placeholder="(98) 9 9999-9999" required value="{{ $store->formatar_phone($store->phone) }}">
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
                                         <div class="form-group">
                                             <label for="cnpj">CNPJ</label>
-                                            <input id="cnpj" name="cnpj" type="text" class="form-control" placeholder="123456789/0001-85" required value="{{ $store->cnpj }}">
+                                            <input id="cnpj" name="cnpj" type="text" class="form-control" onkeypress="countDocument(this)" placeholder="123456789/0001-85" required value="{{ $store->formatar_document($store->cnpj) }}">
                                         </div>
                                     </div>
                                 </div>
                         
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
-                                        <label for="full_discount">Desconto em R$</label>
-                                        <input type="number" name="full_discount" id="full_discount" class="form-control" placeholder="99.00" value="{{ $store->full_discount }}">
+                                        <label for="full_discount">Desconto mensal em R$</label>
+                                        <input type="text" name="full_discount" id="full_discount" class="form-control" onkeypress="$(this).mask('###.##0,00', {reverse: true});" placeholder="99.00" value="{{ number_format($store->full_discount,2,",",".") }}">
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <label for="percentage_discount">Desconto em %</label>
-                                        <input type="number" name="percentage_discount" id="percentage_discount" class="form-control" placeholder="99.00" value="{{ $store->percentage_discount }}">
+                                        <label for="percentage_discount">Desconto mensal em %</label>
+                                        <input type="text" name="percentage_discount" id="percentage_discount" class="form-control" onkeypress="$(this).mask('00,00', {reverse: true});" placeholder="99.00" value="{{ number_format($store->percentage_discount,2,",",".") }}">
                                     </div>
                                     <div class="col-md-4 col-sm-12">
                                         <br>

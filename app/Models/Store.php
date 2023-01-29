@@ -41,4 +41,24 @@ class Store extends Model
     public function sorts(){
         return $this->hasMany(Sort::class, 'store_id', 'id');
     }
+
+
+    public function formatar_document($document){
+        if(strlen($document) <= 11){
+            return $this->formatar_cpf($document);
+        }
+            return $this->formatar_cnpj($document);
+    }
+
+    public function formatar_cpf($cpf){
+        return preg_replace("/(\d{3})(\d{3})(\d{3})(\d{2})/", "\$1.\$2.\$3-\$4", $cpf);
+    }
+
+    public function formatar_cnpj($cnpj){
+        return preg_replace("/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/", "\$1.\$2.\$3/\$4-\$5", $cnpj);
+    }
+
+    public function formatar_phone($phone){
+        return preg_replace("/(\d{2})(\d{5})(\d{4})/", "(\$1) \$2-\$3", $phone);
+    }
 }

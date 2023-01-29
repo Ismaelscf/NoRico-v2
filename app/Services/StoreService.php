@@ -28,6 +28,24 @@ class StoreService
         $this->addressRepository = $addressRepository;
     }
 
+    public function removeMask($value){
+        $number = str_replace(".", "", $value);
+        $number = str_replace(",", ".", $number);
+
+        return $number;
+    }
+
+    public function remover_caracteres($texto){
+        $texto = str_replace(".", "", $texto);
+        $texto = str_replace(",", "", $texto);
+        $texto = str_replace("-", "", $texto);
+        $texto = str_replace("/", "", $texto);
+        $texto = str_replace("(", "", $texto);
+        $texto = str_replace(")", "", $texto);
+        $texto = str_replace(" ", "", $texto);
+        return $texto;
+    }
+
     public function getAll(){
         return $this->storeRepository->getAll();
     }
@@ -38,11 +56,11 @@ class StoreService
 
         try {
             $store['name'] = $request->name;
-            $store['cnpj'] = $request->cnpj;
+            $store['cnpj'] = $this->remover_caracteres($request->cnpj);
             $store['email'] = $request->email;
-            $store['phone'] = $request->phone;
-            $store['full_discount'] = $request->full_discount;
-            $store['percentage_discount'] = $request->percentage_discount;
+            $store['phone'] = $this->remover_caracteres($request->phone);
+            $store['full_discount'] = $this->removeMask($request->full_discount);
+            $store['percentage_discount'] = $this->removeMask($request->percentage_discount);
             $store['discount'] = false;
             $store['sort'] = false;
             $store['active'] = true;
@@ -106,11 +124,11 @@ class StoreService
             $store = $store[0];
 
             $store->name = $request->name;
-            $store->cnpj = $request->cnpj;
+            $store->cnpj = $this->remover_caracteres($request->cnpj);
             $store->email = $request->email;
-            $store->phone = $request->phone;
-            $store->full_discount = $request->full_discount;
-            $store->percentage_discount = $request->percentage_discount;
+            $store->phone = $this->remover_caracteres($request->phone);
+            $store->full_discount = $this->removeMask($request->full_discount);
+            $store->percentage_discount = $this->removeMask($request->percentage_discount);
             $store->discount = false;
             $store->sort = false;
             $store->active = $request->active;
