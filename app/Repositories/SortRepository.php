@@ -37,4 +37,8 @@ class SortRepository
     public function inactive(Sort $sort){
         return $sort->save();
     }
+
+    public function getAllSortActive(){
+        return $this->sort->where('award', '=', 'null')->where('active', 1)->get();
+    }
 }

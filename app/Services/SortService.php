@@ -153,4 +153,8 @@ class SortService
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
     }
+
+    public function getAllSortActive(){
+        return $this->sortRepository->getAllSortActive();
+    }
 }

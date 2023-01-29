@@ -2,6 +2,7 @@
 @extends('layouts.app')
 
 @push('script-fisrt')
+    <script src="{{ asset('js/script.js') }}"></script>
 @endpush
 
 @section('content')
@@ -18,12 +19,16 @@
 
             @switch(Auth::user()->actors->function)
                 @case('admin')
+                    @include('home.admin')
                     @break
                 @case('vendedor')
+                @include('home.vendedor')
                     @break
                 @case('cliente')
+                    @include('home.cliente')
                     @break
                 @default
+                    @include('home.lojista_gerente')
             @endswitch
 
             {{-- <div class="col-md-12">
