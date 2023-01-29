@@ -22,6 +22,13 @@ class SortService
         $this->sortRepository = $sortRepository;
     }
 
+    public function removeMask($value){
+        $number = str_replace(".", "", $value);
+        $number = str_replace(",", ".", $number);
+
+        return $number;
+    }
+
     public function getAll($store_id = null){
 
         if($store_id){
@@ -61,7 +68,7 @@ class SortService
                 $sort['initial_date'] = $request->initial_date;
                 $sort['final_date'] = $request->final_date;
                 $sort['draw_date'] = $request->draw_date;
-                $sort['limit'] = $request->limit;
+                $sort['limit'] = $this->removeMask($request->limit);
                 $sort['active'] = true;
 
                 if($request->hasFile('image') && $request->file('image')->isValid()){
@@ -108,7 +115,7 @@ class SortService
             $sort->initial_date = $request->initial_date;
             $sort->final_date = $request->final_date;
             $sort->draw_date = $request->draw_date;
-            $sort->limit = $request->limit;
+            $sort->limit = $this->removeMask($request->limit);
 
             if($request->hasFile('image') && $request->file('image')->isValid()){
 

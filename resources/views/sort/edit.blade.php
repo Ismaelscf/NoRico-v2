@@ -2,6 +2,7 @@
 
 @push('script-fisrt')
     <script src="{{ asset('js/datatable.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
     
     <script>
@@ -107,7 +108,7 @@
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="limit">Valor Mínimo em compras</label>
-                                        <input type="number" value="{{ $sort->limit }}" name="limit" id="limit" class="form-control">
+                                        <input type="text" onkeypress="$(this).mask('###.##0,00', {reverse: true});" value="{{ number_format($sort->limit,2,",",".") }}" name="limit" id="limit" class="form-control">
                                     </div>
                                 </div>
                             </div>
