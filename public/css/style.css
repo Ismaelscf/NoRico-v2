@@ -25,13 +25,13 @@
 .carousel-control-prev, .carousel-control-next{
     width: 6vh;
     height: 6vh;
-    background-color: #E1E1E1;
+    background-color: #222;
     border-radius: 50%;
     top: 50%;
     transform: translateY(-50%);
-    opacity: .5;
+    opacity: .3;
 }
 
 .carousel-control-prev:hover, .carousel-control-next:hover{
-    opacity: 1;
+    opacity: .8;
 }

@@ -44,6 +44,6 @@ class SortRepository
     }
 
     public function getAllSortActive(){
-        return $this->sort->where('award', '=', 'null')->where('active', 1)->get();
+        return $this->sort->where('award', '=', null)->where('active', 1)->get();
     }
 }

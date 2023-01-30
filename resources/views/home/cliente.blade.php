@@ -57,16 +57,16 @@
     </div>
 
 
-      {{-- Sorteios Ativos --}}
-      <div class="row">
+    {{-- Sorteios Ativos --}}
+    <div class="row">
 
         <div class="col-12">
             <div class="card">
-              <div class="card-header">
+                <div class="card-header">
                 <h3 class="card-title">Sorteios Ativos</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
                 <div id="carouselSorts" class="carousel" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <?php $i=0;?>
@@ -81,7 +81,7 @@
                                         @if($sort->image != null)
                                             <img src="{{ $sort->image }}" alt="...">
                                         @else
-                                            <img src="https://images.unsplash.com/photo-1554976027-30fa74fd305f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c29ydGV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" class="card-img-top" alt="...">
+                                            <img src="https://www.sindsaude.com.br/wp-content/uploads/2018/11/modelo-face3-2-850x560.jpg" class="card-img-top" alt="...">
                                         @endif
                                     </div>
                                     <div class="card-body">
@@ -102,30 +102,44 @@
                                 </div>
                             </div>
                             <?php $i++;?>
-                            {{-- {{ $i++; }} --}}
                         @endforeach
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-              </div>
-              <!-- /.card-body -->
+                </div>
+                <!-- /.card-body -->
             </div>
             <!-- /.card -->
         </div>
-      </div>
-      {{-- Sorteios Ativos --}}
 
-      {{-- Rede de Descontos Novo Rico --}}
-      <div class="row">
-        Lojas Parceiras
-      </div>
-      {{-- Rede de Descontos Novo Rico --}}
+    </div>
+    {{-- Sorteios Ativos --}}
+    <br>
+    {{-- Rede de Descontos Novo Rico --}}
+    <div class="row">
+    
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+            <h3 class="card-title">Nossos Parceiros</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+            
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+
+    </div>
+    {{-- Rede de Descontos Novo Rico --}}
 
 </div>
