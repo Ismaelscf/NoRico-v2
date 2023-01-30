@@ -97,11 +97,12 @@ class SaleService
             //Estabelece um limite atual de comprar por cota que o usário tem
             $limiteUserForQuota = $limiteUserForQuota - $discountTotalUser;
 
-            if($limiteUserForQuota <= 0 ){
-                //Verifica se o usuário ainda tem limite para comprar pelas cotas
-                $result = "Este cliente já atingiu o limite de descontos oferecidos por sua(s) Cota(s)";
-                $discount = 0;
-            } elseif($discountTotalStore >= $store->full_discount){
+            // if($limiteUserForQuota <= 0 ){
+            //     //Verifica se o usuário ainda tem limite para comprar pelas cotas
+            //     $result = "Este cliente já atingiu o limite de descontos oferecidos por sua(s) Cota(s)";
+            //     $discount = 0;
+            // } else
+            if($discountTotalStore >= $store->full_discount){
                 //Verifica se o usuário ainda tem limite para comprar na loja
                 $result = "Este cliente já atingiu o limite de descontos oferecidos pelo estabelecimento";
                 $discount = 0;

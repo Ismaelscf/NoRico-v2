@@ -6,7 +6,7 @@
         
             <div class="small-box bg-blue">
                 <div class="inner">
-                    <h3>1</h3>
+                    <h3>0</h3>
                     <p>Cotas Adquiridas</p>
                 </div>
                 <div class="icon">
@@ -19,7 +19,7 @@
         
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>53</h3>
+                    <h3>0</h3>
                     <p>Compras Realizadas</p>
                 </div>
                 <div class="icon">
@@ -32,7 +32,7 @@
         
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>R$ 5.500,00</h3>
+                    <h3>R$ 0</h3>
                     <p>Economizados</p>
                 </div>
                 <div class="icon">
