@@ -11,18 +11,21 @@ use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
 use App\Services\StoreService;
 use App\Services\UserService;
+use App\Services\UserQuotaService;
 
 class SaleService
 {
     protected $saleRepository;
     protected $storeService;
     protected $userService;
+    protected $userQuotaService;
 
-    public function __construct(SaleRepository $saleRepository, StoreService $storeService, UserService $userService)
+    public function __construct(SaleRepository $saleRepository, StoreService $storeService, UserService $userService, UserQuotaService $userQuotaService)
     {
         $this->saleRepository = $saleRepository;
         $this->storeService = $storeService;
         $this->userService = $userService;
+        $this->userQuotaService = $userQuotaService;
     }
 
     public function removeMask($value){
@@ -58,26 +61,77 @@ class SaleService
         try{
             $initial_date = date('Y-m-01');
             $final_date = date('Y-m-d');
+            //Todas as compras feitas pelo usuário na loja
             $salesByUser = $this->saleRepository->getAllSalesUser($request->store_id, $request->user_id, $initial_date, $final_date);
             $discount = ($this->removeMask($request->price) * $request->discount) / 100;
             $result = null;
 
-            $discountTotal = 0;
+            //Todas as cotas do usuário
+            $quotas = $this->userQuotaService->buscarCotas($request->user_id);
 
+            //Soma o limite total do usuário de todas as cotas dele
+            $limiteUserForQuota = 0;
+            foreach($quotas as $quota){
+                $limiteUserForQuota += $quota->quota->customer_limit;
+            }
+
+            //Soma o Desconto total que o usuario ja adquiriu na loja
+            $discountTotalStore = 0;
             foreach($salesByUser as $saleUser){
-                $discountTotal += $saleUser->discount;
+                $discountTotalStore += $saleUser->discount;
             }
      
             $store = $this->storeService->searchStore('id', $request->store_id);
-            
-            $discountAvailable = $store->full_discount - $discountTotal;
+            //Pega o limite disponivel para aquele usuário na loja
+            $discountAvailable = $store->full_discount - $discountTotalStore;
+           
+            //Pega todas as compras feitas pelo usuário em todas as lojas
+            $salesAllStoreUser = $this->saleRepository->getAllSalesAllStoreUser($request->user_id, $initial_date, $final_date);
+ 
+            //Somo o total de descontos adquiridos pelo usuário em todas as lojas
+            $discountTotalUser = 0;
+            foreach($salesAllStoreUser as $sales){
+                $discountTotalUser += $sales->discount;
+            }
 
-            if($discountTotal >= $store->full_discount){
+            //Estabelece um limite atual de comprar por cota que o usário tem
+            $limiteUserForQuota = $limiteUserForQuota - $discountTotalUser;
+
+            if($limiteUserForQuota <= 0 ){
+                //Verifica se o usuário ainda tem limite para comprar pelas cotas
+                $result = "Este cliente já atingiu o limite de descontos oferecidos por sua(s) Cota(s)";
+                $discount = 0;
+            } elseif($discountTotalStore >= $store->full_discount){
+                //Verifica se o usuário ainda tem limite para comprar na loja
                 $result = "Este cliente já atingiu o limite de descontos oferecidos pelo estabelecimento";
                 $discount = 0;
             } elseif($discount >= $discountAvailable){
+                //Define um limite restante caso o usuário ainda tenha limite para comprar na loja, mas seja menor que o desconto da compra oferece
                 $discount = $discountAvailable;
             }
+
+            $sales['user_id'] = $request->user_id;
+            $sales['userName'] = $request->userName;
+            $sales['store_id'] = $request->store_id;
+            $sales['employee_id'] = $request->employee_id;
+            $sales['total_sale'] = $this->removeMask($request->price);
+            $sales['discount'] = $discount;
+            $sales['sale_date'] = date('Y-m-d');
+            $sales['description'] = $request->description;
+
+            $salesConfirm = (object) $sales;
+
+            return ['salesConfirm' => $salesConfirm, 'result' => $result];
+
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
+    }
+    public function saleConfirmUnlimited(Request $request){
+
+        try{
+            $discount = ($this->removeMask($request->price) * $request->discount) / 100;
+            $result = null;
 
             $sales['user_id'] = $request->user_id;
             $sales['userName'] = $request->userName;

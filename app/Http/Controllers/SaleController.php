@@ -77,6 +77,13 @@ class SaleController extends Controller
         return $this->index(null, $saleConfirm['result'], $saleConfirm['salesConfirm']);
     }
 
+    public function confirmUnlimited(Request $request){
+
+        $saleConfirm = $this->saleService->saleConfirmUnlimited($request);
+
+        return $this->index(null, $saleConfirm['result'], $saleConfirm['salesConfirm']);
+    }
+
     public function create(Request $request){
 
         $result = $this->saleService->create($request);

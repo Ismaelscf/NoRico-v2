@@ -89,6 +89,7 @@ Route::prefix('/employees')->name('employees')->group(function() {
 Route::prefix('/sales')->name('sales')->group(function(){
     Route::get('/{id?}', [App\Http\Controllers\SaleController::class, 'index'])->name('.index')->middleware('auth');
     Route::post('/confirm', [App\Http\Controllers\SaleController::class, 'confirm'])->name('.confirm');
+    Route::post('/confirmUnlimited', [App\Http\Controllers\SaleController::class, 'confirmUnlimited'])->name('.confirmUnlimited');
     Route::post('/', [App\Http\Controllers\SaleController::class, 'create'])->name('.create')->middleware('auth');
     Route::post('/searchUser', [App\Http\Controllers\SaleController::class, 'searchUser'])->name('.searchUser')->middleware('auth');
 });
