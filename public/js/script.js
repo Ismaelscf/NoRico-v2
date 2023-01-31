@@ -18,20 +18,20 @@ if(window.matchMedia("(min-width:576px)").matches){
         interval: false
     });
 
-    var carouselWidth = $('#carousel-inner-sort')[0].scrollWidth;
-    var cardWidth = $('.carousel-item-sort').width();
-    var scrollPosition = 0;
+    var carouselWidthSort = $('#carousel-inner-sort')[0].scrollWidth;
+    var cardWidthSort = $('.carousel-item-sort').width();
+    var scrollPositionSort = 0;
 
     $('#carousel-control-next-sort').on('click', function(){
-        if(scrollPosition < (carouselWidth - (cardWidth * 4))){
-            scrollPosition = scrollPosition + cardWidth;
-            $('#carousel-inner-sort').animate({scrollLeft: scrollPosition}, 600);
+        if(scrollPositionSort < (carouselWidthSort - (cardWidthSort * 4))){
+            scrollPositionSort = scrollPositionSort + cardWidthSort;
+            $('#carousel-inner-sort').animate({scrollLeft: scrollPositionSort}, 600);
         }
     });
     $('#carousel-control-prev-sort').on('click', function(){
-        if(scrollPosition > 0){
-            scrollPosition = scrollPosition - cardWidth;
-            $('#carousel-inner-sort').animate({scrollLeft: scrollPosition}, 600);
+        if(scrollPositionSort > 0){
+            scrollPositionSort = scrollPositionSort - cardWidthSort;
+            $('#carousel-inner-sort').animate({scrollLeft: scrollPositionSort}, 600);
         }
     });
 } else {
