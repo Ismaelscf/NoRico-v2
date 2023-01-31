@@ -11,6 +11,7 @@ use InvalidArgumentException;
 use App\Repositories\HomeRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Services\SortService;
+use App\Services\WinnerService;
 
 class HomeService
 {
@@ -19,10 +20,12 @@ class HomeService
     protected $sortService;
     protected $storeService;
     protected $saleService;
+    protected $winnerService;
 
-    public function __construct(HomeRepository $homeRepository, SortService $sortService){
+    public function __construct(HomeRepository $homeRepository, SortService $sortService, WinnerService $winnerService){
         $this->homeRepository = $homeRepository;
         $this->sortService = $sortService;
+        $this->winnerService = $winnerService;
     }
 
     public function home(){
@@ -37,11 +40,18 @@ class HomeService
                 case 'vendedor' :
                     break;
                 case 'cliente' :
+                    //Informações de Sorteios e Totalizadores de sorteios e vencedores
                     $sorts = $this->sortService->getAllSortActive();
                     $totalSorts = count($sorts);
 
                     $dados['totalSorts'] = $totalSorts;
                     $dados['sorts'] = $sorts;
+
+                    $dados['winner'] = $this->sortService->getTotalWinner();
+
+                    //Informações de Parceiros
+
+                    //Informações de Vendas e Descontos
 
                     return $dados;
                     break;

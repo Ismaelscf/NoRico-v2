@@ -12,4 +12,8 @@ class WinnerRepository
     {
         $this->winner = $winner;
     }
+
+    public function getTotalWinner(){
+        dd($this->winner::all());
+    }
 }

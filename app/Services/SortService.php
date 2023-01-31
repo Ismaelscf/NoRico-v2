@@ -168,7 +168,12 @@ class SortService
         
         return $sort;
     }
+
     public function getAllSortActive(){
         return $this->sortRepository->getAllSortActive();
+    }
+
+    public function getTotalWinner(){
+        return $this->sortRepository->getTotalWinner();
     }
 }

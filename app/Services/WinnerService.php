@@ -17,4 +17,8 @@ class WinnerService
     {
         $this->winnerRepository = $winnerRepository;
     }
+
+    public function getTotalWinner(){
+        return $this->winnerRepository->getTotalWinner();
+    }
 }

@@ -46,4 +46,8 @@ class SortRepository
     public function getAllSortActive(){
         return $this->sort->where('award', '=', null)->where('active', 1)->get();
     }
+
+    public function getTotalWinner(){
+        return count($this->sort->where('award', '!=', null)->get());
+    }
 }
