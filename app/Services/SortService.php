@@ -160,6 +160,7 @@ class SortService
     public function winner($dados){
         $sort = $this->sortRepository->search($dados->id);
         $winner = json_decode($dados->users);
+        // dd($winner);
         $winner = $winner[array_rand($winner)];
         $winner = $this->userRepository->search($winner);
 

@@ -41,7 +41,8 @@ class UserRepository
     }
 
     public function searchUsers($users){
-        $user = User::find($users);
+        $user = User::find($users)->where('active', '1');
+        // dd($user);
         return $user;
     }
 

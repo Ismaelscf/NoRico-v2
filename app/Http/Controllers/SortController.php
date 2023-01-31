@@ -73,7 +73,6 @@ class SortController extends Controller
         $sort = $this->sortService->searchSort('id', $id);
         $users = $this->saleService->buscarConcorrentes($sort);
         $ids = $users->pluck('id');
-        // dd($teste);
 
         return view('sort.rewardPage', compact('sort', 'users', 'ids'));
     }
