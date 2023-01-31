@@ -36,4 +36,8 @@ class StoreEmployeeRepository
     public function inactive(StoreEmployee $storeEmployee){
         return $storeEmployee->save();
     }
+
+    public function getAllManager(){
+        return $this->storeEmployee->where('function', 'gerente')->get();
+    }
 }

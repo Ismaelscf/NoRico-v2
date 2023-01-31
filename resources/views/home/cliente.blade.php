@@ -64,14 +64,14 @@
 
             <h5 class="mt-4 mb-2 ml-2">Sorteios Ativos</h5>
 
-            <div id="carouselSorts" class="carousel" data-bs-ride="carousel">
-                <div class="carousel-inner">
+            <div id="carouselSorts" class="carousel" data-bs-ride="carouselSorts">
+                <div class="carousel-inner" id="carousel-inner-sort">
                     <?php $i=0;?>
                     @foreach ($dados['sorts'] as $sort)
                         @if($i == 0)
-                            <div class="carousel-item active">
+                            <div class="carousel-item carousel-item-sort active">
                         @else
-                            <div class="carousel-item">
+                            <div class="carousel-item carousel-item-sort">
                         @endif
                             <div class="card">
                                 <div class="img-wrapper">
@@ -101,11 +101,11 @@
                         <?php $i++;?>
                     @endforeach
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <button class="carousel-control-prev" id="carousel-control-prev-sort" type="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <button class="carousel-control-next" id="carousel-control-next-sort" type="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -123,14 +123,14 @@
 
         <h5 class="mt-4 mb-2 ml-2">Nossos Parceiros</h5>
 
-        <div id="carouselSorts" class="carousel" data-bs-ride="carousel">
-            <div class="carousel-inner">
+        <div id="carouselStore" class="carousel" data-bs-ride="carouselStore">
+            <div class="carousel-inner" id="carousel-inner-store">
                 <?php $i=0;?>
                 @foreach ($dados['stores'] as $store)
                     @if($i == 0)
-                        <div class="carousel-item active">
+                        <div class="carousel-item carousel-item-store active">
                     @else
-                        <div class="carousel-item">
+                        <div class="carousel-item carousel-item-store">
                     @endif
                         <div class="card">
                             <div class="img-wrapper">
@@ -154,11 +154,11 @@
                     <?php $i++;?>
                 @endforeach
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <button class="carousel-control-prev" id="carousel-control-prev-store" type="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <button class="carousel-control-next" id="carousel-control-next-store" type="button" data-bs-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>

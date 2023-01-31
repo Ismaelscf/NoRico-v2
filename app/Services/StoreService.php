@@ -210,7 +210,19 @@ class StoreService
     }
 
     public function getAllManager(){
-        $manager = $this->actorService->getAllManager();
+        $managerStore = $this->storeEmployeeRepository->getAllManager();
+        $managerAvailable = $this->actorService->getAllManager();
+
+        $manager = array();
+
+        foreach($managerAvailable as $avaliable){
+            foreach($managerStore as $store){
+                if($avaliable->user_id != $store->user_id){
+                    array_push($manager, $avaliable);
+                }
+            }
+        }
+        
         return $manager;
     }
 }
