@@ -18,6 +18,10 @@ class StoreRepository
         return $this->store::All();
     }
 
+    public function getAllActive(){
+        return $this->store::All()->where('active', 1);
+    }
+
     public function create($storeCreate){
         // dd($storeCreate, 'Repository');
 

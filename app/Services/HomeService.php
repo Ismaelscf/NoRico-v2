@@ -12,6 +12,8 @@ use App\Repositories\HomeRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Services\SortService;
 use App\Services\WinnerService;
+use App\Services\SaleService;
+use App\Services\StoreService;
 
 class HomeService
 {
@@ -22,10 +24,12 @@ class HomeService
     protected $saleService;
     protected $winnerService;
 
-    public function __construct(HomeRepository $homeRepository, SortService $sortService, WinnerService $winnerService){
+    public function __construct(HomeRepository $homeRepository, SortService $sortService, WinnerService $winnerService, SaleService $saleService, StoreService $storeService){
         $this->homeRepository = $homeRepository;
         $this->sortService = $sortService;
         $this->winnerService = $winnerService;
+        $this->saleService = $saleService;
+        $this->storeService = $storeService;
     }
 
     public function home(){
@@ -50,8 +54,18 @@ class HomeService
                     $dados['winner'] = $this->sortService->getTotalWinner();
 
                     //Informações de Parceiros
+                    $dados['stores'] = $this->storeService->getAllActive();
 
                     //Informações de Vendas e Descontos
+                     $sales = $this->saleService->getAllSalesAllStoreUser($user->id, date('Y-m-1'), date('Y-m-d'));
+
+                     $discount = 0;
+                     foreach($sales as $sale){
+                        $discount += $sale->discount;
+                     }
+                    
+                     $dados['totalSales'] = count($sales);
+                     $dados['totalDiscounte'] = $discount;
 
                     return $dados;
                     break;

@@ -188,4 +188,8 @@ class SaleService
 
         return $user;
     }
+
+    public function getAllSalesAllStoreUser($user_id, $initial_date = null, $final_date = null){
+        return $this->saleRepository->getAllSalesAllStoreUser($user_id, $initial_date, $final_date);
+    }
 }

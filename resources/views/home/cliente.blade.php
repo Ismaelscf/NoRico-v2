@@ -6,8 +6,8 @@
         
             <div class="small-box bg-blue">
                 <div class="inner">
-                    <h3>0</h3>
-                    <p>Compras Realizadas</p>
+                    <h3>{{ $dados['totalSales'] }}</h3>
+                    <p>Compras feitas por você</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>
@@ -20,7 +20,7 @@
             <div class="small-box bg-yellow">
                 <div class="inner">
                     <h3>{{ $dados['winner'] }}</h3>
-                    <p>Pessoas Prêmiadas</p>
+                    <p>Pessoas sorteadas</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
@@ -32,8 +32,8 @@
         
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>R$ 0</h3>
-                    <p>Economizados</p>
+                    <h3>R$ {{ number_format($dados['totalDiscounte'],2,",",".") }}</h3>
+                    <p>Economizados por você</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
@@ -126,7 +126,7 @@
         <div id="carouselSorts" class="carousel" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <?php $i=0;?>
-                @foreach ($dados['sorts'] as $sort)
+                @foreach ($dados['stores'] as $store)
                     @if($i == 0)
                         <div class="carousel-item active">
                     @else
@@ -134,25 +134,19 @@
                     @endif
                         <div class="card">
                             <div class="img-wrapper">
-                                @if($sort->image != null)
-                                    <img src="{{ $sort->image }}" alt="...">
+                                @if($store->logo != null)
+                                    <img src="{{ $store->logo }}" alt="...">
                                 @else
-                                    <img src="https://www.sindsaude.com.br/wp-content/uploads/2018/11/modelo-face3-2-850x560.jpg" class="card-img-top" alt="...">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUaxVpI6It7Fbnn0MyzPvkMOMSEQSIPjiZpsZIl49fHYwmCyFPIgtbB9XwQWcFumSDd_w&usqp=CAU" class="card-img-top" alt="...">
                                 @endif
                             </div>
                             <div class="card-body">
-                            <h5 class="card-title" style="font-weight: bold;">{{ $sort->description }}</h5>
+                            <h5 class="card-title" style="font-weight: bold;">{{ $store->name }}</h5>
                             <p class="card-text">
-                                De {{ date('d/m/Y' , strtotime( $sort->initial_date)) }} à {{ date('d/m/Y' , strtotime( $sort->final_date)) }}<br>
-                                
-                                Sorteio: {{ $sort->type }} - 
-                                @if($sort->store_id)
-                                Apenas da Loja: {{ $sort->store->name }}<br>
-                                @else
-                                Todas Lojas participam<br>
-                                @endif
-
-                                Valor minimo em compras: R${{ number_format($sort->limit, 2, ',', '.') }}
+                                Telefone: {{ $store->phone }}<br>
+                                E-mail: {{ $store->email }}<br>
+                                Descontos de até: {{ $store->percentage_discount }}%<br>
+                                Endereço: {{ $store->adresses->street }}, {{ $store->adresses->number }}, {{ $store->adresses->complement }}, {{ $store->adresses->district }}, {{ $store->adresses->city }} - {{ $store->adresses->state }}
                             </p>
                             </div>
                         </div>

@@ -56,6 +56,10 @@ class StoreService
         return $this->storeRepository->getAll();
     }
 
+    public function getAllActive(){
+        return $this->storeRepository->getAllActive();
+    }
+
     public function create(Request $request){
 
         try {
