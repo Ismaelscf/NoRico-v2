@@ -213,15 +213,25 @@ class StoreService
         $managerStore = $this->storeEmployeeRepository->getAllManager();
         $managerAvailable = $this->actorService->getAllManager();
 
+
+        // dd(count($managerStore) , $managerAvailable);
+
         $manager = array();
 
-        foreach($managerAvailable as $avaliable){
-            foreach($managerStore as $store){
-                if($avaliable->user_id != $store->user_id){
-                    array_push($manager, $avaliable);
+        if(count($managerStore) == 0){
+            foreach($managerAvailable as $avaliable){
+                array_push($manager, $avaliable);
+            }
+        } else {
+            foreach($managerAvailable as $avaliable){
+                foreach($managerStore as $store){
+                    if($avaliable->user_id != $store->user_id){
+                        array_push($manager, $avaliable);
+                    }
                 }
             }
         }
+        
         
         return $manager;
     }
