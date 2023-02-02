@@ -5,6 +5,9 @@
     align-items: flex-start;
 }
 @media screen and (min-width:576px) {
+    .img-wrapper{
+        height:50vw;
+    }
     .carousel-inner{
         display: flex;
     }
