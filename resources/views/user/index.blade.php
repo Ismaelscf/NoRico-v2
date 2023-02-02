@@ -3,6 +3,7 @@
 @push('script-fisrt')
     <script src="{{ asset('js/exampleTable.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 @endpush
 
 @section('content')
@@ -59,6 +60,11 @@
                             <div class="col-sm-6">
                                 <label for="password">Senha</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
+
+                                <div class="custom-control custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" onclick="showPass()" id="showpass" name="showpass">
+                                    <label for="showpass" class="custom-control-label">Exibir Senha</label>
+                                </div>
                             </div>
                         </div>
 

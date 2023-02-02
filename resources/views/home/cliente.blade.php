@@ -91,7 +91,7 @@
                                     @if($sort->store_id)
                                     Apenas compras da: {{ $sort->store->name }}<br>
                                     @else
-                                    Compre em qualquer parceiro para participar<br>
+                                    Compre em qualquer parceiro Novo Rico para participar<br>
                                     @endif
 
                                     {{-- Valor minimo em compras: R${{ number_format($sort->limit, 2, ',', '.') }} --}}

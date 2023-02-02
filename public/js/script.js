@@ -64,3 +64,17 @@ if(window.matchMedia("(min-width:576px)").matches){
 } else {
     $(multipleItemCarouselStore).addClass('slide');
 }
+
+
+function showPass(){
+    let pass = document.querySelector('#password').type;
+    console.log(pass)
+
+    if(pass == 'text'){
+        document.querySelector('#password').type = 'password'
+    } else {
+        document.querySelector('#password').type = 'text'
+    }
+
+    console.log(pass);
+}
