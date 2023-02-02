@@ -17,7 +17,7 @@
                 </div>
             @endif
 
-            @switch(Auth::user()->actors->function)
+            {{-- @switch(Auth::user()->actors->function)
                 @case('admin')
                     @include('home.admin')
                     @break
@@ -29,7 +29,8 @@
                     @break
                 @default
                     @include('home.lojista_gerente')
-            @endswitch
+            @endswitch --}}
+            @include('home.cliente')
 
             {{-- <div class="col-md-12">
                 <div class="card" style="position: relative; left: 0px; top: 0px;">

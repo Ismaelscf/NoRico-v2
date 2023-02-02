@@ -85,15 +85,16 @@
                                 <h5 class="card-title" style="font-weight: bold;">{{ $sort->description }}</h5>
                                 <p class="card-text">
                                     De {{ date('d/m/Y' , strtotime( $sort->initial_date)) }} à {{ date('d/m/Y' , strtotime( $sort->final_date)) }}<br>
+                                    Dia do Sorteio: {{ date('d/m/Y' , strtotime( $sort->draw_date)) }}<br>
                                     
                                     Sorteio: {{ $sort->type }} - 
                                     @if($sort->store_id)
-                                    Apenas da Loja: {{ $sort->store->name }}<br>
+                                    Apenas compras da: {{ $sort->store->name }}<br>
                                     @else
-                                    Todas Lojas participam<br>
+                                    Compre em qualquer parceiro para participar<br>
                                     @endif
 
-                                    Valor minimo em compras: R${{ number_format($sort->limit, 2, ',', '.') }}
+                                    {{-- Valor minimo em compras: R${{ number_format($sort->limit, 2, ',', '.') }} --}}
                                 </p>
                                 </div>
                             </div>

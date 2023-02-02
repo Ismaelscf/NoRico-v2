@@ -37,13 +37,13 @@ class HomeService
         try{
 
             $user = Auth::user();
-            $permition = $user->actors->function;
-            switch($permition){
-                case 'admin' :
-                    break;
-                case 'vendedor' :
-                    break;
-                case 'cliente' :
+            // $permition = $user->actors->function;
+            // switch($permition){
+            //     case 'admin' :
+            //         break;
+            //     case 'vendedor' :
+            //         break;
+            //     case 'cliente' :
                     //Informações de Sorteios e Totalizadores de sorteios e vencedores
                     $sorts = $this->sortService->getAllSortActive();
                     $totalSorts = count($sorts);
@@ -68,9 +68,9 @@ class HomeService
                      $dados['totalDiscounte'] = $discount;
 
                     return $dados;
-                    break;
-                default :
-            }
+                //     break;
+                // default :
+            // }
 
         } catch (Exception $e) {
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
