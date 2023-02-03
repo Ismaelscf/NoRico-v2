@@ -35,7 +35,8 @@ class SortController extends Controller
     public function create(Request $request){
         $result = $this->sortService->create($request);
         
-        return $this->index($result);
+        // return $this->index($result);
+        return redirect('/sort')->with('result', $result);
     }
 
     public function editForm($id){

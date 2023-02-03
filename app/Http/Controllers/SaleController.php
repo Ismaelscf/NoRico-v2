@@ -62,13 +62,13 @@ class SaleController extends Controller
 
         $user = $this->userService->buscarPorCPF($request->cpf);
 
-        if($user->active != 1){
-            $result = "Usuário Inativo";
+        if($user == null){
+            $result = 'Cliente não encontrado';
             return $this->index(null, $result);
         }
 
-        if($user == null){
-            $result = 'Cliente não encontrado';
+        if($user->active != 1){
+            $result = "Usuário Inativo";
             return $this->index(null, $result);
         }
 
@@ -93,6 +93,7 @@ class SaleController extends Controller
 
         $result = $this->saleService->create($request);
 
-        return $this->index(null, $result);
+        // return $this->index(null, $result);
+        return redirect('/sales')->with('result', $result);
     }
 }

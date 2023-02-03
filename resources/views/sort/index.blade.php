@@ -28,6 +28,12 @@
                     {{ $result }}
                 </div>
             @endif
+
+            @if(session('result'))
+                <div class="alert alert-warning" role="alert">
+                    {{ session('result') }}
+                </div>
+            @endif
             
 
             <div class="col-md-12 col-sm-12">
