@@ -190,6 +190,8 @@ class SaleService
     }
 
     public function getAllSalesAllStoreUser($user_id, $initial_date = null, $final_date = null){
+        $initial_date = date('1990-01-01');
+        $final_date = date('Y-m-d');
         return $this->saleRepository->getAllSalesAllStoreUser($user_id, $initial_date, $final_date);
     }
 }

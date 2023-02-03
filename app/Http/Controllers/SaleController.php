@@ -36,8 +36,12 @@ class SaleController extends Controller
 
             return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'result' => $result]);
 
-        }
-        else if($permition != 'cliente' && $salesman->employee == true && $salesman->active == 1){
+        } else if($permition == 'cliente'){
+            $sales = $this->saleService->getAllSalesAllStoreUser($salesman->id);
+
+            return view('sale.index', ['sales' => $sales, 'permition' => $permition, 'result' => $result]);
+
+        } else if($permition != 'cliente' && $salesman->employee == true && $salesman->active == 1){
             
             if(!isset($salesman->employee->store->id)){
 
