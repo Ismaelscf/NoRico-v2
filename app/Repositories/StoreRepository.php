@@ -19,7 +19,8 @@ class StoreRepository
     }
 
     public function getAllActive(){
-        return $this->store::All()->where('active', 1);
+        // dd($this->store::All()->random()->where('active', 1)->get());
+        return $this->store::inRandomOrder()->where('active', 1)->get();
     }
 
     public function create($storeCreate){
