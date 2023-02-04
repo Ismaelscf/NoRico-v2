@@ -1,5 +1,5 @@
-<div class="card">
-    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+<div class="card card-gray-dark">
+    <div class="card-header ui-sortable-handle" style="cursor: move;">
         <h3 class="card-title">Todos os Funcionários</h3>
 
         <div class="card-tools">

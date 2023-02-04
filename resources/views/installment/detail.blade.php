@@ -29,8 +29,8 @@
         @endif
         <div class="row">
             <div class="col-sm-6">
-                <div class="card" style="position: relative; left: 0px; top: 0px;">
-                    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+                <div class="card card-gray-dark" style="position: relative; left: 0px; top: 0px;">
+                    <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">Usuário</h3>
 
                         <div class="card-tools">
@@ -85,8 +85,8 @@
             </div>
 
             <div class="col-sm-6">
-                <div class="card" style="position: relative; left: 0px; top: 0px;">
-                    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+                <div class="card card-gray-dark" style="position: relative; left: 0px; top: 0px;">
+                    <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">Parcelas</h3>
 
                         <div class="card-tools">

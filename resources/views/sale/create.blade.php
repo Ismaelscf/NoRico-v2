@@ -1,7 +1,7 @@
 @if(isset($user))
-<div class="card">
+<div class="card card-gray-dark">
 
-    <div class="card-header ui-sortable-handle bg-gray-dark">
+    <div class="card-header ui-sortable-handle">
         <h3 class="card-title">Vender</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse">

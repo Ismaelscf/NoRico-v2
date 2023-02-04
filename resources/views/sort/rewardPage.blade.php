@@ -32,9 +32,9 @@
             @endif
             
 
-            <div class="card">
+            <div class="card card-gray-dark">
 
-                <div class="card-header ui-sortable-handle bg-gray-dark">
+                <div class="card-header ui-sortable-handle">
                     <h3 class="card-title">Detalhe sorteio</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -97,8 +97,8 @@
             </div>
 
             <div class="col-md-12">
-                <div class="card" style="position: relative; left: 0px; top: 0px;">
-                    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+                <div class="card card-gray-dark" style="position: relative; left: 0px; top: 0px;">
+                    <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">Todos os Usúarios Aptos</h3>
 
                         <div class="card-tools">

@@ -1,6 +1,6 @@
-<div class="card collapsed-card">
+<div class="card card-gray-dark collapsed-card">
 
-    <div class="card-header ui-sortable-handle bg-gray-dark">
+    <div class="card-header ui-sortable-handle">
         <h3 class="card-title">Cadastrar Loja</h3>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse">

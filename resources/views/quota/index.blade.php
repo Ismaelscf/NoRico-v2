@@ -19,8 +19,8 @@
     <section class="content">
         <div class="row">
             <div class="col-md-6">
-                <div class="card" style="position: relative; left: 0px; top: 0px;">
-                    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+                <div class="card card-gray-dark" style="position: relative; left: 0px; top: 0px;">
+                    <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">Cadastrar Plano</h3>
 
                         <div class="card-tools">

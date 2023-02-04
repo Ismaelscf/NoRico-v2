@@ -1,5 +1,5 @@
-<div class="card collapsed-card">
-    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+<div class="card card-gray-dark collapsed-card">
+    <div class="card-header ui-sortable-handle" style="cursor: move;">
         <h3 class="card-title">Cadastrar Funcionário</h3>
 
         <div class="card-tools">

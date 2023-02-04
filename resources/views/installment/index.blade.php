@@ -10,8 +10,8 @@
     <section class="content justify-content-md-center">
         <div class="row justify-content-md-center">
             <div class="col-md-8 justify-content-md-center">
-                <div class="card" style="position: relative; left: 0px; top: 0px;">
-                    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+                <div class="card card-gray-dark" style="position: relative; left: 0px; top: 0px;">
+                    <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">Visualizar por Plano</h3>
 
                         <div class="card-tools">
@@ -70,8 +70,8 @@
     <section class="content justify-content-md-center">
         <div class="row justify-content-md-center">
             <div class="col-md-8 justify-content-md-center">
-                <div class="card" style="position: relative; left: 0px; top: 0px;">
-                    <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+                <div class="card card-gray-dark" style="position: relative; left: 0px; top: 0px;">
+                    <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">Sem Planos Contratados</h3>
                     </div>
                 </div>
@@ -84,8 +84,8 @@
         <section class="content justify-content-md-center">
             <div class="row justify-content-md-center">
                 <div class="col-md-8 justify-content-md-center">
-                    <div class="card" style="position: relative; left: 0px; top: 0px;">
-                        <div class="card-header ui-sortable-handle bg-gray-dark" style="cursor: move;">
+                    <div class="card card-gray-dark" style="position: relative; left: 0px; top: 0px;">
+                        <div class="card-header ui-sortable-handle" style="cursor: move;">
                             <h3 class="card-title">Visualizar por Cotas</h3>
 
                             <div class="card-tools">
