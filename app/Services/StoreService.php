@@ -210,29 +210,36 @@ class StoreService
     }
 
     public function getAllManager(){
-        $managerStore = $this->storeEmployeeRepository->getAllManager();
-        $managerAvailable = $this->actorService->getAllManager();
+        // $managerStore = $this->storeEmployeeRepository->getAllManager();
+        $allManager = $this->actorService->getAllManager();
 
-
-        // dd(count($managerStore) , $managerAvailable);
+        // dd($allManager);
 
         $manager = array();
-
-        if(count($managerStore) == 0){
-            foreach($managerAvailable as $avaliable){
+        foreach($allManager as $avaliable){
+            if($avaliable->user->employee == null){
                 array_push($manager, $avaliable);
             }
-        } else {
-            foreach($managerAvailable as $avaliable){
-                foreach($managerStore as $store){
-                    if($avaliable->user_id != $store->user_id){
-                        array_push($manager, $avaliable);
-                    }
-                }
-            }
         }
+
         
+
+        // if(count($managerStore) == 0){
+        //     foreach($allManager as $avaliable){
+        //         array_push($manager, $avaliable);
+        //     }
+        // }
+        // else {
+        //     foreach($managerStore as $store){
+        //         $manager = array_filter($allManager, function($value) use ($store){
+        //             if($value['user_id'] != $store['user_id']){
+        //                 return $value;
+        //             }
+        //         });
+        //     }
+        // }
         
+        // dd($manager);
         return $manager;
     }
 }
