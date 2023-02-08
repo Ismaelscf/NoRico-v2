@@ -14,7 +14,7 @@ function countDocument(document){
 
 const multipleItemCarousel = document.querySelector('#carouselSorts');
 if(window.matchMedia("(min-width:576px)").matches){
-    const carousel = new bootstrap.Carousel(multipleItemCarousel, {
+    const carouselsort = new bootstrap.Carousel(multipleItemCarousel, {
         interval: false
     });
 
@@ -41,7 +41,7 @@ if(window.matchMedia("(min-width:576px)").matches){
 
 const multipleItemCarouselStore = document.querySelector('#carouselStore');
 if(window.matchMedia("(min-width:576px)").matches){
-    const carouselStore = new bootstrap.Carousel(multipleItemCarouselStore, {
+    const carouselstore = new bootstrap.Carousel(multipleItemCarouselStore, {
         interval: false
     });
 
@@ -62,7 +62,7 @@ if(window.matchMedia("(min-width:576px)").matches){
         }
     });
 } else {
-    $(multipleItemCarouselStore).addClass('slide');
+    $(multipleItemCarouselStore).addClass('slide');    
 }
 
 

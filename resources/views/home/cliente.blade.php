@@ -64,7 +64,7 @@
 
             <h5 class="mt-4 mb-2 ml-2">Sorteios Ativos</h5>
 
-            <div id="carouselSorts" class="carousel" data-bs-ride="carouselSorts">
+            <div id="carouselSorts" class="carousel" data-bs-ride="carouselsorts">
                 <div class="carousel-inner" id="carousel-inner-sort">
                     <?php $i=0;?>
                     @foreach ($dados['sorts'] as $sort)
@@ -102,11 +102,11 @@
                         <?php $i++;?>
                     @endforeach
                 </div>
-                <button class="carousel-control-prev" id="carousel-control-prev-sort" type="button" data-bs-slide="prev">
+                <button class="carousel-control-prev" id="carousel-control-prev-sort" type="button" data-bs-slide="prev" data-bs-target="#carouselSorts">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" id="carousel-control-next-sort" type="button" data-bs-slide="next">
+                <button class="carousel-control-next" id="carousel-control-next-sort" type="button" data-bs-slide="next" data-bs-target="#carouselSorts">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -124,7 +124,7 @@
 
         <h5 class="mt-4 mb-2 ml-2">Nossos Parceiros</h5>
 
-        <div id="carouselStore" class="carousel" data-bs-ride="carouselStore">
+        <div id="carouselStore" class="carousel" data-bs-ride="carouselstore">
             <div class="carousel-inner" id="carousel-inner-store">
                 <?php $i=0;?>
                 @foreach ($dados['stores'] as $store)
@@ -155,11 +155,11 @@
                     <?php $i++;?>
                 @endforeach
             </div>
-            <button class="carousel-control-prev" id="carousel-control-prev-store" type="button" data-bs-slide="prev">
+            <button class="carousel-control-prev" id="carousel-control-prev-store" type="button" data-bs-slide="prev" data-bs-target="#carouselStore">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next" id="carousel-control-next-store" type="button" data-bs-slide="next">
+            <button class="carousel-control-next" id="carousel-control-next-store" type="button" data-bs-slide="next" data-bs-target="#carouselStore">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
