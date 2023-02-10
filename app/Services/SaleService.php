@@ -12,6 +12,7 @@ use InvalidArgumentException;
 use App\Services\StoreService;
 use App\Services\UserService;
 use App\Services\UserQuotaService;
+use App\Services\ActorService;
 
 class SaleService
 {
@@ -19,13 +20,15 @@ class SaleService
     protected $storeService;
     protected $userService;
     protected $userQuotaService;
+    protected $actorService;
 
-    public function __construct(SaleRepository $saleRepository, StoreService $storeService, UserService $userService, UserQuotaService $userQuotaService)
+    public function __construct(SaleRepository $saleRepository, StoreService $storeService, UserService $userService, UserQuotaService $userQuotaService, ActorService $actorService)
     {
         $this->saleRepository = $saleRepository;
         $this->storeService = $storeService;
         $this->userService = $userService;
         $this->userQuotaService = $userQuotaService;
+        $this->actorService = $actorService;
     }
 
     public function removeMask($value){
@@ -184,6 +187,7 @@ class SaleService
             $users = $this->saleRepository->buscarConcorrentes($sort);
         }
 
+        $users = $this->actorService->buscarUserClient($users);
         $user = $this->userService->buscarUserSort($users);
 
         return $user;

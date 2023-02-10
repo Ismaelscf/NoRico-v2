@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/recuperarSenha', [App\Http\Controllers\SenhaController::class, 'recuperarSenha'])->name('recuperarSenha');
+Route::post('/senha', [App\Http\Controllers\SenhaController::class, 'senha'])->name('senha');
+
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');

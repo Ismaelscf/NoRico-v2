@@ -22,4 +22,20 @@ class ActorService
         $manager = $this->actorRepository->getAllManager();
         return $manager;
     }
+
+    public function buscarUserClient($users){
+
+        $aptos = array();
+        
+        foreach($users as $user){
+            $cliente = $this->actorRepository->buscarUserClient($user);
+
+            if(Count($cliente)){
+                array_push($aptos, $user);
+            }
+        }
+        
+        return $aptos;
+
+    }
 }

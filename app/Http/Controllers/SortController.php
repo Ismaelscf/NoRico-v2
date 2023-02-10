@@ -47,10 +47,18 @@ class SortController extends Controller
     }
 
     public function winner(Request $request){
-        $sort = $this->sortService->winner($request);
-        $user = $this->userService->buscarUser($sort->award);
+        // dd($request->all());
+        $sort = $this->sortService->search($request->id);
+        if($sort->award){
+            $user = $this->userService->buscarUser($sort->award);
+            return view('sort.winner', compact('sort', 'user'));
+        }
+        else {
+            $sort = $this->sortService->winner($request);
+            $user = $this->userService->buscarUser($sort->award);
+        }        
 
-        // dd($user, $sort->award);
+        // dd($user->name);
         
         return view('sort.winner', compact('sort', 'user'));
     }

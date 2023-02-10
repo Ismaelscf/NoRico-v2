@@ -32,6 +32,11 @@ class SortService
         return $number;
     }
 
+    public function search($id){
+        $sort = $this->sortRepository->search($id);
+        return $sort;
+    }
+
     public function getAll($store_id = null){
 
         if($store_id){
