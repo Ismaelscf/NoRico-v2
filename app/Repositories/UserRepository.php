@@ -55,4 +55,11 @@ class UserRepository
 
         return $users;
     }
+
+    public function buscarTodosFuncionarios(){
+        $users = User::join('actors', 'users.id', '=', 'actors.user_id')->where('actors.function', '!=','admin')->select('users.*', 'actors.function')->get();
+        // dd($users);
+
+        return $users;
+    }
 }
