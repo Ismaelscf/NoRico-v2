@@ -65,7 +65,7 @@
                     </div>
                     <div class="col-md-12 col-sm-12">
                         <div class="form-group">
-                            <label for="limit">Valor Mínimo em descontos</label>
+                            <label for="limit">Valor Mínimo em compras</label>
                             <input type="text" onkeypress="$(this).mask('###.##0,00', {reverse: true});" name="limit" id="limit" class="form-control">
                         </div>
                     </div>

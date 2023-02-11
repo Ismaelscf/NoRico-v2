@@ -71,7 +71,7 @@
                                     @endif
                                 </div>
                                 <div class="col-12 col-sm-12">
-                                    Valor minimo em descontos: R${{ number_format($sort->limit, 2, ',', '.') }}
+                                    Valor minimo em compras: R${{ number_format($sort->limit, 2, ',', '.') }}
                                 </div>
                                 <div class="col-12 col-sm-12">
                                     @if ($sort->award == null)
