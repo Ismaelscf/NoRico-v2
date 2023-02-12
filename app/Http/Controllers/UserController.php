@@ -87,7 +87,8 @@ class UserController extends Controller
     }
 
     public function home($msg){
-        $users = $this->userService->buscarTodos();
+        $users = $this->userService->buscarTodosFuncionarios();
+        // dd($users[1]);
         return view('user.index', compact('users', 'msg'));
     }
 }

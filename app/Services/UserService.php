@@ -43,6 +43,27 @@ class UserService
     }
 
     public function create($dados){
+
+
+
+        //Inicia o Database Transaction
+
+        DB::beginTransaction();
+
+        // //Recupera os dados do formulário
+        // $dataForm = $request->all();
+        // $newUser = User::create($dataForm);
+        // $newAccount = Account::create([
+        //     'user_id'    => $newUser->id,
+        //     'number'     => uniqid(date('YmdHis')),
+        // ]);
+        // if( $newUser && $newAccount ) {
+        //     //Sucesso!
+        //     DB::commit();
+        // } else {
+        //     //Fail, desfaz as alterações no banco de dados
+        //     DB::rollBack();
+        // }
         try {
             
             $user['name'] = $dados->name;
@@ -57,8 +78,9 @@ class UserService
                 $user['photo'] = $upload->upload($dados->image, 'users');
             }     
             // dd($user);
-            $this->userRepository->create($user);
-            // dd($dados['cpf']);
+            $save = $this->userRepository->create($user);
+
+            
             $user = $this->userRepository->buscarIdPorCPF($this->remover_caracteres($dados->cpf));
 
             $address['type'] = 'pessoal';
@@ -70,15 +92,18 @@ class UserService
             $address['number'] = $dados->number;
             $address['complement'] = $dados->complement;
 
-            // dd($address);
-
-            $this->addressRepository->create($address);
-
+            $save2 = $this->addressRepository->create($address);
+            
             $actor['user_id'] = $user;
             $actor['function'] = $dados->function;
 
-            $this->actorRepository->create($actor);
-
+            $save3 = $this->actorRepository->create($actor);
+            if(isset($save) && isset($save2) && isset($save3)){
+                DB::commit();
+            }
+            else{
+                DB::rollBack();                
+            }
         } catch (Exception $exception) {
             $msg = $exception->getMessage();
             return $msg;
@@ -189,6 +214,11 @@ class UserService
 
     public function buscarTodos(){
         $users = $this->userRepository->buscarTodos();
+        return $users;
+    }
+
+    public function buscarTodosFuncionarios(){
+        $users = $this->userRepository->buscarTodosFuncionarios();
         return $users;
     }
 }
