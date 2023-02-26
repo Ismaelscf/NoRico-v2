@@ -31,6 +31,11 @@ class ActorRepository
         return $manager;
     }
 
+    public function getAllClients(){
+        $clients = Actor::where('function', 'cliente')->get();
+        return $clients;
+    }
+
     public function buscarUserClient($user){
         $clients = Actor::where('user_id', $user)->where('function','cliente')->pluck('user_id');
         return $clients;

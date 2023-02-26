@@ -11,6 +11,7 @@ use App\Models\Installment;
 use App\Models\Address;
 use App\Models\Sale;
 use App\Models\StoreEmployee;
+use App\Models\Actor;
 
 class User extends Authenticatable
 {

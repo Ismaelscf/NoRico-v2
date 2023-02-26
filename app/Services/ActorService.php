@@ -23,6 +23,11 @@ class ActorService
         return $manager;
     }
 
+    public function getAllClients(){
+        $clients = $this->actorRepository->getAllClients();
+        return $clients;
+    }
+
     public function buscarUserClient($users){
 
         $aptos = array();

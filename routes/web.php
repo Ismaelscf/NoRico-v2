@@ -96,3 +96,8 @@ Route::prefix('/sales')->name('sales')->group(function(){
     Route::post('/', [App\Http\Controllers\SaleController::class, 'create'])->name('.create')->middleware('auth');
     Route::post('/searchUser', [App\Http\Controllers\SaleController::class, 'searchUser'])->name('.searchUser')->middleware('auth');
 });
+
+//Faturas
+Route::prefix('/invoices')->name('invoices')->group(function(){
+    Route::get('/', [App\Http\Controllers\InvoiceController::class, 'index'])->name('.index')->middleware('auth');
+});
