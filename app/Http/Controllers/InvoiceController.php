@@ -16,7 +16,7 @@ class InvoiceController extends Controller
     }
 
     public function index(){
-        $actors = $this->invoiceService->generateInvoice();
+        $actors = $this->invoiceService->generateInvoiceBatch();
 
         // dd($actors[1]->user->payday);
 
