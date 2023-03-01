@@ -53,7 +53,16 @@ class SaleService
         return $this->saleRepository->getAll($store_id);
     }
 
-    public function getAllSalesUser(){}
+    public function getAllSalesUser(Request $request){
+
+        $user_id = $request->user_id;
+        $initial_date = $request->initial_date;
+        $final_date = $request->final_date;
+
+        $sales = $this->saleRepository->getAllSalesAllStoreUser($user_id, $initial_date, $final_date);
+
+        return $sales;
+    }
 
     public function calcTotalSales(){}
 
