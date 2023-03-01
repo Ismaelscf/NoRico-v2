@@ -12,6 +12,7 @@ use App\Models\Address;
 use App\Models\Sale;
 use App\Models\StoreEmployee;
 use App\Models\Actor;
+use App\Models\Invoice;
 
 class User extends Authenticatable
 {
@@ -82,5 +83,9 @@ class User extends Authenticatable
 
     public function formatar_phone($phone){
         return preg_replace("/(\d{2})(\d{5})(\d{4})/", "(\$1) \$2-\$3", $phone);
+    }
+
+    public function invoices(){
+        return $this->hasMany(Invoice::class, 'user_id', 'id');
     }
 }
