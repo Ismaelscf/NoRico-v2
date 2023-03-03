@@ -17,6 +17,7 @@ class Invoice extends Model
         'pay',
         'received',
         'payday',
+        'reference_date',
         'status',
     ];
 

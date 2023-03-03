@@ -24,26 +24,66 @@ class InvoiceService
         $this->actorService = $actorService;
     }
 
+    public function getAllInvoices(Request $request){}
+
+    public function getAllInvoicesUser(Request $request){}
+
+    public function handleStatusInvoinces(Request $request){}
+
+    public function getInvoicesSales(Request $request){}
+
     public function generateInvoiceBatch(){
 
         $initial_date = date('Y-m-d', strtotime('first day of last month'));
         $final_date = date('Y-m-d', strtotime('last day of last month'));
 
-        $invoice = $this->invoiceRepository->generateInvoiceUser($initial_date, $final_date);
+        $users = $this->invoiceRepository->getInvoiceUserMonth($initial_date);
 
-        foreach($invoice as $venda){
+        $users = (array) json_decode($users);
+        
+        // dd($users);
 
-            echo 
-                "ID do usuário das vendas: ".$venda->user_id.
-                "<br>Total em compras: ".$venda->total_sales.
-                "<br>Total de descontos recebidos: ".$venda->total_discount.
-                "<br>Valor a pagar para o Rico: ".$venda->total_discount * 0.8.
-                "<br>Valor de beneficio recebido: ".$venda->total_discount * 0.2.
-                "<br>Data de Vencimento: ".date('Y')."-".date('m')."-".$venda->payday.
-                "<br>Status: fechada
-                <br><br><br>"
-            ;
+
+        $invoices = $this->invoiceRepository->generateInvoiceUser($initial_date, $final_date);
+
+        // dd($invoices);
+
+        $percent_rico = 0.8;
+        $percent_user = 0.2;
+
+        DB::beginTransaction();
+
+        try{
+            foreach($invoices as $invoice){
+
+                if(!in_array($invoice->user_id, $users)){
+                    $save['user_id'] = $invoice->user_id;
+                    $save['total_sale'] = $invoice->total_sales;
+                    $save['discount'] = $invoice->total_discount;
+                    $save['pay'] = $invoice->total_discount * $percent_rico;
+                    $save['received'] = $invoice->total_discount * $percent_user;
+                    $save['payday'] = date('Y')."-".date('m')."-".$invoice->payday;
+                    $save['reference_date'] = $initial_date;
+                    $save['status'] = 'fechada';
+
+                    $invoiceSave = $this->invoiceRepository->createInvoice($save);
+
+                    if($invoiceSave) {
+                        //Sucesso!
+                        DB::commit();
+                    } else {
+                        //Fail, desfaz as alterações no banco de dados
+                        DB::rollBack();
+                    }
+                }
+            }
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
         }
+
+        $msg = 'Faturas do mês '. date('m')-1 .' geradas com sucesso';
+        return $msg;
     }
 
     public function generateInvoice(){

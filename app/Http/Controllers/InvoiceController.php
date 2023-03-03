@@ -16,12 +16,8 @@ class InvoiceController extends Controller
     }
 
     public function index(){
-        $actors = $this->invoiceService->generateInvoiceBatch();
+        $invoices = $this->invoiceService->generateInvoiceBatch();
 
-        // dd($actors[1]->user->payday);
-
-        // $invoices = $this->invoiceService->getAll();
-
-        // return view()
+        dd($invoices);
     }
 }

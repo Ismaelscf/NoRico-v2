@@ -28,15 +28,25 @@ class InvoiceRepository
         ->groupBy('sales.user_id', 'users.payday')
         ->orderBy('sales.user_id')
         ->get();
-
-        // return $this->sale->where('user_id', '=', $user_id)->where('sale_date', '>=', $initial_date)->where('sale_date', '<=', $final_date)->sum('total_sale')->sum('discount')->get();
     }
 
-    public function invoice(){
-        DB::table('sales')
-        ->select('user_id', DB::raw('SUM(total_sale) AS total_sale'), DB::raw('SUM(discount) AS discount'))
-        ->where('sale_date', '<=', '2023-03-01')
-        ->groupBy('user_id')
-        ->get();
+    public function createInvoice($save){
+        // dd($save);
+        return $this->invoice::create($save);
     }
+
+    public function getInvoiceUserMonth($initial_date){
+        $sql = $this->invoice->where('reference_date', '=', $initial_date)
+        ->pluck('user_id');
+
+        return $sql;
+    }
+
+    // public function invoice(){
+    //     DB::table('sales')
+    //     ->select('user_id', DB::raw('SUM(total_sale) AS total_sale'), DB::raw('SUM(discount) AS discount'))
+    //     ->where('sale_date', '<=', '2023-03-01')
+    //     ->groupBy('user_id')
+    //     ->get();
+    // }
 }

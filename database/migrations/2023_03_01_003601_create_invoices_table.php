@@ -21,7 +21,8 @@ class CreateInvoicesTable extends Migration
             $table->float('pay');
             $table->float('received');
             $table->date('payday');
-            $table->enum('status', ['aberta', 'fechada', 'atradasa', 'paga']);
+            $table->date('reference_date')->default(null);
+            $table->enum('status', ['aberta', 'fechada', 'atradasa', 'paga'])->default('fechada');
             $table->timestamps();
         });
     }
