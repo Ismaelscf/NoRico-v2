@@ -36,8 +36,8 @@
                         <td>R$ {{ number_format($invoice->discount,2,",",".") }}</td>
                         <td>R$ {{ number_format($invoice->pay,2,",",".") }}</td>
                         <td>R$ {{ number_format($invoice->received,2,",",".") }}</td>
-                        <td>{{ $invoice->payday }}%</td>
-                        <td>{{ $invoice->reference_date }}</td>
+                        <td>{{ date('d/m/Y', strtotime($invoice->payday)) }}</td>
+                        <td>{{ date('d/m/Y', strtotime($invoice->reference_date)) }}</td>
                         <td>{{ $invoice->status }}</td>
                         <td>
                             <a href="#" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>

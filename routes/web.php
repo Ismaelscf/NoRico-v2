@@ -100,5 +100,5 @@ Route::prefix('/sales')->name('sales')->group(function(){
 //Faturas
 Route::prefix('/invoices')->name('invoices')->group(function(){
     Route::get('/', [App\Http\Controllers\InvoiceController::class, 'index'])->name('.index')->middleware('auth');
-    Route::post('/create', [App\Http\Controllers\InstallmentController::class, 'create'])->name('.create')->middleware('auth');
+    Route::post('/create', [App\Http\Controllers\InvoiceController::class, 'create'])->name('.create')->middleware('auth');
 });

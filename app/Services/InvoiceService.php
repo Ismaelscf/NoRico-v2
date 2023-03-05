@@ -24,7 +24,9 @@ class InvoiceService
         $this->actorService = $actorService;
     }
 
-    public function getAllInvoices(Request $request){}
+    public function getAllInvoices(){
+        return $this->invoiceRepository->getAllInvoices();
+    }
 
     public function getAllInvoicesUser(Request $request){}
 
