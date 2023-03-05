@@ -31,6 +31,7 @@
                     <tr class="even">
                         <td>
                            {{ $invoice->user->name }}
+                           <span class="visually-hidden">{{ $invoice->user->cpf }}</span>
                         </td>
                         <td>R$ {{ number_format($invoice->total_sale,2,",",".") }}</td>
                         <td>R$ {{ number_format($invoice->discount,2,",",".") }}</td>
