@@ -72,3 +72,11 @@
     </a>
 </li>
 @endif
+@if( $permissao == "admin" )
+<li class="nav-item">
+    <a href="{{ route('invoices.index') }}" class="nav-link">
+        <i class="nav-icon fas fa-credit-card"></i>
+        <p>Faturas</p>
+    </a>
+</li>
+@endif

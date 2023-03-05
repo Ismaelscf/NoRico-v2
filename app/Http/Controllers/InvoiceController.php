@@ -15,9 +15,17 @@ class InvoiceController extends Controller
         $this->invoiceService = $invoiceService;
     }
 
-    public function index(){
-        $invoices = $this->invoiceService->generateInvoiceBatch();
+    public function index($result = null){
+        // $invoices = $this->invoiceService->generateInvoiceBatch();
 
-        dd($invoices);
+        // dd($invoices);
+
+        return view('invoice.index', ['invoices' => [], 'result' => $result]);
+    }
+
+    public function create(){
+        $result = $this->invoiceService->generateInvoiceBatch();
+        
+        return $this->index($result);
     }
 }
