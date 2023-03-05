@@ -37,4 +37,10 @@ class InvoiceController extends Controller
         
         return redirect('/invoices')->with('result', $result);
     }
+
+    public function payment($invoice_id){
+        $result = $this->invoiceService->payment($invoice_id, 'paga');
+
+        return redirect('/invoices')->with('result', $result);
+    }
 }

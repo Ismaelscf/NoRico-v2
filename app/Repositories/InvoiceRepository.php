@@ -54,6 +54,16 @@ class InvoiceRepository
         return $sql;
     }
 
+    public function payment($invoice){
+        return $invoice->save();
+    }
+
+    public function search($invoice_id){
+        $invoice = Invoice::find($invoice_id);
+
+        return $invoice;
+    }
+
     // public function invoice(){
     //     DB::table('sales')
     //     ->select('user_id', DB::raw('SUM(total_sale) AS total_sale'), DB::raw('SUM(discount) AS discount'))

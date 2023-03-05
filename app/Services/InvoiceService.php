@@ -36,7 +36,23 @@ class InvoiceService
         return $this->invoiceRepository->getAllInvoicesUser($user_id);
     }
 
-    public function handleStatusInvoinces(Request $request){}
+    public function payment($invoice_id, $status){
+        try {
+
+            $invoice = $this->invoiceRepository->search($invoice_id);
+
+            
+            $invoice->status = $status;
+            
+            $this->invoiceRepository->payment($invoice);
+
+            return 'Pagamento recebido';
+
+        }  catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+    }
 
     public function getInvoicesSales(Request $request){}
 

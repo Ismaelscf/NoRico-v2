@@ -44,9 +44,9 @@
                             <a href="#" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Detalhes</a>
 
                             @if($invoice->status != 'paga' && $permition == 'admin')
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Pagar</a>
+                                <a href="{{ route('invoices.payment') }}/{{ $invoice->id }}" class="btn btn-primary btn-sm"><i class="fa  fa-eye"></i> Pagar</a>
 
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fa  fa-users"></i> Mudar Status</a>
+                                {{-- <a href="#" class="btn btn-primary btn-sm"><i class="fa  fa-users"></i> Mudar Status</a> --}}
                             @endif
                         </td>
                     </tr>
