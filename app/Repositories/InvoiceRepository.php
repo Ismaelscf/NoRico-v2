@@ -48,6 +48,12 @@ class InvoiceRepository
         return $sql;
     }
 
+    public function getAllInvoicesUser($user_id){
+        $sql = $this->invoice->where('user_id', '=', $user_id)->get();
+
+        return $sql;
+    }
+
     // public function invoice(){
     //     DB::table('sales')
     //     ->select('user_id', DB::raw('SUM(total_sale) AS total_sale'), DB::raw('SUM(discount) AS discount'))

@@ -1,4 +1,12 @@
 @extends('layouts.app')
+<?php
+// $user = Auth::user();
+// $permition = $user->actors->function;
+// if($permition != 'amin' && $permition != 'cliente'){
+//     dd('sem permissão');
+//     // return redirect('/')->with('result', 'Você não tem permissão para acessar essa pagina');
+// }
+?>
 
 @push('script-fisrt')
     <script src="{{ asset('js/datatable.js') }}"></script>
@@ -32,7 +40,9 @@
             @endif
 
             <div class="col-md-12 col-sm-12">
-                @include('invoice.create')
+                @if($permition == 'admin')
+                    @include('invoice.create')
+                @endif
             </div>
     
             <div class="col-md-12 col-sm-12">

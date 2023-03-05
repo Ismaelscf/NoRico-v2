@@ -24,11 +24,17 @@ class InvoiceService
         $this->actorService = $actorService;
     }
 
-    public function getAllInvoices(){
-        return $this->invoiceRepository->getAllInvoices();
+    public function getAllInvoices($user_id = null){
+        if(isset($user_id)){
+            return $this->getAllInvoicesUser($user_id);
+        } else{
+            return $this->invoiceRepository->getAllInvoices();
+        }
     }
 
-    public function getAllInvoicesUser(Request $request){}
+    public function getAllInvoicesUser($user_id){
+        return $this->invoiceRepository->getAllInvoicesUser($user_id);
+    }
 
     public function handleStatusInvoinces(Request $request){}
 
@@ -86,9 +92,5 @@ class InvoiceService
 
         $msg = 'Faturas do mês '. date('m')-1 .' geradas com sucesso';
         return $msg;
-    }
-
-    public function generateInvoice(){
-
     }
 }

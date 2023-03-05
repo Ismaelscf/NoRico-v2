@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Services\InvoiceService;
+use Illuminate\Support\Facades\Auth;
 
 class InvoiceController extends Controller
 {
@@ -16,11 +17,19 @@ class InvoiceController extends Controller
     }
 
     public function index($result = null){
-        $invoices = $this->invoiceService->getAllInvoices();
+
+        $user = Auth::user();
+        $permition = $user->actors->function;
+
+        if($permition != 'admin'){
+            $invoices = $this->invoiceService->getAllInvoices($user->id);
+        } else {
+            $invoices = $this->invoiceService->getAllInvoices();
+        }
 
         // dd($invoices);
 
-        return view('invoice.index', ['invoices' => $invoices, 'result' => $result]);
+        return view('invoice.index', ['invoices' => $invoices, 'result' => $result, 'permition'=> $permition]);
     }
 
     public function create(){
