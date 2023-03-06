@@ -1,12 +1,4 @@
 @extends('layouts.app')
-<?php
-$user = Auth::user();
-$permition = $user->actors->function;
-if($permition != 'amin'){
-    dd('sem permissão');
-    // return redirect('/')->with('result', 'Você não tem permissão para acessar essa pagina');
-}
-?>
 
 @push('script-fisrt')
 @endpush
