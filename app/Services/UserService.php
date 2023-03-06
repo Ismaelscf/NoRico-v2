@@ -162,6 +162,11 @@ class UserService
         return $user;
     }
 
+    public function buscarClientesPorCPF($cpf){
+        $user = $this->userRepository->buscarClientesPorCPF($this->remover_caracteres($cpf));
+        return $user;
+    }
+
     public function editUser($dados){
         try {
             $user = $this->userRepository->search($dados->id);
