@@ -177,6 +177,8 @@ class SaleService
             $sales['sale_date'] = date('Y-m-d');
             $sales['description'] = $request->description;
 
+            // dd($sales);
+
             $this->saleRepository->create($sales);
 
             return "Venda finalizada com Sucesso";

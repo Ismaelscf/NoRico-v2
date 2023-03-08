@@ -30,6 +30,7 @@ class SaleRepository
     }
 
     public function create($salesCreate){
+        dd($salesCreate);
         return $this->sale::create($salesCreate);
     }
 
