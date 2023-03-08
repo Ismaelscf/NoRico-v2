@@ -181,11 +181,13 @@ class SaleService
 
             $this->saleRepository->create($sales);
 
-            return "Venda finalizada com Sucesso";
+            $mensagem = "Venda finalizada com Sucesso";
 
         } catch (Exception $e) {
-            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+            $mensagem = 'Exceção capturada: '.  $e->getMessage(). "\n";
         }
+
+        return $mensagem;
 
     }
 
