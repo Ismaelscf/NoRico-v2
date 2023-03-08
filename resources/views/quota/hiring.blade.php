@@ -1,9 +1,13 @@
+<?php
+$permition = Auth::user()->actors->function
+?>
 @extends('layouts.app')
 
 @push('script-fisrt')
 @endpush
 
 @section('content')
+@if($permition == 'admin' || $permition == 'cliente' || $permition == 'vendedor')
     <section class="content justify-content-md-center">
         <div class="row justify-content-md-center">
             <div class="col-md-8 justify-content-md-center">
@@ -65,4 +69,5 @@
 
     </section>
     
+@endif
 @endsection

@@ -1,3 +1,6 @@
+<?php
+$permition = Auth::user()->actors->function
+?>
 @extends('layouts.app')
 
 @push('script-fisrt')
@@ -14,7 +17,7 @@
 @endpush
 
 @section('content')
-
+@if($permition == 'admin' || $permition == 'cliente' || $permition == 'vendedor')
 
     <section class="content">
         <div class="row">
@@ -164,5 +167,6 @@
         </div>
 
     </section>
-    
+
+@endif
 @endsection

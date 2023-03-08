@@ -1,3 +1,6 @@
+<?php
+$permition = Auth::user()->actors->function
+?>
 @extends('layouts.app')
 
 @push('script-fisrt')
@@ -6,6 +9,7 @@
 @endpush
 
 @section('content')
+@if($permition == 'admin' || $permition == 'cliente' || $permition == 'vendedor')
     @if(count($userQuotas)) 
     <section class="content justify-content-md-center">
         <div class="row justify-content-md-center">
@@ -141,5 +145,5 @@
 
         </section>
     @endif
-    
+@endif
 @endsection

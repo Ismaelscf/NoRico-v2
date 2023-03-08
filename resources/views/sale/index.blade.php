@@ -32,13 +32,13 @@
             @endif
             
             <div class="col-md-12 col-sm-12">
-                @if($permition != 'admin' && $permition != 'cliente')
+                @if($permition != 'admin' && $permition != 'cliente' && $permition != 'vendedor')
                     @include('sale.search')
                 @endif
             </div>
 
             <div class="col-md-12 col-sm-12">
-                @if($permition != 'admin' && $permition != 'cliente')
+                @if($permition != 'admin' && $permition != 'cliente' && $permition != 'vendedor')
                     @if(!isset($saleConfirm))
                         @include('sale.create')
                     @else

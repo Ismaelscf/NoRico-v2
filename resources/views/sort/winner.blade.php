@@ -1,9 +1,13 @@
+<?php
+$permition = Auth::user()->actors->function
+?>
 @extends('layouts.app')
 
 @push('script-fisrt')
 @endpush
 
 @section('content')
+@if($permition == 'admin')
 <section class="content">
         <div class="row justify-content-md-center">
         <div class="col-md-8  card card-primary card-outline">
@@ -23,4 +27,5 @@
             </div>
         </div>
 </section>
+@endif
 @endsection

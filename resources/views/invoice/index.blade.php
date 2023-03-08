@@ -1,3 +1,6 @@
+<?php
+$permition = Auth::user()->actors->function
+?>
 @extends('layouts.app')
 <?php
 // $user = Auth::user();
@@ -23,7 +26,7 @@
 @endpush
 
 @section('content')
-
+@if($permition == 'admin' || $permition == 'cliente' || $permition == 'vendedor')
     <section class="content">
         <div class="row">
 
@@ -57,5 +60,5 @@
             </div>
         </div>
     </section>    
-    
+@endif
 @endsection

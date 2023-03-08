@@ -1,3 +1,6 @@
+<?php
+$permition = Auth::user()->actors->function
+?>
 @extends('layouts.app')
 
 @push('script-fisrt')
@@ -5,6 +8,7 @@
 @endpush
 
 @section('content')
+    @if($permition == 'admin' || $permition == 'cliente' || $permition == 'vendedor')
     <section class="content">
         @if(isset($msg) && $msg=='Usuario Criado')
             <div class="alert alert-success" role="alert">
@@ -197,5 +201,6 @@
         </div>
 
     </section>
+    @endif
     
 @endsection
