@@ -31,7 +31,7 @@ class SaleRepository
 
     public function create($salesCreate){
         // dd($salesCreate);
-        dd(Sale::create($salesCreate));
+        dd($this->sale::create($salesCreate));
     }
 
     public function buscarConcorrentes($sort){
