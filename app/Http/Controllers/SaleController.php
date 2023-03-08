@@ -67,6 +67,8 @@ class SaleController extends Controller
         // $user = $this->userService->buscarPorCPF($request->cpf);
         $user = $this->userService->buscarClientesPorCPF($request->cpf);
 
+        // dd($user);
+
         if($user == null){
             $result = 'Cliente não encontrado';
             return $this->index(null, $result);

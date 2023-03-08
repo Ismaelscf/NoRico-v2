@@ -36,7 +36,7 @@ class UserRepository
     }
 
     public function buscarClientesPorCPF($cpf){
-        $user = User::where('cpf', $cpf)->join('actors', 'actors.user_id', '=', 'users.id')->where('actors.function', '=', 'cliente')->first();
+        $user = User::select('users.*')->where('cpf', $cpf)->join('actors', 'actors.user_id', '=', 'users.id')->where('actors.function', '=', 'cliente')->first();
 
         return $user;
     }
