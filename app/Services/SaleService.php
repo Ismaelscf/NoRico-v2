@@ -163,6 +163,28 @@ class SaleService
             echo 'Exceção capturada: ',  $e->getMessage(), "\n";
         }
     }
+    public function saleConfirmNotDiscount(Request $request){
+
+        try{
+            $result = null;
+
+            $sales['user_id'] = $request->user_id;
+            $sales['userName'] = $request->userName;
+            $sales['store_id'] = $request->store_id;
+            $sales['employee_id'] = $request->employee_id;
+            $sales['total_sale'] = $this->removeMask($request->price);
+            $sales['discount'] = 0;
+            $sales['sale_date'] = date('Y-m-d');
+            $sales['description'] = $request->description;
+
+            $salesConfirm = (object) $sales;
+
+            return ['salesConfirm' => $salesConfirm, 'result' => $result];
+
+        } catch (Exception $e) {
+            echo 'Exceção capturada: ',  $e->getMessage(), "\n";
+        }
+    }
 
     public function create(Request $request){
         // dd($request->all());

@@ -84,7 +84,8 @@ class SaleController extends Controller
 
     public function confirm(Request $request){
 
-        $saleConfirm = $this->saleService->saleConfirm($request);
+        // $saleConfirm = $this->saleService->saleConfirm($request);
+        $saleConfirm = $this->saleService->saleConfirmNotDiscount($request);
 
         return $this->index(null, $saleConfirm['result'], $saleConfirm['salesConfirm']);
     }
