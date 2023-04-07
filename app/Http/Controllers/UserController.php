@@ -91,4 +91,8 @@ class UserController extends Controller
         // dd($users[1]);
         return view('user.index', compact('users', 'msg'));
     }
+
+    public function formSimpleUser(){
+        return view('user.formSimpleUser');
+    }
 }

@@ -31,6 +31,8 @@ Route::prefix('/user')->name('user')->group(function () {
     Route::get('/status/{id?}', [App\Http\Controllers\UserController::class, 'mudarStatus'])->name('.status')->middleware('auth');
     Route::get('/edit/{id?}', [App\Http\Controllers\UserController::class, 'edit'])->name('.edit')->middleware('auth');
     Route::post('/edit', [App\Http\Controllers\UserController::class, 'editUser'])->name('.editUser')->middleware('auth');
+    //SimpleUser
+    Route::get('/newSimpleUser', [App\Http\Controllers\UserController::class, 'formSimpleUser'])->name('.formSimpleUser');
 });
 
 // Stores
