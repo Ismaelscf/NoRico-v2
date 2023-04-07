@@ -22,6 +22,29 @@ $permition = Auth::user()->actors->function
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+
+                @if(isset($msg) && $msg=='Usuario Criado')
+                    <div class="alert alert-success" role="alert">
+                        {{$msg}}    
+                    </div>
+                @endif
+
+                @if(isset($msg) && $msg!='Usuario Criado')
+                    <div class="alert alert-danger" role="alert">
+                        {{$msg}}    
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <div class="card card-gray-dark" style="position: relative; left: 0px; top: 0px;">
                     <div class="card-header ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title">Cadastrar Usuário</h3>
@@ -35,28 +58,7 @@ $permition = Auth::user()->actors->function
                     </div>
 
                     <div class="card-body">
-                        @if(isset($msg) && $msg=='Usuario Criado')
-                            <div class="alert alert-success" role="alert">
-                                {{$msg}}    
-                            </div>
-                        @endif
-
-                        @if(isset($msg) && $msg!='Usuario Criado')
-                            <div class="alert alert-danger" role="alert">
-                                {{$msg}}    
-                            </div>
-                        @endif
-
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <form action="/user/newUser" enctype="multipart/form-data" method="POST">
+                        <form action="/user/newSimpleUser" enctype="multipart/form-data" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="name">Nome</label>

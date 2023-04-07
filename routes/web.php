@@ -32,7 +32,8 @@ Route::prefix('/user')->name('user')->group(function () {
     Route::get('/edit/{id?}', [App\Http\Controllers\UserController::class, 'edit'])->name('.edit')->middleware('auth');
     Route::post('/edit', [App\Http\Controllers\UserController::class, 'editUser'])->name('.editUser')->middleware('auth');
     //SimpleUser
-    Route::get('/newSimpleUser', [App\Http\Controllers\UserController::class, 'formSimpleUser'])->name('.formSimpleUser');
+    Route::get('/newSimpleUser', [App\Http\Controllers\UserController::class, 'formSimpleUser'])->name('.formSimpleUser')->middleware('auth');
+    Route::post('/newSimpleUser', [App\Http\Controllers\UserController::class, 'createSimpleUser'])->name('.createSimpleUser')->middleware('auth');
 });
 
 // Stores

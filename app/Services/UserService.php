@@ -45,7 +45,6 @@ class UserService
     public function create($dados){
 
 
-
         //Inicia o Database Transaction
 
         DB::beginTransaction();
@@ -225,5 +224,58 @@ class UserService
     public function buscarTodosFuncionarios(){
         $users = $this->userRepository->buscarTodosFuncionarios();
         return $users;
+    }
+
+    public function createSimpleUser($dados){
+
+        //Inicia o Database Transaction
+        DB::beginTransaction();
+        try {
+            
+            $user['name'] = $dados->name;
+            $user['cpf'] = $this->remover_caracteres($dados->cpf);
+            $user['password'] = Hash::make($dados->password);
+            $user['payday'] = 1;
+            $user['email'] = $dados->email;
+            $user['phone'] = $this->remover_caracteres($dados->phone);
+
+            if($dados->hasFile('image') && $dados->file('image')->isValid()){
+                $upload = new UploadImage;
+                $user['photo'] = $upload->upload($dados->image, 'users');
+            }     
+            // dd($user);
+            $save = $this->userRepository->create($user);
+
+            
+            $user = $this->userRepository->buscarIdPorCPF($this->remover_caracteres($dados->cpf));
+
+            $address['type'] = 'pessoal';
+            $address['user_id']  = $user;
+            $address['state'] = 'Maranhão';
+            $address['city'] = 'Nova Olinda';
+            $address['district'] = 'Centro';
+            $address['street'] = 'Rua do Comercio';
+            $address['number'] = 's/n';
+            $address['complement'] = 'casa';
+
+            $save2 = $this->addressRepository->create($address);
+            
+            $actor['user_id'] = $user;
+            $actor['function'] = 'cliente';
+
+            $save3 = $this->actorRepository->create($actor);
+            if(isset($save) && isset($save2) && isset($save3)){
+                DB::commit();
+            }
+            else{
+                DB::rollBack();                
+            }
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $msg;
+        }
+
+        $msg = 'Usuario Criado';
+        return $msg;
     }
 }

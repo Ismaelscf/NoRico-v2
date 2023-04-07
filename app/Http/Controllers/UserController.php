@@ -92,7 +92,20 @@ class UserController extends Controller
         return view('user.index', compact('users', 'msg'));
     }
 
-    public function formSimpleUser(){
-        return view('user.formSimpleUser');
+    public function formSimpleUser($msg = null){
+        return view('user.formSimpleUser', compact('msg'));
+    }
+
+    public function createSimpleUser(Request $request)
+    {
+        try {
+            $msg = $this->userService->createSimpleUser($request);
+
+        } catch (Exception $exception) {
+            $msg = $exception->getMessage();
+            return $this->formSimpleUser($msg);
+        }
+
+        return $this->formSimpleUser($msg);
     }
 }
