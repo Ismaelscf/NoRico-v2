@@ -24,6 +24,14 @@
     </a>
 </li>
 @endif
+@if( $permissao != "cliente" )
+<li class="nav-item">
+    <a href="{{ route('user.formSimpleUser') }}" class="nav-link">
+        <i class="nav-icon fas fa-users"></i>
+        <p>Cadastrar Clientes</p>
+    </a>
+</li>
+@endif
 @if( $permissao == "admin" || $permissao == "vendedor" )
 <li class="nav-item">
     <a href="{{ route('quotas.index') }}" class="nav-link">
