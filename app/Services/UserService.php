@@ -234,7 +234,7 @@ class UserService
             
             $user['name'] = $dados->name;
             $user['cpf'] = $this->remover_caracteres($dados->cpf);
-            $user['password'] = Hash::make($dados->password);
+            $user['password'] = Hash::make($user['cpf']);
             $user['payday'] = 1;
             $user['email'] = $dados->email;
             $user['phone'] = $this->remover_caracteres($dados->phone);

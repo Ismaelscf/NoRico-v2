@@ -60,25 +60,16 @@ $permition = Auth::user()->actors->function
                     <div class="card-body">
                         <form action="/user/newSimpleUser" enctype="multipart/form-data" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Nome Completo" required>
-                        </div>
                         
                         <div class="row form-group" div class="col-sm-12">
                             <div class="col-sm-6">
-                                <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" onkeypress="$(this).mask('000.000.000-00');" id="cpf" name="cpf" placeholder="CPF" required>
+                                <label for="name">Nome</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Nome Completo" required>
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="password">Senha</label>
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
-
-                                <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" onclick="showPass()" id="showpass" name="showpass">
-                                    <label for="showpass" class="custom-control-label">Exibir Senha</label>
-                                </div>
+                                <label for="cpf">CPF</label>
+                                <input type="text" class="form-control" onkeypress="$(this).mask('000.000.000-00');" id="cpf" name="cpf" placeholder="CPF" required>
                             </div>
                         </div>
 
