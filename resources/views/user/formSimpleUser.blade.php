@@ -60,15 +60,11 @@ $permition = Auth::user()->actors->function
                     <div class="card-body">
                         <form action="/user/newSimpleUser" enctype="multipart/form-data" method="POST">
                         @csrf
-                        <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Nome Completo" required>
-                        </div>
                         
                         <div class="row form-group" div class="col-sm-12">
                             <div class="col-sm-6">
-                                <label for="cpf">CPF</label>
-                                <input type="text" class="form-control" onkeypress="$(this).mask('000.000.000-00');" id="cpf" name="cpf" placeholder="CPF" required>
+                                <label for="name">Nome</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Nome Completo" required>
                             </div>
 
                             <div class="col-sm-6">
