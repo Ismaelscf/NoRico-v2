@@ -72,6 +72,18 @@ $permition = Auth::user()->actors->function
                             </div>
 
                             <div class="col-sm-6">
+                                <label for="phone">Telefone</label>
+                                <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0000');" id="phone" name="phone" placeholder="Telefone" required>
+                            </div>
+                        </div>
+
+                        {{-- <div class="row form-group" div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                            </div>
+
+                            <div class="col-sm-6">
                                 <label for="password">Senha</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required>
 
@@ -80,19 +92,7 @@ $permition = Auth::user()->actors->function
                                     <label for="showpass" class="custom-control-label">Exibir Senha</label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row form-group" div class="col-sm-12">
-                            <div class="col-sm-6">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <label for="phone">Telefone</label>
-                                <input type="text" class="form-control" onkeypress="$(this).mask('(00) 00000-0000');" id="phone" name="phone" placeholder="Telefone" required>
-                            </div>
-                        </div>
+                        </div> --}}
 
                     </div>
 
