@@ -73,7 +73,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
     <!-- Main Header -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-dark ponto-quente-backround-blue">
           <!-- Preloader -->
             <div class="preloader flex-column justify-content-center align-items-center">
                 <img class="animation__shake" src="{{asset('images/logo.png')}}" alt="AdminLTELogo" height="60" width="60">
@@ -89,7 +89,7 @@
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                     <img src="{{asset('images/user.png')}}"
-                         class="user-image img-circle elevation-2" alt="User Image">
+                         class="user-image img-circle elevation-2 invert-color-ponto-quente" alt="User Image">
                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

@@ -1,9 +1,9 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4 ponto-quente-backround-yellow">
     <a href="{{ route('home') }}" class="brand-link">
-        <img src="{{asset('images/logo.png')}}"
-             alt="AdminLTE Logo"
-             class="brand-image img-circle elevation-3">
-        <span class="brand-text font-weight-light">Nova Olindense Rico</span>
+        <img src="{{asset('images/logo_ponto_quente.png')}}"
+             alt="Logo Ponto Quente"
+             width="100%">
+        {{-- <span class="brand-text font-weight-light"></span> --}}
     </a>
 
     <div class="sidebar">

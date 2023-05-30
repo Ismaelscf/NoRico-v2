@@ -43125,3 +43125,21 @@ a.text-muted:hover {
 section.content{
   margin-top: 20px;
 }
+
+.ponto-quente-backround-yellow{
+  background-color: #FFF200;
+}
+.ponto-quente-backround-blue{
+  background-color: #2E3192;
+}
+
+.ponto-quente-backround-yellow .nav-item a.nav-link{
+  color:#000;
+}
+.ponto-quente-backround-yellow .nav-item a.nav-link:hover, .ponto-quente-backround-yellow .nav-item:hover a.nav-link{
+  color:#2E3192 !important;
+}
+
+.invert-color-ponto-quente{
+  filter: invert(1);
+}

@@ -15,10 +15,12 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page ponto-quente-backround-yellow">
 <div class="login-box">
-    <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>NoRico</b></a>
+    <div class="login-logo">  
+        <a href="{{ url('/home') }}">
+            <img src="{{asset('images/logo_ponto_quente.png')}}" width="100%" >
+        </a>
     </div>
     <!-- /.login-logo -->
 
